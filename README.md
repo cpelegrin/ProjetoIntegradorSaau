@@ -1,4 +1,4 @@
-# ProjetoIntegradorSAAu
+# ProjetoIntegradorSAAU
 Projeto Integrador da plataforma SAAU
 
 ---
