@@ -14,7 +14,7 @@ class NoticiasController extends Controller
      */
     public function index()
     {
-        return ('site.noticias');
+        return view('site.noticias');
     }
 
     /**
