@@ -35,9 +35,12 @@ class NoticiasController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $noticias = new noticias();
         if ($request->foto_noticia) {
-            $data['image'] = $request->foto_noticia->store('noticias');
+            $variavel = $request->foto_noticia->store('noticias');
         }
+        dd($variavel);
     }
 
     /**
