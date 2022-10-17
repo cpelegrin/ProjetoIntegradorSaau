@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class noticias extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'titulo',
+        'resumo',
+        'corpo',
+        'image'
+    ];
 }
