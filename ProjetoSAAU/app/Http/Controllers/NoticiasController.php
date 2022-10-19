@@ -51,8 +51,8 @@ class NoticiasController extends Controller
         $noticia->resumo = $request->resumo;
         $noticia->corpo = $request->corpo;
         $noticia->image = $request->foto_noticia->store('noticias');
-        $noticia->save();
-        return redirect()->route('noticias');
+        dd($noticia->save());
+        return redirect()->route('noticias')->with(['success' => 'Notícia cadastrada com sucesso']);
     }
 
     /**
