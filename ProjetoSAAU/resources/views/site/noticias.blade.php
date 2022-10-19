@@ -10,9 +10,44 @@
 
 @stop
 
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
+
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
-@stop
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+<script>
+    toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
+
+    // Display a success toast, with a title
+    toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+
+    // Display an error toast, with a title
+    toastr.error('I do not think that word means what you think it means.', 'Inconceivable!')
+</script>
+
+
+@endsection
 
 @section('plugins.Summernote', true)
 
@@ -34,14 +69,14 @@
                     <input type="text" class="form-control" placeholder="Título">
                 </div>
 
-                <!--  -->
+                <!-- Resumo  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" title="Teste">
+                        <span class="input-group-text" title="Resumo">
                             <iconify-icon icon="arcticons:news"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" placeholder="Resumo" rows="2"></textarea>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2"></textarea>
                 </div>
 
                 <!-- Img -->
@@ -71,15 +106,14 @@
                         ['color', ['color']],
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
-                        ['table', ['table']],
                         ['insert', ['link', 'picture']],
-                        ['view', ['fullscreen', 'codeview']],
+                        ['view', ['fullscreen']],
                         ],
                         ];
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo_noticia" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
+                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
 
                     </div>
                 </div>
@@ -97,4 +131,4 @@
 </div>
 </div>
 </div>
-@stop
+@endsection
