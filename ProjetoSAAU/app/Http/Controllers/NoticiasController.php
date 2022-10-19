@@ -47,12 +47,12 @@ class NoticiasController extends Controller
     public function store(Request $request)
     {
         $noticia = new Noticias;
-        $noticia->titulo = $request->get('titulo');
-        $noticia->resumo = $request->get('resumo');
-        $noticia->corpo = $request->get('corpo');
-        $noticia->image = $request->get('foto_noticia');
+        $noticia->titulo = $request->titulo;
+        $noticia->resumo = $request->resumo;
+        $noticia->corpo = $request->corpo;
+        $noticia->image = $request->foto_noticia->store('noticias');
         $noticia->save();
-        return redirect()->route('/admin/noticias');
+        return redirect()->route('noticias');
     }
 
     /**

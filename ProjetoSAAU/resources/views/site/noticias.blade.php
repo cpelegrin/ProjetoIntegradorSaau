@@ -58,15 +58,16 @@
             <h3 class="card-title">Cadastro de Notícias</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="{{Route('salvar')}}">
+            <form method="post" action="{{Route('salvar')}}" enctype="multipart/form-data">
                 @csrf
+                <!-- Titulo  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" title="Teste">
+                        <span class="input-group-text" title="Titulo">
                             <iconify-icon icon="arcticons:news"></iconify-icon>
                         </span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Título">
+                    <input type="text" name="titulo" class="form-control" placeholder="Título">
                 </div>
 
                 <!-- Resumo  -->
@@ -87,11 +88,12 @@
                         </span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagem" id="img" />
+                        <input type="file" class="custom-file-input" name="foto_noticia" id="img" />
                         <label class="custom-file-label" for="img">Selecione a imagem</label>
                     </div>
                 </div>
 
+                <!-- Corpo  -->
                 <div class="input-group mt-4">
                     <div class="input-group-prepend">
                         <!-- teste do summernote -->
