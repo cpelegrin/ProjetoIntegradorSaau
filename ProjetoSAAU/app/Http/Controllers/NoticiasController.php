@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\noticias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiasController extends Controller
 {
@@ -33,11 +34,25 @@ class NoticiasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**public function store(Request $request)
+    {
+        $model = new noticias();
+        if ($request->teste) {
+            $data['image'] = $request->teste->store('noticias');
+        }
+        $model->create($data);
+        dd(Storage::url($data['image']));
+    }//** */
+
     public function store(Request $request)
     {
-        if ($request->foto_noticia) {
-            $data['image'] = $request->foto_noticia->store('noticias');
-        }
+        $noticia = new Noticias;
+        $noticia->titulo = $request->titulo;
+        $noticia->resumo = $request->resumo;
+        $noticia->corpo = $request->corpo;
+        $noticia->image = $request->foto_noticia->store('noticias');
+        dd($noticia->save());
+        return redirect()->route('noticias')->with(['success' => 'Notícia cadastrada com sucesso']);
     }
 
     /**
