@@ -99,7 +99,8 @@
                         <!-- teste do summernote -->
                         @php
                         $config = [
-                        'height' => '100',
+                        'height' => '150',
+                        'width' => '800',
                         'toolbar' => [
                         // [groupName, [list of button]]
                         ['style', ['bold', 'italic', 'underline', 'clear']],
