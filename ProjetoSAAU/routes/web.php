@@ -3,15 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+ |--------------------------------------------------------------------------
+ | Web Routes
+ |--------------------------------------------------------------------------
+ |
+ | Here is where you can register web routes for your application. These
+ | routes are loaded by the RouteServiceProvider within a group which
+ | contains the "web" middleware group. Now create something great!
+ |
+ */
 
 Route::get('/', function () {
     return view('site/index');
@@ -44,3 +44,6 @@ Route::get('/home', function () {
 
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
+
+Route::get('/admin/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'usuario'])->name('admin/funcionarios')->middleware('auth');
+Route::post('/admin/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('create')->middleware('auth');
