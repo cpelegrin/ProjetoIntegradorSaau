@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateNoticiaFormRequest;
 use App\Models\noticias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -44,14 +45,14 @@ class NoticiasController extends Controller
         dd(Storage::url($data['image']));
     }//** */
 
-    public function store(Request $request)
+    public function store(StoreUpdateNoticiaFormRequest $request)
     {
         $noticia = new Noticias;
         $noticia->titulo = $request->titulo;
         $noticia->resumo = $request->resumo;
         $noticia->corpo = $request->corpo;
         $noticia->image = $request->foto_noticia->store('noticias');
-        dd($noticia->save());
+        ($noticia->save());
         return redirect()->route('noticias')->with(['success' => 'Notícia cadastrada com sucesso']);
     }
 
