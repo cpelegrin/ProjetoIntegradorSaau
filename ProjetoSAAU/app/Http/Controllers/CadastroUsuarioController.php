@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class CadastroUsuarioController extends Controller
 {
-    public function Usuario()
+    public function create()
     {
-        return view('CadastroUsuario');
+        return view('usuarios.CadastroUsuario');
     }
-    public function create(Request $request)
+    
+    public function store(Request $request)
     {
         User::create([
             'name' => $request->name,
@@ -20,46 +21,42 @@ class CadastroUsuarioController extends Controller
             'password' => Hash::make($request->password),
             'permissao' => $request->permissao,
         ]);
-
-        return 'Foi salvo com sucesso';
+        $funcionarios = User::all();
+        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-
+    
     public function show()
     {
-        $pessoa = User::all();
-        return view('mostrarPessoa', compact('pessoa'));
+        $funcionarios = User::all();
+        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-
-    public function delete($id)
+    
+    public function destroy($id)
     {
-        $pessoa = User::findOrFail($id);
-        $pessoa->delete();
-
-        return 'deletado com sucesso ';
-
-
-
+        $funcionarios = User::findOrFail($id);
+        $funcionarios->delete();
+        $funcionarios = User::all();
+        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
+        
     }
-
+    
     public function edit($id)
     {
-        $pessoa = User::findOrFail($id);
-        return view('editarPessoa', compact('pessoa'));
-
-
+        $funcionarios = User::findOrFail($id);
+        return view('usuarios.editarFuncionario', compact('funcionarios'));
     }
-
+    
     public function update(Request $request, $id)
     {
-        $pessoa = User::findOrFail($id);
-        $pessoa->update([
-            'nome' => $request->nome,
-            'idade' => $request->idade,
+        $funcionarios = User::findOrFail($id);
+        $funcionarios->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'permissao' => $request->permissao,
         ]);
-
-        return 'Cadastro atualizado com sucesso';
+        $funcionarios = User::all();
+        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-
-
-
+    
 }

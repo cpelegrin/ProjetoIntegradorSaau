@@ -45,5 +45,14 @@ Route::get('/home', function () {
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
 
-Route::get('/admin/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'usuario'])->name('admin/funcionarios')->middleware('auth');
-Route::post('/admin/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('create')->middleware('auth');
+Route::get('/admin/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios')->middleware('auth');
+Route::post('/admin/cadastrar/funcionarios', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario')->middleware('auth');
+Route::get('/admin/ver/funcionarios',[App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario')->middleware('auth');
+Route::get('/admin/del/funcionarios/{id}',[App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario')->middleware('auth');
+Route::get('/admin/edit/funcionarios/{id}',[App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario')->middleware('auth');
+Route::post('/admin/atualizar/funcionarios/{id}',[App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario')->middleware('auth');
+
+
+
+Route::get('/usuario/perfil',[App\Http\Controllers\UsuarioController::class,'create'])->name('perfil')->middleware('auth');
+Route::post('/admin/cadastrar/usuario', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
