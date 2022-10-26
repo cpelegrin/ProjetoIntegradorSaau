@@ -10,9 +10,9 @@ class CadastroUsuarioController extends Controller
 {
     public function create()
     {
-        return view('usuarios.CadastroUsuario');
+        return view('usuarios.cadastroFuncionario');
     }
-    
+
     public function store(Request $request)
     {
         User::create([
@@ -24,28 +24,28 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-    
+
     public function show()
     {
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-    
+
     public function destroy($id)
     {
         $funcionarios = User::findOrFail($id);
         $funcionarios->delete();
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
-        
+
     }
-    
+
     public function edit($id)
     {
         $funcionarios = User::findOrFail($id);
         return view('usuarios.editarFuncionario', compact('funcionarios'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $funcionarios = User::findOrFail($id);
@@ -58,5 +58,5 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-    
+
 }
