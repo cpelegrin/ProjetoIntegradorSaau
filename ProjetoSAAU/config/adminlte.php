@@ -292,76 +292,54 @@ return [
     // Site legado para uso no admin LTE
     'menu' => [
         // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type' => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
+
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url' => '/usuario/perfil',
+            'text' => 'Perfil',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'url' => '/usuario/perfil',
+            'topnav_right' => true,
         ],
         ['header' => 'Adiministração SAAU'],
         [
-            'text' => 'Cadastrar Funcionários',
-            'url' => 'admin/funcionarios',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
             'text' => 'Funcionários',
-            'url' => 'admin/mostrar/funcionarios',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas  fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar funcionário',
+                    'url' => 'admin/funcionarios',
+                    'icon' => 'fas fa-fw fa-user',
 
+                ],
+                [
+                    'text' => 'Lista de funcionários',
+                    'url' => 'admin/ver/funcionarios',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
         ],
         [
             'text' => 'Notícias',
-            'url' => 'admin/noticias',
             'icon' => 'far fa-newspaper',
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'fas  fa-pencil',
+                    'route' => 'noticias',
+
+                ],
+                [
+                    'text' => 'Editar',
+                    'icon' => 'fas  fa-pencil',
+                    'route' => 'editarnoticias',
+                ],
+            ],
         ],
     ],
 
