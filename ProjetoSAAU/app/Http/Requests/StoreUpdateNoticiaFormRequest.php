@@ -44,7 +44,7 @@ class StoreUpdateNoticiaFormRequest extends FormRequest
             'corpo' => [
                 'required'
             ],
-            'image' => [
+            'foto_noticia' => [
                 'required'
             ],
         ];

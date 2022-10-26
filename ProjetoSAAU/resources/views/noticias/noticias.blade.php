@@ -94,7 +94,7 @@
                 <div class="input-group">
                     <div class="form-group">
                         <label for="img">Selecione a imagem</label>
-                        <input type="file" class="form-control-file" id="img">
+                        <input type="file" class="form-control-file" id="img" name="foto_noticia">
                     </div>
                 </div>
 
