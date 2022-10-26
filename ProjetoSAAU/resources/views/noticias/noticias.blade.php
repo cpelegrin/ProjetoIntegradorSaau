@@ -74,7 +74,7 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Titulo">
-                            <iconify-icon icon="arcticons:news"></iconify-icon>
+                            <iconify-icon icon="bx:text"></iconify-icon>
                         </span>
                     </div>
                     <input type="text" name="titulo" class="form-control" value="{{ old('titulo')}}" placeholder="Título">
@@ -84,10 +84,10 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Resumo">
-                            <iconify-icon icon="arcticons:news"></iconify-icon>
+                            <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" value="{{ old('resumo')}}" placeholder="Resumo" rows="2"></textarea>
+                    <textarea class="form-control" name="resumo" value="{{ old('resumo')}}" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"></textarea>
                 </div>
 
                 <!-- Img -->
