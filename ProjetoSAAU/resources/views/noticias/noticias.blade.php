@@ -92,14 +92,9 @@
 
                 <!-- Img -->
                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-file-upload"></i>
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="foto_noticia" id="img" />
-                        <label class="custom-file-label" for="img">Selecione a imagem</label>
+                    <div class="form-group">
+                        <label for="img">Selecione a imagem</label>
+                        <input type="file" class="form-control-file" id="img">
                     </div>
                 </div>
 
@@ -109,8 +104,8 @@
                         <!-- teste do summernote -->
                         @php
                         $config = [
-                        'height' => '150',
-                        'width' => '800',
+                        'height' => '250',
+                        'width' => '772',
                         'toolbar' => [
                         // [groupName, [list of button]]
                         ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -140,8 +135,5 @@
         </div>
 
     </div>
-
-</div>
-</div>
 </div>
 @endsection
