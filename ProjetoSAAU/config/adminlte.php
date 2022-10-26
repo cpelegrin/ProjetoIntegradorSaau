@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -13,11 +13,11 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'title' => 'AdminLTE 3',
     'title_prefix' => '',
     'title_postfix' => '',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Favicon
@@ -29,10 +29,10 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'use_ico_only' => false,
     'use_full_favicon' => false,
-    
+
     /*
     |--------------------------------------------------------------------------
     | Google Fonts
@@ -46,11 +46,11 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'google_fonts' => [
         'allowed' => true,
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Admin Panel Logo
@@ -62,14 +62,14 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'logo' => '<b>Admin</b>LTE',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Logo
@@ -82,7 +82,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'auth_logo' => [
         'enabled' => false,
         'img' => [
@@ -93,7 +93,7 @@ return [
             'height' => 50,
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Preloader Animation
@@ -105,7 +105,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'preloader' => [
         'enabled' => true,
         'img' => [
@@ -116,7 +116,7 @@ return [
             'height' => 60,
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | User Menu
@@ -128,14 +128,14 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'usermenu_enabled' => true,
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
-    
+
     /*
     |--------------------------------------------------------------------------
     | Layout
@@ -147,14 +147,14 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    
+
     'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
-    
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Views Classes
@@ -166,14 +166,14 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    
+
     'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Admin Panel Classes
@@ -185,7 +185,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    
+
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
@@ -197,7 +197,7 @@ return [
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Sidebar
@@ -209,7 +209,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    
+
     'sidebar_mini' => 'lg',
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
@@ -219,7 +219,7 @@ return [
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
-    
+
     /*
     |--------------------------------------------------------------------------
     | Control Sidebar (Right Sidebar)
@@ -231,7 +231,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-    
+
     'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
@@ -239,7 +239,7 @@ return [
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
-    
+
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -251,7 +251,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-    
+
     'use_route_url' => false,
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
@@ -260,7 +260,7 @@ return [
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
-    
+
     /*
     |--------------------------------------------------------------------------
     | Laravel Mix
@@ -272,11 +272,11 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     |
     */
-    
+
     'enabled_laravel_mix' => false,
     'laravel_mix_css_path' => 'css/app.css',
     'laravel_mix_js_path' => 'js/app.js',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -292,79 +292,57 @@ return [
     // Site legado para uso no admin LTE
     'menu' => [
         // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'search',
-            'topnav_right' => true,
-        ],
-        [
-            'type' => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-        
+
+
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url' => '/usuario/perfil',
+            'text' => 'Perfil',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'url'  => '/usuario/perfil',
+            'topnav_right' => true,
         ],
         ['header' => 'Adiministração SAAU'],
         [
-            'text' => 'Cadastrar Funcionários',
-            'url' => 'admin/funcionarios',
-            'icon' => 'fas fa-fw fa-user',
+            'text'    => 'Funcionários',
+            'icon' => 'fas  fa-users',
+            'submenu' => [
+                [
+                    'text'    => 'Cadastrar funcionário',
+                    'url' => 'admin/funcionarios',
+                    'icon' => 'fas fa-fw fa-user',
+
+                ],
+                [
+                    'text' => 'Lista de funcionários',
+                    'url' => 'admin/ver/funcionarios',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ],
         ],
         [
-            'text' => 'Funcionários',
-            'url' => 'admin/ver/funcionarios',
-            'icon' => 'fas fa-fw fa-user',
-            
-        ],
-        [
-            'text' => 'Notícias',
-            'url' => 'admin/noticias',
+            'text'    => 'Notícias',
             'icon' => 'far fa-newspaper',
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'submenu' => [
+                [
+                    'text'    => 'Cadastrar',
+                    'icon'  => 'fas  fa-pencil',
+                    'route' => 'noticias',
+
+                ],
+                [
+                    'text' => 'Editar',
+                    'icon'  => 'fas  fa-pencil',
+                    'route'  => 'editarnoticias',
+                ],
+            ],
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
@@ -376,7 +354,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-    
+
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
@@ -386,7 +364,7 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Plugins Initialization
@@ -398,7 +376,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Plugins-Configuration
     |
     */
-    
+
     'plugins' => [
         'Datatables' => [
             'active' => false,
@@ -486,7 +464,7 @@ return [
             ],
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | IFrame
@@ -499,28 +477,28 @@ return [
         | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/IFrame-Mode-Configuration
         |
         */
-        
-        'iframe' => [
-            'default_tab' => [
-                'url' => null,
-                'title' => null,
-            ],
-            'buttons' => [
-                'close' => true,
-                'close_all' => true,
-                'close_all_other' => true,
-                'scroll_left' => true,
-                'scroll_right' => true,
-                'fullscreen' => true,
-            ],
-            'options' => [
-                'loading_screen' => 1000,
-                'auto_show_new_tab' => true,
-                'use_navbar_items' => true,
-            ],
+
+    'iframe' => [
+        'default_tab' => [
+            'url' => null,
+            'title' => null,
         ],
-        
-        /*
+        'buttons' => [
+            'close' => true,
+            'close_all' => true,
+            'close_all_other' => true,
+            'scroll_left' => true,
+            'scroll_right' => true,
+            'fullscreen' => true,
+        ],
+        'options' => [
+            'loading_screen' => 1000,
+            'auto_show_new_tab' => true,
+            'use_navbar_items' => true,
+        ],
+    ],
+
+    /*
         |--------------------------------------------------------------------------
         | Livewire
         |--------------------------------------------------------------------------
@@ -531,6 +509,6 @@ return [
         | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
         |
         */
-        
-        'livewire' => false,
-    ];
+
+    'livewire' => false,
+];
