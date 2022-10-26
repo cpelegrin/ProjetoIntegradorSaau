@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class perfilUsuario extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
-        'sobrenome',
+
         'endereco',
         'profissao',
         'telefone',

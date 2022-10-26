@@ -7,22 +7,23 @@ use App\Models\perfilUsuario;
 
 class UsuarioController extends Controller
 {
-     public function create(){
-        return view('usuarios.perfil');
+    public function create()
+    {
+        //todo buscar userautenticado e enviar para view
+        return view('usuarios.editarPerfil');
     }
-    
+
     public function store(Request $request)
     {
         perfilUsuario::create([
-            'sobrenome' => $request->sobrenome,
+
             'endereco' => $request->endereco,
             'profissao' => $request->profissao,
             'telefone' => $request->telefone,
             'sobremim' => $request->sobremim,
-            
+
         ]);
-        
-        return 's';
+
+        return '';
     }
 }
-
