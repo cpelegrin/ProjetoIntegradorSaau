@@ -15,14 +15,14 @@ class StoreUpdateNoticiaFormRequest extends FormRequest
     {
         return true;
     }
-    
+
     public function messages()
     {
         return [
-            'titulo.required' => 'o título',
-            'resumo.required' => 'o resumo',
-            'corpo.required' => 'o corpo',
-            'image.required' => 'uma imagem',
+            'titulo.required' => 'Você precisa inserir o título para continuar',
+            'resumo.required' => 'Você precisa inserir o resumo para continuar',
+            'corpo.required' => 'Você precisa inserir o corpo para continuar',
+            'image.required' => 'Você precisa inserir uma imagem para continuar',
         ];
     }
     /**
@@ -33,20 +33,20 @@ class StoreUpdateNoticiaFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'titulo' => [
-            'required',
-            'unique:noticias'
-        ],
-        'resumo' => [
-            'required',
-            'max:270'
-        ],
-        'corpo' => [
-            'required'
-        ],
-        'image' => [
-            'required'
-        ],
+            'titulo' => [
+                'required',
+                'unique:noticias'
+            ],
+            'resumo' => [
+                'required',
+                'max:270'
+            ],
+            'corpo' => [
+                'required'
+            ],
+            'image' => [
+                'required'
+            ],
         ];
     }
 }

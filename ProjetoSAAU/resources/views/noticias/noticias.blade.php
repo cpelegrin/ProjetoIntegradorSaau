@@ -50,7 +50,7 @@
 @if($errors->any())
 @foreach ($errors->all() as $error)
 <script>
-    toastr.warning('Você Precisa inserir {{$error}} para continuar')
+    toastr.warning('{{$error}}')
 </script>
 @endforeach
 @endif
@@ -77,7 +77,7 @@
                             <iconify-icon icon="arcticons:news"></iconify-icon>
                         </span>
                     </div>
-                    <input type="text" name="titulo" class="form-control" placeholder="Título">
+                    <input type="text" name="titulo" class="form-control" value="{{ old('titulo')}}" placeholder="Título">
                 </div>
 
                 <!-- Resumo  -->
@@ -87,7 +87,7 @@
                             <iconify-icon icon="arcticons:news"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2"></textarea>
+                    <textarea class="form-control" name="resumo" value="{{ old('resumo')}}" placeholder="Resumo" rows="2"></textarea>
                 </div>
 
                 <!-- Img -->
@@ -121,7 +121,7 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
+                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" value="{{ old('corpo')}}" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
 
                     </div>
                 </div>
