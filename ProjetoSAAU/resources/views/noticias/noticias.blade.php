@@ -50,7 +50,7 @@
 @if($errors->any())
 @foreach ($errors->all() as $error)
 <script>
-    toastr.warning('{{$error}}')
+    toastr.error('{{$error}}')
 </script>
 @endforeach
 @endif
