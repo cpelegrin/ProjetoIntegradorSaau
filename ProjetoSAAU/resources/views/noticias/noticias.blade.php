@@ -52,8 +52,8 @@
 <script>
     toastr.warning('Você Precisa inserir {{$error}} para continuar')
 </script>
-  @endforeach
-  @endif
+@endforeach
+@endif
 </div>
 
 
@@ -109,8 +109,8 @@
                         <!-- teste do summernote -->
                         @php
                         $config = [
-                        'height' => '150',
-                        'width' => '800',
+                        'height' => '250',
+                        'width' => '772',
                         'toolbar' => [
                         // [groupName, [list of button]]
                         ['style', ['bold', 'italic', 'underline', 'clear']],
