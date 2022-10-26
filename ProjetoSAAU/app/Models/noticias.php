@@ -13,6 +13,7 @@ class Noticias extends Model
         'titulo',
         'resumo',
         'corpo',
-        'image'
+        'image',
+        'updated_at',
     ];
 }

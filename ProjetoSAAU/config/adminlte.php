@@ -335,9 +335,9 @@ return [
 
                 ],
                 [
-                    'text' => 'Editar',
+                    'text' => 'Lista',
                     'icon'  => 'fas  fa-pencil',
-                    'route'  => 'editarnoticias',
+                    'route'  => 'listanoticias',
                 ],
             ],
         ],

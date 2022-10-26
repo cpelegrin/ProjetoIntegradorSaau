@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateNoticiaFormRequest;
 use App\Models\noticias;
+use App\Models\Noticias as ModelsNoticias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +18,13 @@ class NoticiasController extends Controller
     public function index()
     {
         return view('noticias.noticias');
+    }
+
+    public function lista()
+    {
+        $lista = Noticias::get();
+        // dd($lista);
+        return view('noticias.lista', compact('lista'));
     }
 
     /**
