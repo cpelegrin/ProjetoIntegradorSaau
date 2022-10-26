@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="row ">
-    <div class="col-8 ">
+    <div class="col-10 ">
         <div class="card ">
             <div class="card-body ">
                 <div class="content ">
