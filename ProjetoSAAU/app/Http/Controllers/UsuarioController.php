@@ -15,20 +15,49 @@ class UsuarioController extends Controller
     {
 
         $user = auth()->user();
-        return view('usuarios.editarPerfil', compact('user'));
+        $perfil = perfilUsuario::where('user_id', $user->id)->first();
+        if ($perfil == null) {
+            return view('usuarios.editarPerfil', compact('user'));
+        } else {
+            return view('usuarios.editarPerfil', compact('user', 'perfil'));
+        }
     }
 
     public function store(Request $request, $user_id)
     {
-        perfilUsuario::create([
-            'user_id' => $user_id,
-            'endereco' => $request->endereco,
-            'profissao' => $request->profissao,
-            'telefone' => $request->telefone,
-            'sobremim' => $request->sobremim,
+        $perfil = perfilUsuario::where('user_id', $user_id)->first();
+        if ($perfil == null) {
+            $user = User::find(auth()->user()->id);
+            $user->name = $request->nome;
+            $user->email = $request->email;
 
-        ]);
-        $user = auth()->user();
-        return view('usuarios.editarPerfil', compact('user'));
+            $user->save();
+
+            $perfil = perfilUsuario::create([
+                'user_id' => $user_id,
+                'endereco' => $request->endereco,
+                'profissao' => $request->profissao,
+                'telefone' => $request->telefone,
+                'sobremim' => $request->sobremim,
+
+            ]);
+
+        } else {
+            $user = User::find(auth()->user()->id);
+            $user->name = $request->nome;
+            $user->email = $request->email;
+
+            $user->save();
+
+            $perfil->endereco = $request->endereco;
+            $perfil->profissao = $request->profissao;
+            $perfil->telefone = $request->telefone;
+            $perfil->sobremim = $request->sobremim;
+
+            $perfil->save();
+        }
+
+
+        return view('usuarios.editarPerfil', compact('user', 'perfil'));
     }
 }

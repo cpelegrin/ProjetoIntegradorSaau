@@ -15,10 +15,10 @@ return new class extends Migration {
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('endereco')->default('-');
-            $table->string('profissao')->default('-');
-            $table->string('telefone')->default('-');
-            $table->text('sobremim')->default('-');
+            $table->string('endereco')->notfound();
+            $table->string('profissao')->nullable();
+            $table->string('telefone')->nullable();
+            $table->text('sobremim')->nullable();
             $table->timestamps();
         });
     }
