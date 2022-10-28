@@ -82,7 +82,7 @@
             <div class="modal-body">
                 <p class="text-center">Confirma a exclusão do registro?</p>
             </div>
-            <input type="text" name="email_id" id="email_id" value="{{$noticia->titulo}},{{ $noticia->resumo}}">
+            <input type="text" name="email_id" id="email_id" value="{{$noticia->titulo}},{{$noticia->resumo}}">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-danger">Deletar</button>
