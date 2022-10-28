@@ -36,18 +36,18 @@
                                         <h4 class="card-title">Editar Perfil</h4>
                                     </div>
                                     <!--============-->
+                                    <form action="{{route('salvar_perfil', $user->id)}}" method="post">
+                                        @csrf
+                                        <div class="card-content p-3">
 
-                                    <div class="card-content p-3">
-                                        <!--Formulario de editar perfil-->
-                                        <form method="POST" action="{{route('salvar_perfil')}}">
-                                            @csrf
                                             <!--Nome-->
                                             <div class="row">
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Primeiro Nome</label>
-                                                        <input type="text" class="form-control border-input" name="nome"
-                                                            placeholder="Nome">
+                                                        <label>Nome completo</label>
+                                                        <input type="text" value="" class="form-control border-input"
+                                                            name="nome" placeholder="Nome" value="">
                                                     </div>
                                                 </div>
                                                 <!--============-->
@@ -57,11 +57,13 @@
                                                     <div class="form-group">
                                                         <label>Email</label>
                                                         <input type="email" class="form-control border-input"
-                                                            name="email" placeholder="Email">
+                                                            name="email" value="" placeholder="Email">
                                                     </div>
                                                 </div>
                                                 <!--===============-->
                                             </div>
+
+
 
                                             <!--Endereco-->
                                             <div class="row">
@@ -69,7 +71,7 @@
                                                     <div class="form-group">
                                                         <label>Endereço</label>
                                                         <input type="text" class="form-control border-input"
-                                                            name="endereco" placeholder="Endereço">
+                                                            name="endereco" value="" placeholder="Endereço">
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +82,8 @@
                                                     <!--Profissao-->
                                                     <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Profissão</label>
-                                                        <input type="text" name="profissao" class="form-control">
+                                                        <input type="text" value="" name="profissao"
+                                                            class="form-control">
                                                         <span class="material-input"></span>
                                                     </div>
                                                 </div>
@@ -90,8 +93,8 @@
                                                     <!--Telefone-->
                                                     <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Telefone</label>
-                                                        <input type="text" placeholder="(xx)xxxxx-xxxx" name="telefone"
-                                                            class="form-control">
+                                                        <input type="text" placeholder="(xx)xxxxx-xxxx" value=""
+                                                            name="telefone" class="form-control">
                                                         <span class="material-input"></span>
                                                     </div>
                                                 </div>
@@ -101,8 +104,8 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating is-empty">
                                                         <label class="control-label">Permissão</label>
-                                                        <input type="text" value="Funcionário" name="profissao"
-                                                            disabled="" class="form-control">
+                                                        <input type="text" value="" name="profissao" disabled=""
+                                                            class="form-control">
                                                         <span class="material-input"></span>
                                                     </div>
                                                 </div>
@@ -116,8 +119,8 @@
                                                         <label>Sobre mim</label>
                                                         <textarea rows="5" name="sobremim"
                                                             class="form-control border-input" placeholder="Descrição"
-                                                            value="Mike">
-                                                                    </textarea>
+                                                            value="">
+                                                        </textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,10 +130,10 @@
                                                 <button type="submit"
                                                     class="btn btn-info btn-fill btn-wd">Salvar</button>
                                             </div>
-                                        </form>
-                                        <!--============-->
+                                        </div>
+                                    </form>
+                                    <!--============-->
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +141,8 @@
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 </div>
 @stop

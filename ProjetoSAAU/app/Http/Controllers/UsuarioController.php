@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\{
+    User,
+    perfilUsuario
+};
 use Illuminate\Http\Request;
-use App\Models\perfilUsuario;
 
 class UsuarioController extends Controller
 {
     public function create()
     {
-        //todo buscar userautenticado e enviar para view
-        return view('usuarios.editarPerfil');
+
+        $user = auth()->user();
+        return view('usuarios.editarPerfil', compact('user'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $user_id)
     {
         perfilUsuario::create([
-
+            'user_id' => $user_id,
             'endereco' => $request->endereco,
             'profissao' => $request->profissao,
             'telefone' => $request->telefone,
             'sobremim' => $request->sobremim,
 
         ]);
-
-        return '';
+        $user = auth()->user();
+        return view('usuarios.editarPerfil', compact('user'));
     }
 }

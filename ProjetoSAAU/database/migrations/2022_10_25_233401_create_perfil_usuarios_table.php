@@ -14,10 +14,11 @@ return new class extends Migration {
     {
         Schema::create('perfil_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('endereco')->nullable();
-            $table->string('profissao')->nullable();
-            $table->integer('telefone')->nullable();
-            $table->text('sobremim')->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('endereco')->default('-');
+            $table->string('profissao')->default('-');
+            $table->string('telefone')->default('-');
+            $table->text('sobremim')->default('-');
             $table->timestamps();
         });
     }

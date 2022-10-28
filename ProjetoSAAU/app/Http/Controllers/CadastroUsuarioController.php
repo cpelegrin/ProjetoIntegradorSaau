@@ -10,9 +10,8 @@ class CadastroUsuarioController extends Controller
 {
     public function create()
     {
-        $user = auth()->user();
-        $funcionarios = User::all();
-        return view('usuarios.cadastrarFuncionario', compact('user'), compact('funcionarios'));
+
+        return view('usuarios.cadastrarFuncionario');
 
     }
 
