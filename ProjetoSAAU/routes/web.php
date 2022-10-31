@@ -33,6 +33,19 @@ Route::get('/artigo-blog', function () {
     return view('site/artigo-blog');
 })->name('artigo-blog');
 
+Route::get('/doacao', function () {
+    return view('site/doacao');
+})->name('doacao');
+
+Route::get('/adocao', function () {
+    return view('site/adocao');
+})->name('adocao');
+
+Route::get('/seja-voluntario', function () {
+    return view('site/seja-voluntario');
+})->name('seja-voluntario');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
