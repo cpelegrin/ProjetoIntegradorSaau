@@ -306,7 +306,7 @@ return [
             'url' => '/usuario/perfil',
             'topnav_right' => true,
         ],
-        ['header' => 'Adiministração SAAU'],
+        ['header' => 'Administração SAAU'],
         [
             'text' => 'Funcionários',
             'icon' => 'fas  fa-users',
@@ -338,6 +338,23 @@ return [
                     'text' => 'Lista',
                     'icon'  => 'fas  fa-pencil',
                     'route'  => 'listanoticias',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Animais',
+            'icon' => 'far fa-newspaper',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'fas  fa-pencil',
+                    'route' => 'animal',
+
+                ],
+                [
+                    'text' => 'Lista',
+                    'icon'  => 'fas  fa-pencil',
+                    'route'  => 'listaanimal',
                 ],
             ],
         ],

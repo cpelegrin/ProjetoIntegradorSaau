@@ -45,6 +45,9 @@ Route::get('/home', function () {
 Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::class, 'lista'])->name('listanoticias')->middleware('auth');
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
+Route::get('/admin/animal/lista', [App\Http\Controllers\AnimalController::class, 'lista'])->name('listaanimal')->middleware('auth');
+Route::get('/admin/animal', [App\Http\Controllers\AnimalController::class, 'index'])->name('animal')->middleware('auth');
+Route::post('/admin/animal', [App\Http\Controllers\AnimalController::class, 'store'])->name('salvar')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/admin/funcionarios')->group(function () {
@@ -55,6 +58,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
         Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
         Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
+        Route::get('', [App\Http\Controllers\CadastroAnimalController::class, 'create'])->name('admin/animal');
+        Route::post('/cadastrar', [App\Http\Controllers\CadastroAnimalController::class, 'store'])->name('salvar_animal');
+        Route::get('/mostrar', [App\Http\Controllers\CadastroAnimalController::class, 'show'])->name('mostrar_animal');
+        Route::get('/deletar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'destroy'])->name('deletar_animal');
+        Route::get('/edit/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'edit'])->name('editar_animal');
+        Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
 
     }
     );
