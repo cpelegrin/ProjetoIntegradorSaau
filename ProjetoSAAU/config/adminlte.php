@@ -320,7 +320,7 @@ return [
                 [
                     'text' => 'Lista de funcionários',
                     'url' => 'admin/ver/funcionarios',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon' => 'fas fa-fw fa-bars',
                 ],
             ],
         ],
@@ -329,31 +329,31 @@ return [
             'icon' => 'far fa-newspaper',
             'submenu' => [
                 [
-                    'text' => 'Cadastrar',
-                    'icon' => 'fas  fa-pencil',
+                    'text' => 'Cadastrar Notícia',
+                    'icon' => 'fas  fa-pen',
                     'route' => 'noticias',
 
                 ],
                 [
-                    'text' => 'Lista',
-                    'icon'  => 'fas  fa-pencil',
+                    'text' => 'Lista de Notícias',
+                    'icon'  => 'fas  fa-bars',
                     'route'  => 'listanoticias',
                 ],
             ],
         ],
         [
             'text' => 'Animais',
-            'icon' => 'far fa-newspaper',
+            'icon' => 'fas fa-paw',
             'submenu' => [
                 [
-                    'text' => 'Cadastrar',
-                    'icon' => 'fas  fa-pencil',
+                    'text' => 'Cadastrar Animal',
+                    'icon' => 'fas  fa-plus',
                     'route' => 'animal',
 
                 ],
                 [
-                    'text' => 'Lista',
-                    'icon'  => 'fas  fa-pencil',
+                    'text' => 'Lista de Animais',
+                    'icon'  => 'fas  fa-bars',
                     'route'  => 'listaanimal',
                 ],
             ],
