@@ -17,21 +17,20 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>LINKS ÚTEIS:</h4>
                     <ul>
-                        <li><a href="{{Route('adocao')}}">Adoções</a></li>
-                        <li><a href="{{Route('doacao')}}">Doações</a></li>
-                        <li><a href="{{Route('contato')}}">Denúncias</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="sobre-nos.html">Sobre Nós</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Adoções</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Doações</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="contato.html">Denúncias</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
                     </ul>
                 </div>
-
-
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>HORÁRIO DE ATENDIMENTO:</h4>
                     <ul>
-                        <li></i>Segunda à Sexta: 13:30h às 17:00h</a></li>
-                        <li></i>Sábado: 13:30h às 17:00h</a></li>
-                        <li>Domingo: Fechado</a></li><br>
+                        <li><i class="bx bx-chevron-right"></i>Segunda à Sexta: 13:30h às 17:00h</a></li>
+                        <li><i class="bx bx-chevron-right"></i>Sábado: 13:30h às 17:00h</a></li>
+                        <li><i class="bx bx-chevron-right"></i>Domingo: Fechado</a></li><br>
                         <strong>Telefone:</strong> (44) 98432-8357<br>
                         <strong>Telefone:</strong> (44) 99945-8902<br>
                         <strong>E-mail:</strong> contato@saau.com.br<br>
@@ -48,20 +47,11 @@
                         85606-380 <br><br>
                     </p>
 
-
-                    <div class="col-sm-12 footer-links">
-                        <h4>Colaboradores:</h4>
-                        <ul>
-                            <li><a href="{{Route('login')}}">Fazer Login</a></li>
-                        </ul>
-                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-
-
-
 
     <div class="container">
         <div class="copyright">

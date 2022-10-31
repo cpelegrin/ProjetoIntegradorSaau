@@ -10,4 +10,4 @@
                 <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
             </div>
         </div>
-    </section>
+</section>
