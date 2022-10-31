@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateNoticiaFormRequest;
-use App\Models\noticias;
+use App\Models\Noticias;
 use App\Models\Noticias as ModelsNoticias;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
