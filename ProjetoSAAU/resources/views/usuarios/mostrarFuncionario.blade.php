@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+
 <div class="row ">
     <div class="col-10 ">
         <div class=" ">
@@ -33,24 +34,89 @@
                                         <!--===============-->
 
                                         <!--Corpo da tabela-->
-                                        @foreach ($funcionarios as $funcionario)
-                                        <tr>
-                                            <td>{{$funcionario->name}}</td>
-                                            <td>{{$funcionario->permissao}}</td>
-                                            <td class="td-actions text-right">
-                                                <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
-                                                    <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                                                    <i class="fas fa-trash text-danger" aria-hidden="true"></i>
-                                                </a>
 
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                        {{-- Setup data for datatables --}}
+                                        @php
+                                        $heads = [
+                                        'ID',
+                                        'Name',
+                                        ['label' => 'Phone', 'width' => 40],
+                                        ['label' => 'Actions', 'no-export' => true, 'width' => 5],
+                                        ];
+
+                                        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+                                            <i class="fa fa-lg fa-fw fa-pen"></i>
+                                        </button>';
+                                        $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                                            <i class="fa fa-lg fa-fw fa-trash"></i>
+                                        </button>';
+                                        $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                                            <i class="fa fa-lg fa-fw fa-eye"></i>
+                                        </button>';
+
+                                        $config = [
+                                        'data' => [
+                                        [22, 'Gabriel G', '+02 (123) 123456789', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                                        [19, 'Jonathan Turista', '+99 (987) 987654321', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                                        [3, 'Ville ', '+69 (555) 96467345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                                        [6, 'Rafael H', '+69 (555) 43267345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                                        [9, 'Juliano Hoffman', '+69 (555) 124367345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
+                                        ],
+                                        'order' => [[1, 'asc']],
+                                        'columns' => [null, null, null, ['orderable' => false]],
+                                        ];
+                                        @endphp
+
+                                        {{-- Minimal example / fill data using the component slot --}}
+                                        <x-adminlte-datatable id="table1" :heads="$heads">
+                                            @foreach($config['data'] as $row)
+                                            <tr>
+                                                @foreach($row as $cell)
+                                                <td>{!! $cell !!}</td>
+                                                @endforeach
+                                            </tr>
+                                            @endforeach
+                                        </x-adminlte-datatable>
+                                        <!-- Modal -->
+
+                                        <form id="deleteForm" method="get" action=" route('remover.noticias', $removernoticias->id)">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        </form>
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="text-center">Confirma a exclusão do registro?</p>
+                                                    </div>
+                                                    <input type="text" name="email_id" id="email_id" value="$noticia->titulo,$noticia->resumo">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-danger">Deletar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <script type="text/javascript">
+                                            $('deleteModal').on('show.bs.modal', function(event) {
+                                                var button = $(event.relatedTarget); // Button that triggered the modal
+                                                var recipientId = button.data('id');
+                                                console.log(recipientId);
+                                                var modal = $(this);
+                                                modal.find('#email_id').val(recipientId);
+                                            })
+                                        </script>
+
+
+
                                         <!--===============-->
                                     </tbody>
                                 </table>

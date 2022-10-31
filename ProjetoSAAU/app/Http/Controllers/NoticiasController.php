@@ -125,9 +125,15 @@ class NoticiasController extends Controller
                 ->withInput();
     }
 
-
     public function remover(request $request, $id)
     {
         return view('noticias.remover');
+    }
+
+    public function mostrarFuncionario()
+    {
+        $lista = Noticias::get();
+        // dd($lista);
+        return view('listadefuncionarios.mostrarFuncionario', compact('mostrar'));
     }
 }

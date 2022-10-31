@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoticiasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,7 +46,7 @@ Route::get('/admin/noticias/remover/{id}', [App\Http\Controllers\NoticiasControl
 Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::class, 'lista'])->name('listanoticias')->middleware('auth');
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
-
+Route::delete('/users/{id}', [NoticiasController::class, 'destroy'])->name('noticias.destroy');
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/admin/funcionarios')->group(
         function () {
