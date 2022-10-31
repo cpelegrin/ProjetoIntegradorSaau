@@ -82,11 +82,13 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function edit(noticias $noticias)
+    public function edit($id)
     {
-        //
-    }
+        if (!$noticia = Noticias::find($id))
+        return redirect()->route('/admin/noticias/lista');
 
+        return view('noticias.edit', compact('noticia'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -94,9 +96,12 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, noticias $noticias)
+    public function update(Request $request, $id)
     {
-        //
+        if (!$noticia = Noticias::find($id))
+        return redirect()->route('/admin/noticias/lista');
+
+        dd($request->all());
     }
 
     /**

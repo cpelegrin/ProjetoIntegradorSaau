@@ -40,9 +40,11 @@
                                             <td>{{$noticia->resumo}}</td>
                                             <td>{{$noticia->update_at}}</td>
                                             <td class="td-actions text-right">
-                                                <a href="#" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                                </a>
+                                                
+                                                
+                                                
+                                                <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
+                                              
 
                                                 <a href="#" class="mx-2" data-toggle="modal" data-target="#deleteModal">
                                                     <i class="fas fa-trash-alt text-danger"></i>

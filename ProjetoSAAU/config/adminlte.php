@@ -319,11 +319,7 @@ return [
                 ],
                 [
                     'text' => 'Lista de funcionários',
-<<<<<<< HEAD
-                    'url' => 'admin/funcionarios/mostrar',
-=======
                     'url' => '/admin/funcionarios/mostrar',
->>>>>>> 254032fc2d0fd5bcc344ec72ad33771896d5efd6
                     'icon' => 'fas fa-fw fa-user',
                 ],
             ],
