@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
  |--------------------------------------------------------------------------
  | Web Routes
@@ -42,6 +44,9 @@ Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
+Route::put('/admin/noticias/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'update'])->name('noticias.update')->middleware('auth');
+Route::get('/admin/noticias/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'edit'])->name('noticias.edit')->middleware('auth');
+Route::get('/admin/noticias/remover/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('remover.noticias')->middleware('auth');
 Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::class, 'lista'])->name('listanoticias')->middleware('auth');
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
@@ -50,8 +55,10 @@ Route::get('/admin/animal', [App\Http\Controllers\AnimalController::class, 'inde
 Route::post('/admin/animal', [App\Http\Controllers\AnimalController::class, 'store'])->name('salvar')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('/admin/funcionarios')->group(function () {
+    Route::prefix('/admin/funcionarios')->group(
+        function () {
 
+<<<<<<< HEAD
         Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
         Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
         Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
@@ -66,6 +73,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
 
     }
+=======
+            Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
+            Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
+            Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
+            Route::get('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
+            Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
+            Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
+        }
+>>>>>>> e53385abd3443f1986fcfbad6226288fc0ff9b39
     );
 });
 

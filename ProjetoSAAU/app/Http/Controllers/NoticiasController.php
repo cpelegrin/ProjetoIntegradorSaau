@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateNoticiaFormRequest;
 use App\Models\noticias;
 use App\Models\Noticias as ModelsNoticias;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -81,11 +82,13 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function edit(noticias $noticias)
+    public function edit($id)
     {
-        //
-    }
+        if (!$noticia = Noticias::find($id))
+        return redirect()->route('/admin/noticias/lista');
 
+        return view('noticias.edit', compact('noticia'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -93,9 +96,12 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, noticias $noticias)
+    public function update(Request $request, $id)
     {
-        //
+        if (!$noticia = Noticias::find($id))
+        return redirect()->route('/admin/noticias/lista');
+
+        dd($request->all());
     }
 
     /**
@@ -104,8 +110,29 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(noticias $noticias)
+
+    public function destroy(Request $request, $id)
     {
-        //
+        dd($request);
+        $id = $request['email_id'];
+        $email = $this->email->find($id);
+        $delete = $email->delete();
+        if ($delete)
+            return redirect()
+                ->route('remover.noticias')
+                ->with(['Success' => 'Registro excluido com Sucesso'])
+                ->withInput();
+
+        else
+            return redirect()
+                ->route('remover.noticias')
+                ->withErrors(['errors' => 'Erro no Delete'])
+                ->withInput();
+    }
+
+
+    public function remover(request $request, $id)
+    {
+        return view('noticias.remover');
     }
 }

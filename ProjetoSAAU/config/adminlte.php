@@ -319,8 +319,13 @@ return [
                 ],
                 [
                     'text' => 'Lista de funcionários',
+<<<<<<< HEAD
                     'url' => 'admin/ver/funcionarios',
                     'icon' => 'fas fa-fw fa-bars',
+=======
+                    'url' => '/admin/funcionarios/mostrar',
+                    'icon' => 'fas fa-fw fa-user',
+>>>>>>> e53385abd3443f1986fcfbad6226288fc0ff9b39
                 ],
             ],
         ],
@@ -396,21 +401,21 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],

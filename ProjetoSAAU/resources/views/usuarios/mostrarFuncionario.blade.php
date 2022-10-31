@@ -10,11 +10,13 @@
     <div class="col-10 ">
         <div class=" ">
             <div class="card-body">
-                <div class="col-md-10" >
+                <div class="col-md-10">
                     <div class="card">
                         <!--Titulo da tabela-->
                         <div class="card-header card-header-icon" data-background-color="rose">
-                            <i class="material-icons"><h4>Funcionários cadastrados </h4></i>
+                            <i class="material-icons">
+                                <h4>Funcionários cadastrados </h4>
+                            </i>
                         </div>
                         <!--===============-->
                         <div class="card-content pl-2">
@@ -29,7 +31,7 @@
                                     </thead>
                                     <tbody>
                                         <!--===============-->
-                                        
+
                                         <!--Corpo da tabela-->
                                         @foreach ($funcionarios as $funcionario)
                                         <tr>
@@ -45,7 +47,7 @@
                                                 <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
                                                     <i class="fas fa-trash text-danger" aria-hidden="true"></i>
                                                 </a>
-                                                
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -60,16 +62,5 @@
         </div>
     </div>
 </div>
+
 @stop
-
-
-
-
-
-
-
-
-
-
-
-
