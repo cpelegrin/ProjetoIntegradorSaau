@@ -130,10 +130,8 @@ class NoticiasController extends Controller
         return view('noticias.remover');
     }
 
-    public function mostrarFuncionario()
+    public function delete(request $request, $id)
     {
-        $lista = Noticias::get();
-        // dd($lista);
-        return view('listadefuncionarios.mostrarFuncionario', compact('mostrar'));
+        return view('mostrarfuncionario.deletar');
     }
 }

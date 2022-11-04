@@ -42,6 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
+Route::get('/admin/noticias/deletar/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('deletar.funcionarios')->middleware('auth');
 Route::get('/admin/noticias/remover/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('remover.noticias')->middleware('auth');
 Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::class, 'lista'])->name('listanoticias')->middleware('auth');
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
