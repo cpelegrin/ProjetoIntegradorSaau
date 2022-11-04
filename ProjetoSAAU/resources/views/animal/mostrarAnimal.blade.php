@@ -24,28 +24,28 @@
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>Permissão</th>
+                                            <th>sexo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!--===============-->
-                                        
+
                                         <!--Corpo da tabela-->
-                                        @foreach ($animal as $animal)
+                                        @foreach ($animal as $lista)
                                         <tr>
-                                            <td>{{$animal->name}}</td>
-                                            <td>{{$animal->permissao}}</td>
+                                            <td>{{$lista->nome}}</td>
+                                            <td>{{$lista->sexo}}</td>
                                             <td class="td-actions text-right">
                                                 <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
                                                     <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{route('editar_animal',['id'=>$animal->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
+                                                <a href="" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
                                                     <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{route('deletar_animal',['id'=>$animal->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
+                                                <a href="" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
                                                     <i class="fas fa-trash text-danger" aria-hidden="true"></i>
                                                 </a>
-                                                
+
                                             </td>
                                         </tr>
                                         @endforeach

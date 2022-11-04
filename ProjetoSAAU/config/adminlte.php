@@ -288,7 +288,7 @@ return [
      | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
      |
      */
-    //https://fontawesome.com/v5/icons/newspaper?s=regular&f=classic 
+    //https://fontawesome.com/v5/icons/newspaper?s=regular&f=classic
     // Site legado para uso no admin LTE
     'menu' => [
         // Navbar items:
@@ -331,13 +331,13 @@ return [
                 [
                     'text' => 'Cadastrar Notícia',
                     'icon' => 'fas  fa-pen',
-                    'route' => 'noticias',
+                    'url' => '/admin/noticias',
 
                 ],
                 [
                     'text' => 'Lista de Notícias',
                     'icon'  => 'fas  fa-bars',
-                    'route'  => 'listanoticias',
+                    'url'  => '/admin/noticias/lista',
                 ],
             ],
         ],
@@ -348,13 +348,13 @@ return [
                 [
                     'text' => 'Cadastrar Animal',
                     'icon' => 'fas  fa-plus',
-                    'route' => 'admin/animal',
+                    'url' => 'admin/animal',
 
                 ],
                 [
                     'text' => 'Lista de Animais',
                     'icon'  => 'fas  fa-bars',
-                    'route'  => 'listaanimal',
+                    'url'  => 'admin/animal/mostrar',
                 ],
             ],
         ],

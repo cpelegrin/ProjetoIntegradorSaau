@@ -65,12 +65,7 @@ Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::cl
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar')->middleware('auth');
 
-Route::put('/admin/noticias/editar/{id}', [App\Http\Controllers\AnimalController::class, 'update'])->name('animal.update')->middleware('auth');
-Route::get('/admin/noticias/editar/{id}', [App\Http\Controllers\AnimalController::class, 'edit'])->name('animal.edit')->middleware('auth');
-Route::get('/admin/noticias/remover/{id}', [App\Http\Controllers\AnimalController::class, 'destroy'])->name('remover.animal')->middleware('auth');
-Route::get('/admin/animal/lista', [App\Http\Controllers\AnimalController::class, 'lista'])->name('listaanimal')->middleware('auth');
-Route::get('/admin/animal', [App\Http\Controllers\AnimalController::class, 'index'])->name('animal')->middleware('auth');
-Route::post('/admin/animal', [App\Http\Controllers\AnimalController::class, 'store'])->name('salvar')->middleware('auth');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/admin/funcionarios')->group(
