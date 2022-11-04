@@ -319,7 +319,7 @@ return [
                 ],
                 [
                     'text' => 'Lista de funcionários',
-                    'url' => 'admin/ver/funcionarios',
+                    'url' => 'admin/funcionarios/mostrar',
                     'icon' => 'fas fa-fw fa-bars',
                 ],
             ],
@@ -348,7 +348,7 @@ return [
                 [
                     'text' => 'Cadastrar Animal',
                     'icon' => 'fas  fa-plus',
-                    'route' => 'animal',
+                    'route' => 'admin/animal',
 
                 ],
                 [

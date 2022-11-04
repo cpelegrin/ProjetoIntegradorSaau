@@ -31,7 +31,7 @@
                                     </thead>
                                     <tbody>
                                         <!--===============-->
-
+                                        
                                         <!--Corpo da tabela-->
                                         @foreach ($funcionarios as $funcionario)
                                         <tr>
@@ -44,12 +44,35 @@
                                                 <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
                                                     <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
+                                                <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" data-toggle="modal" data-target="#deleteModal" data-id="{{$funcionario->id}}">
                                                     <i class="fas fa-trash text-danger" aria-hidden="true"></i>
                                                 </a>
-
+                                                
                                             </td>
                                         </tr>
+                                        
+                                        <!-- Modal -->
+                                        
+                                        
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                                                        
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="text-center">Deseja deletar o usuário?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary pt-1 pb-1 m-0" data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn "><a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}"><p class="btn btn-danger m-0 pt-1 pb-1 ">Deletar</p></a></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
                                         @endforeach
                                         <!--===============-->
                                     </tbody>
@@ -62,5 +85,6 @@
         </div>
     </div>
 </div>
+
 
 @stop
