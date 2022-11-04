@@ -5,6 +5,7 @@
 @section('content_header')
 @stop
 
+
 @section('content')
 
 <div class="row ">
@@ -14,61 +15,53 @@
                 <div class="col-md-10">
                     <div class="card">
                         <!--Titulo da tabela-->
-                        <div class="card-header card-header-icon" data-background-color="rose">
-                            <i class="material-icons">
-                                <h4>Funcionários cadastrados </h4>
-                            </i>
-                        </div>
+
+                        <h4 class="material-icons p-3">Funcionários cadastrados </h4>
+
                         <!--===============-->
                         <div class="card-content pl-2">
                             <div class="table-responsive">
                                 <table class="table">
-                                    <!--Cabecalho da tabel-->
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Permissão</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--===============-->
 
-                                        <!--Corpo da tabela-->
+                                    <!--===============-->
 
-                                        {{-- Setup data for datatables --}}
-                                        @php
-                                        $heads = [
-                                        'Nome',
-                                        'Email',
-                                        ['label' => 'Actions', 'no-export' => true, 'width' => 40],
-                                        ];
+                                    <!--Corpo da tabela-->
 
 
-                                        $data = [];
-                                        foreach($funcionarios as $funcionario){
-                                        array_push($data, array($funcionario->name, $funcionario->email,
-                                        '<a class="btn btn-xs btn-default text-primary mx-1 shadow" href="#" title="Edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>',
-                                        '<a class="btn btn-xs btn-default text-danger mx-1 shadow" href="#" title="Delete"><i class="fa fa-lg fa-fw fa-trash"></i></a>',
-                                        '<a class="btn btn-xs btn-default text-teal mx-1 shadow" href="#" title="Details"><i class="fa fa-lg fa-fw fa-eye"></i></a>'
+                                    {{-- Setup data for datatables --}}
+                                    @php
+                                    $heads = [
+                                    'Nome',
+                                    'Email',
+                                    ['label' => 'Ações', 'no-export' => true, 'width' => 15]
+                                    ];
+
+                                    $data = [];
+                                    foreach($funcionarios as $funcionario){
+
+                                    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>';
+                                        $btnDelete='<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+                                            <i class="fa fa-lg fa-fw fa-trash"></i>
+                                        </button>' ;
+                                        $btnDetails='<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+                                            <i class="fa fa-lg fa-fw fa-eye"></i>
+                                        </button>' ; array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'
                                         )
                                         );
                                         }
-                                        $config = ['data' => $data];
+                                        $config = ['data' => $data,
+                                        'order' => [[1, 'asc']],
+                                        'columns' => [null, ['orderable' => true], null],
+                                        ];
                                         @endphp
 
                                         {{-- Minimal example / fill data using the component slot --}}
-                                        <x-adminlte-datatable id="table1" :heads="$heads">
-                                            @foreach($config['data'] as $row)
-                                            <tr>
-                                                @foreach($row as $cell)
-                                                <td>{!! $cell !!}</td>
-                                                @endforeach
-                                            </tr>
-                                            @endforeach
+                                        <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
+
                                         </x-adminlte-datatable>
                                         <!-- Modal -->
 
-                                        <form id="deleteForm" method="get" action=" route('remover.noticias', $removernoticias->id)">
+                                        <form id="deleteForm" method="get" action=" route('remover.funcionarios', $removerfuncionarios->id)">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         </form>
@@ -94,20 +87,12 @@
                                         </div>
 
 
-                                        <script type="text/javascript">
-                                            $('deleteModal').on('show.bs.modal', function(event) {
-                                                var button = $(event.relatedTarget); // Button that triggered the modal
-                                                var recipientId = button.data('id');
-                                                console.log(recipientId);
-                                                var modal = $(this);
-                                                modal.find('#email_id').val(recipientId);
-                                            })
-                                        </script>
+
 
 
 
                                         <!--===============-->
-                                    </tbody>
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
