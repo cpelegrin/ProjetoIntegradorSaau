@@ -12,7 +12,7 @@ class CadastroAnimalController extends Controller
     {
         $user = auth()->user();
         $animal = User::all();
-        return view('usuarios.cadastrarAnimal', compact('user'), compact('animal'));
+        return view('animal.cadastrarAnimal', compact('user'), compact('animal'));
 
     }
 
@@ -22,13 +22,13 @@ class CadastroAnimalController extends Controller
             'name' => $request->name,
         ]);
         $animal = User::all();
-        return view('usuarios.mostrarAnimal', compact('animal'));
+        return view('animal.mostrarAnimal', compact('animal'));
     }
 
     public function show()
     {
         $animal = User::all();
-        return view('usuarios.mostrarAnimal', compact('animal'));
+        return view('animal.mostrarAnimal', compact('animal'));
     }
 
     public function destroy($id)
@@ -36,14 +36,14 @@ class CadastroAnimalController extends Controller
         $animal = User::findOrFail($id);
         $animal->delete();
         $animal = User::all();
-        return view('usuarios.mostrarAnimal', compact('animal'));
+        return view('animal.mostrarAnimal', compact('animal'));
 
     }
 
     public function edit($id)
     {
         $animal = User::findOrFail($id);
-        return view('usuarios.editarAnimal', compact('animal'));
+        return view('animal.editarAnimal', compact('animal'));
     }
 
     public function update(Request $request, $id)
@@ -53,7 +53,7 @@ class CadastroAnimalController extends Controller
             'name' => $request->name,
         ]);
         $animal = User::all();
-        return view('usuarios.mostrarAnimal', compact('animal'));
+        return view('animal.mostrarAnimal', compact('animal'));
     }
 
 }
