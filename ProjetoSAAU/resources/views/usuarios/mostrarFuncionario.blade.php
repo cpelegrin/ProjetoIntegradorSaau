@@ -43,13 +43,7 @@
                                         ['label' => 'Phone', 'width' => 40],
                                         ['label' => 'Actions', 'no-export' => true, 'width' => 5],
                                         ];
-                                        <a href="#" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                                            <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                        </a>
 
-                                        <a href="#" class="mx-2" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash-alt text-danger"></i>
-                                        </a>
                                         $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
                                             <i class="fa fa-lg fa-fw fa-pen"></i>
                                         </button>';
