@@ -38,39 +38,22 @@
                                         {{-- Setup data for datatables --}}
                                         @php
                                         $heads = [
-                                        'ID',
-                                        'Name',
-                                        ['label' => 'Phone', 'width' => 40],
-                                        ['label' => 'Actions', 'no-export' => true, 'width' => 5],
+                                        'Nome',
+                                        'Email',
+                                        ['label' => 'Actions', 'no-export' => true, 'width' => 40],
                                         ];
-                                        <a href="#" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                                            <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                        </a>
 
-                                        <a href="#" class="mx-2" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash-alt text-danger"></i>
-                                        </a>
-                                        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                                            <i class="fa fa-lg fa-fw fa-pen"></i>
-                                        </button>';
-                                        $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                                        </button>';
-                                        $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                                        </button>';
 
-                                        $config = [
-                                        'data' => [
-                                        [22, 'Gabriel G', '+02 (123) 123456789', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                                        [19, 'Jonathan Turista', '+99 (987) 987654321', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                                        [3, 'Ville ', '+69 (555) 96467345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                                        [6, 'Rafael H', '+69 (555) 43267345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                                        [9, 'Juliano Hoffman', '+69 (555) 124367345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-                                        ],
-                                        'order' => [[1, 'asc']],
-                                        'columns' => [null, null, null, ['orderable' => false]],
-                                        ];
+                                        $data = [];
+                                        foreach($funcionarios as $funcionario){
+                                        array_push($data, array($funcionario->name, $funcionario->email,
+                                        '<a class="btn btn-xs btn-default text-primary mx-1 shadow" href="#" title="Edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>',
+                                        '<a class="btn btn-xs btn-default text-danger mx-1 shadow" href="#" title="Delete"><i class="fa fa-lg fa-fw fa-trash"></i></a>',
+                                        '<a class="btn btn-xs btn-default text-teal mx-1 shadow" href="#" title="Details"><i class="fa fa-lg fa-fw fa-eye"></i></a>'
+                                        )
+                                        );
+                                        }
+                                        $config = ['data' => $data];
                                         @endphp
 
                                         {{-- Minimal example / fill data using the component slot --}}
