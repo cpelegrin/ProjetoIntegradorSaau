@@ -306,7 +306,7 @@ return [
             'url' => '/usuario/perfil',
             'topnav_right' => true,
         ],
-        ['header' => 'Adiministração SAAU'],
+        ['header' => 'Administração SAAU'],
         [
             'text' => 'Funcionários',
             'icon' => 'fas  fa-users',
@@ -319,8 +319,8 @@ return [
                 ],
                 [
                     'text' => 'Lista de funcionários',
-                    'url' => '/admin/funcionarios/mostrar',
-                    'icon' => 'fas fa-fw fa-user',
+                    'url' => 'admin/funcionarios/mostrar',
+                    'icon' => 'fas fa-fw fa-bars',
                 ],
             ],
         ],
@@ -329,15 +329,32 @@ return [
             'icon' => 'far fa-newspaper',
             'submenu' => [
                 [
-                    'text' => 'Cadastrar',
-                    'icon' => 'fas  fa-pencil',
+                    'text' => 'Cadastrar Notícia',
+                    'icon' => 'fas  fa-pen',
                     'route' => 'noticias',
 
                 ],
                 [
-                    'text' => 'Lista',
-                    'icon'  => 'fas  fa-pencil',
+                    'text' => 'Lista de Notícias',
+                    'icon'  => 'fas  fa-bars',
                     'route'  => 'listanoticias',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Animais',
+            'icon' => 'fas fa-paw',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar Animal',
+                    'icon' => 'fas  fa-plus',
+                    'route' => 'admin/animal',
+
+                ],
+                [
+                    'text' => 'Lista de Animais',
+                    'icon'  => 'fas  fa-bars',
+                    'route'  => 'listaanimal',
                 ],
             ],
         ],
