@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateAnimalFormRequest;
 use App\Models\Animal;
 use App\Models\Animal as ModelsAnimal;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
