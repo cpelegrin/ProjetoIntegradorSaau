@@ -37,90 +37,28 @@
 
                     <div class="col-lg-8 entries">
 
+                        @foreach ($front as $noticia)
+
                         <article class="entry">
 
                             <div class="entry-img">
                                 <img src="assets/img/blog/mordida.jpg" alt="" class="img-fluid">
                             </div>
-                            @foreach ($front as $noticia)
+
                             <h2 class="entry-title">
-                                <a href="artigo-blog.html">Título da Postagem 1</a>
+                                <a href="Mudar para route para controller show passando o noticia->id">{{$noticia->titulo}}</a>
                             </h2>
 
                             <div class="entry-content">
                                 <p>
-                                    Aqui fica um resumo da notícia.
+                                    {{$noticia->resumo}}
                                 </p>
                                 <div class="read-more">
-                                    <a href="artigo-blog.html">Continue Lendo...</a>
+                                    <a href="Mudar para route para controller show passando o noticia->id">Continue Lendo...</a>
                                 </div>
                             </div>
-                            @endforeach
                         </article><!-- Entrada Sessão Blog  -->
-
-                        <article class="entry">
-
-                            <div class="entry-img">
-                                <img src="assets/img/blog/mordida.jpg" alt="" class="img-fluid">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="artigo-blog.html">Título da Postagem 2</a>
-                            </h2>
-
-                            <div class="entry-content">
-                                <p>
-                                    Aqui fica um resumo da notícia
-                                </p>
-                                <div class="read-more">
-                                    <a href="artigo-blog.html">Continue Lendo...</a>
-                                </div>
-                            </div>
-
-                        </article><!-- Entrada Sessão Blog -->
-
-                        <article class="entry">
-
-                            <div class="entry-img">
-                                <img src="assets/img/blog/mordida.jpg" alt="" class="img-fluid">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="artigo-blog.html">Título da Postagem 3</a>
-                            </h2>
-
-                            <div class="entry-content">
-                                <p>
-                                    Aqui fica um resumo da notícia
-                                </p>
-                                <div class="read-more">
-                                    <a href="artigo-blog.html">Continue Lendo...</a>
-                                </div>
-                            </div>
-
-                        </article><!-- Entrada Sessão Blog  -->
-
-                        <article class="entry">
-
-                            <div class="entry-img">
-                                <img src="assets/img/blog/mordida.jpg" alt="" class="img-fluid">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="artigo-blog.html">Título da Postagem 4</a>
-                            </h2>
-
-                            <div class="entry-content">
-                                <p>
-                                    Aqui fica um resumo da notícia
-                                </p>
-                                <div class="read-more">
-                                    <a href="artigo-blog.html">Continue Lendo...</a>
-                                </div>
-                            </div>
-
-                        </article><!-- Entrada Sessão Blog  -->
-
+                        @endforeach
                         <div class="blog-pagination">
                             <ul class="justify-content-center">
                                 <li class="active"><a href="#">1</a></li>

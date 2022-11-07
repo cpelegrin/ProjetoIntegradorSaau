@@ -10,7 +10,12 @@ class FrontnoticiasController extends Controller
     public function index()
     {
         $front = Noticias::get();
-        dd($front);
         return view('site.blog', compact('front'));
+    }
+
+    public function show($id)
+    {
+        if (!$noticia = Noticias::find($id))
+            return redirect()->route('', compact('noticia'));
     }
 }
