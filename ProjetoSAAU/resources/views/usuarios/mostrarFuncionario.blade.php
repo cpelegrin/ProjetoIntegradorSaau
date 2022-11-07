@@ -4,104 +4,109 @@
 
 @section('content_header')
 @stop
-
+@section ('js')
+@endsection
 
 @section('content')
 
-<div class="row ">
-    <div class="col-10 ">
-        <div class=" ">
-            <div class="card-body">
-                <div class="col-md-10">
-                    <div class="card">
-                        <!--Titulo da tabela-->
+<!DOCTYPE html>
+<html>
 
-                        <h4 class="material-icons p-3">Funcionários cadastrados </h4>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-                        <!--===============-->
-                        <div class="card-content pl-2">
-                            <div class="table-responsive">
-                                <table class="table">
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-                                    <!--===============-->
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
 
-                                    <!--Corpo da tabela-->
+<body>
 
+    <h2>Filterable Table</h2>
+    <p>Type something in the input field to search the table for first names, last names or emails:</p>
+    <input id="myInput" type="text" placeholder="Search..">
+    <br><br>
 
-                                    {{-- Setup data for datatables --}}
-                                    @php
-                                    $heads = [
-                                    'Nome',
-                                    'Email',
-                                    ['label' => 'Ações', 'no-export' => true, 'width' => 15]
-                                    ];
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
 
-                                    $data = [];
-                                    foreach($funcionarios as $funcionario){
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            <!--Corpo da tabela-->
+            @foreach ($funcionarios as $funcionario)
 
-                                    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit"><i class="fa fa-lg fa-fw fa-pen"></i></a>';
-                                        $btnDelete='<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                                        </button>' ;
-                                        $btnDetails='<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                                        </button>' ; array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'
-                                        )
-                                        );
-                                        }
-                                        $config = ['data' => $data,
-                                        'order' => [[1, 'asc']],
-                                        'columns' => [null, ['orderable' => true], null],
-                                        ];
-                                        @endphp
+            <tr>
+                <td>{{$funcionario->name}}</td>
+                <td>{{$funcionario->email}}</td>
+                <td class="td-actions text-right">
+                    <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
+                        <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" data-bs-toggle="modal" data-bs-target="#exampleModal" class=" mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
+                        <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class=" mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
+                        <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                    </a>
 
-                                        {{-- Minimal example / fill data using the component slot --}}
-                                        <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
+                </td>
+            </tr>
+            @endforeach
 
-                                        </x-adminlte-datatable>
-                                        <!-- Modal -->
-
-                                        <form id="deleteForm" method="get" action=" route('remover.funcionarios', $removerfuncionarios->id)">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                        </form>
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="text-center">Confirma a exclusão do registro?</p>
-                                                    </div>
-                                                    <input type="text" name="email_id" id="email_id" value="$noticia->titulo,$noticia->resumo">
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-danger">Deletar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+        </tbody>
+    </table>
 
 
 
+</body>
 
+</html>
 
-
-                                        <!--===============-->
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-
 
 @stop
