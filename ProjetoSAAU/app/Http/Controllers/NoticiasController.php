@@ -62,7 +62,7 @@ class NoticiasController extends Controller
         $noticia->corpo = $request->corpo;
         $noticia->image = $request->foto_noticia->store('noticias');
         ($noticia->save());
-        return redirect()->route('noticias')->with(['success' => 'Notícia cadastrada com sucesso']);
+        return redirect()->route('listanoticias')->with(['success' => 'Notícia cadastrada com sucesso']);
     }
 
     /**
@@ -85,7 +85,7 @@ class NoticiasController extends Controller
     public function edit($id)
     {
         if (!$noticia = Noticias::find($id))
-        return redirect()->route('/admin/noticias/lista');
+            return redirect()->route('/admin/noticias/lista');
 
         return view('noticias.edit', compact('noticia'));
     }
@@ -96,12 +96,16 @@ class NoticiasController extends Controller
      * @param  \App\Models\noticias  $noticias
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, $id)
     {
         if (!$noticia = Noticias::find($id))
-        return redirect()->route('/admin/noticias/lista');
+            return redirect()->route('/admin/noticias/lista');
 
-        dd($request->all());
+        $data = $request->all();
+        $noticia->update($data);
+        return redirect()->route('noticias.edit', ['id' => $id])->with(['success' => 'Notícia editada com sucesso']);
     }
 
     /**

@@ -68,9 +68,15 @@
             <h3 class="card-title">Editar Notícia</h3>
         </div>
         <div class="card-body">
-            <form method="put" action="{{Route('noticias.update', $noticia->id)}}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('noticias.update', $noticia->id)}}" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
-                <!-- Titulo  -->
+
+
+
+
+
+                <!-- Titulo -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Titulo">
@@ -87,14 +93,16 @@
                             <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" value="{{ $noticia->resumo }}" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"></textarea>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;">
+                    {{ $noticia->resumo }}
+                    </textarea>
                 </div>
 
                 <!-- Img -->
                 <div class="input-group">
                     <div class="form-group">
                         <label for="img">Selecione a imagem</label>
-                        <input type="file" class="form-control-file" id="img"  name="foto_noticia">
+                        <input type="file" class="form-control-file" id="img" name="foto_noticia">
                     </div>
                 </div>
 
@@ -121,7 +129,9 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" value="{{$noticia->corpo}}" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
+                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config">
+                            {{$noticia->corpo}}
+                        </x-adminlte-text-editor>
 
                     </div>
                 </div>

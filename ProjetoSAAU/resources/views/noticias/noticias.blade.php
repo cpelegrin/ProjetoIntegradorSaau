@@ -68,7 +68,7 @@
             <h3 class="card-title">Cadastro de Notícias</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="{{Route('salvar')}}" enctype="multipart/form-data">
+            <form method="post" action="{{Route('salvar_noticia')}}" enctype="multipart/form-data">
                 @csrf
                 <!-- Titulo  -->
                 <div class="input-group mb-3">
