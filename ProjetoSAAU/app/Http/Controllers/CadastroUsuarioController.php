@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests;
+
 
 class CadastroUsuarioController extends Controller
 {
@@ -15,14 +17,16 @@ class CadastroUsuarioController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'permissao' => $request->permissao,
-        ]);
+        User::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'permissao' => $request->permissao,
+            ]
+        );
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
@@ -48,15 +52,17 @@ class CadastroUsuarioController extends Controller
         return view('usuarios.editarFuncionario', compact('funcionarios'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserStoreRequest $request, $id)
     {
         $funcionarios = User::findOrFail($id);
-        $funcionarios->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'permissao' => $request->permissao,
-        ]);
+        $funcionarios->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'permissao' => $request->permissao,
+            ]
+        );
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }

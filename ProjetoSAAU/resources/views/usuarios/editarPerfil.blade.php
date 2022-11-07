@@ -16,8 +16,7 @@
                 <div class="content ">
                     <div class="container-fluid ">
                         <div class="row ">
-                            <form action="salvar_perfil" method="post" >
-                                @csrf
+
                             <!--Foto do perfil-->
                             <div class="col-md-3">
                                 <div class="card card-primary card-outline">
@@ -147,16 +146,48 @@
                                         </div>
                                     </form>
                                     <!--============-->
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
+
 </div>
+
+<div>
+    <div class="card ml-5   card-outline col-md-8 " id="password">
+        <div class="card-header">
+            <h5 class="m-2">Cadastro</h5>
+        </div>
+        <div class="card-body pt-0">
+            <label class="form-label">Email</label>
+            <div class="form-group">
+                <input class="form-control" type="email" placeholder="Current password" onfocus="focused(this)"
+                    onfocusout="defocused(this)">
+            </div>
+            <label class="form-label">Senha atual</label>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Current password" onfocus="focused(this)"
+                    onfocusout="defocused(this)">
+            </div>
+            <label class="form-label">Senha</label>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="New password" onfocus="focused(this)"
+                    onfocusout="defocused(this)">
+            </div>
+            <label class="form-label">Confirmar a senha</label>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Confirm password" onfocus="focused(this)"
+                    onfocusout="defocused(this)">
+            </div>
+
+            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update password</button>
+        </div>
+    </div>
 </div>
 @stop
