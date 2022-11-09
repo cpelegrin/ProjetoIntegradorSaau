@@ -40,13 +40,13 @@
                                             <td>{{$noticia->resumo}}</td>
                                             <td>{{$noticia->update_at}}</td>
                                             <td class="td-actions text-right">
-                                                
-                                                
-                                                
-                                                <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
-                                              
 
-                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deleteModal">
+
+
+                                                <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
+
+
+                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}">
                                                     <i class="fas fa-trash-alt text-danger"></i>
                                                 </a>
                                             </td>
@@ -68,39 +68,48 @@
 
 
 <!-- Modal -->
-<form id="deleteForm" method="get" action=" route('remover.noticias', $removernoticias->id)">
-    <input type="hidden" name="_method" value="DELETE">
+<form id="deleteForm" method="post" action="{{route('remover.noticias', $noticia)}}">
+    @csrf
+    @method('put')
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-</form>
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="text-center">Confirma a exclusão do registro?</p>
-            </div>
-            <input type="text" name="email_id" id="email_id" value="{{$noticia->titulo}},{{$noticia->resumo}}">
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-danger">Deletar</button>
+    <div class="modal fade" id="deletarnoticia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Confirma a exclusão do registro?</p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger"> Deletar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
-<script type="text/javascript">
-    $('deleteModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var recipientId = button.data('id');
-        console.log(recipientId);
-        var modal = $(this);
-        modal.find('#email_id').val(recipientId);
-    })
-</script>
 
 @stop
+
+@section('js')
+<script>
+    $('#delete-button').on('click', function() {
+        var noticiaid = this.dataset['noticiaid'];
+        console.log(noticiaid);
+        var gambi = $('#deleteForm').attr('action');
+        var s = gambi.substr(45);
+        console.log(s)
+        var final = gambi.replace(s, noticiaid)
+        console.log(final);
+        $('#deleteForm').attr('action', final);
+    });
+</script>
+
+@endsection

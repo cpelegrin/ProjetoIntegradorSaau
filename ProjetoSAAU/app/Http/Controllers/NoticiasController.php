@@ -115,23 +115,13 @@ class NoticiasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        dd($request);
-        $id = $request['email_id'];
-        $email = $this->email->find($id);
-        $delete = $email->delete();
-        if ($delete)
-            return redirect()
-                ->route('remover.noticias')
-                ->with(['Success' => 'Registro excluido com Sucesso'])
-                ->withInput();
 
-        else
-            return redirect()
-                ->route('remover.noticias')
-                ->withErrors(['errors' => 'Erro no Delete'])
-                ->withInput();
+        if (!$noticia = Noticias::find($id))
+            return redirect()->route('listanoticias');
+        $noticia->delete();
+        return redirect()->route('listanoticias')->with(['success' => 'Notícia removida com sucesso']);
     }
 
 
