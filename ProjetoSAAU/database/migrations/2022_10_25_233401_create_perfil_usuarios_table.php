@@ -12,15 +12,18 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('perfil_usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->string('endereco')->nullable();
-            $table->string('profissao')->nullable();
-            $table->string('telefone')->nullable();
-            $table->text('sobremim')->nullable();
-            $table->timestamps();
-        });
+        Schema::create(
+            'perfil_usuarios', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained('users');
+                $table->string('foto_perfil')->nullable();
+                $table->string('endereco')->nullable();
+                $table->string('profissao')->nullable();
+                $table->string('telefone')->nullable();
+                $table->text('sobremim')->nullable();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

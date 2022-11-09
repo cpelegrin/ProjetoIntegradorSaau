@@ -11,6 +11,7 @@ class perfilUsuario extends Model
 
     protected $fillable = [
         'user_id',
+        'foto_perfil',
         'endereco',
         'profissao',
         'telefone',

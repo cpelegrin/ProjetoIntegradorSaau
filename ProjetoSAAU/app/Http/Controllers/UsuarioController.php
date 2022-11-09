@@ -30,27 +30,29 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
-            
+
 
             $user->save();
 
-            $perfil = perfilUsuario::create([
-                'user_id' => $user_id,
-                'endereco' => $request->endereco,
-                'profissao' => $request->profissao,
-                'telefone' => $request->telefone,
-                'sobremim' => $request->sobremim,
-
-            ]);
+            $perfil = perfilUsuario::create(
+                [
+                    'user_id' => $user_id,
+                    'img' => $request->foto_perfil->store('perfil_usuarios'),
+                    'endereco' => $request->endereco,
+                    'profissao' => $request->profissao,
+                    'telefone' => $request->telefone,
+                    'sobremim' => $request->sobremim,
+                ]
+            );
 
         } else {
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
-           
+
 
             $user->save();
-
+            $perfil->image = $request->foto_noticia->store('perfil_usuarios');
             $perfil->endereco = $request->endereco;
             $perfil->profissao = $request->profissao;
             $perfil->telefone = $request->telefone;

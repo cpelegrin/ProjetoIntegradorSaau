@@ -45,6 +45,14 @@ class CadastroUsuarioController extends Controller
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
 
     }
+    public function destroyUsuario($id)
+    {
+        $funcionarios = User::findOrFail($id);
+        $funcionarios->delete();
+
+        return redirect()->route('site.index');
+
+    }
 
     public function edit($id)
     {
