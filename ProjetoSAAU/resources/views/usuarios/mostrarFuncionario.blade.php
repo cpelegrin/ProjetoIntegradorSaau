@@ -46,8 +46,8 @@
 
 <body>
 
-    <h2>Filterable Table</h2>
-    <p>Type something in the input field to search the table for first names, last names or emails:</p>
+
+
     <input id="myInput" type="text" placeholder="Search..">
     <br><br>
 
@@ -73,8 +73,8 @@
                     <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" data-bs-toggle="modal" data-bs-target="#exampleModal" class=" mx-2" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
                         <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
                     </a>
-                    <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class=" mx-2" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                        <i class="fas fa-trash text-danger" aria-hidden="true"></i>
+                    <a href="{{route('deletar_funcionario',['id'=>$funcionario->id])}}" class=" mx-2" data-bs-toggle="tooltip" data-toggle="modal" data-target="#deletarfunc">
+                        <i class=" fas fa-trash text-danger" aria-hidden="true"></i>
                     </a>
 
                 </td>
@@ -91,22 +91,85 @@
 </html>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<form id="deleteForm" method="get" action=" route('deletar.funcionario', $deletarfuncioario->id)">
+    @csrf
+
+    <div class="modal fade" id="deletarfunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <!-- Modal -->
+                    <div id="modalUser" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Remoção de Usuário</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="newDoc()">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>One fine body&hellip;</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <br>
+                    <br>
+                    <br>
+
+                    </body>
+
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+
+
+                    <div class="modal-body">
+
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger">Excluir</button>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
+</form>
 
+<script type="text/javascript">
+    $('deleteModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var recipientId = button.data('id');
+        console.log(recipientId);
+        var modal = $(this);
+        modal.find('#email_id').val(recipientId);
+    })
+</script>
 @stop
