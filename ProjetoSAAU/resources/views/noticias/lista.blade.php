@@ -46,7 +46,7 @@
                                                 <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
 
 
-                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}">
+                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}" data-noticiatitle="{{$noticia->titulo}}">
                                                     <i class="fas fa-trash-alt text-danger"></i>
                                                 </a>
                                             </td>
@@ -68,7 +68,7 @@
 
 
 <!-- Modal -->
-<form id="deleteForm" method="post" action="{{route('remover.noticias', $noticia)}}">
+<form id="deleteForm" method="post" action="{{route('remover.noticias', 1)}}">
     @csrf
     @method('put')
     <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -83,6 +83,7 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Confirma a exclusão do registro?</p>
+                    <p class="text-center" id=titulo_noticia></p>
 
                 </div>
 
@@ -102,12 +103,12 @@
 <script>
     $('#delete-button').on('click', function() {
         var noticiaid = this.dataset['noticiaid'];
-        console.log(noticiaid);
+        var noticia_titulo = this.dataset['noticiatitle'];
+        console.log(noticia_titulo);
+        $('#titulo_noticia').html("<b>" + noticia_titulo + "</b>");
         var gambi = $('#deleteForm').attr('action');
-        var s = gambi.substr(45);
-        console.log(s)
+        var s = gambi.substr(gambi.indexOf('remover/') + 8);
         var final = gambi.replace(s, noticiaid)
-        console.log(final);
         $('#deleteForm').attr('action', final);
     });
 </script>
