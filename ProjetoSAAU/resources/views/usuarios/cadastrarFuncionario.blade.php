@@ -78,8 +78,7 @@
                         <div class="col-12 col-sm-6">
                             <label>Nome</label>
                             <input class="multisteps-form__input form-control" name="name" type="text"
-                                placeholder="Nome: " value="{{old('name')}}" onfocus="focused(this)"
-                                onfocusout="defocused(this)">
+                                placeholder="Nome: " value="{{old('name')}}">
                         </div>
                         <!--===============-->
 
@@ -87,8 +86,7 @@
                         <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                             <label>Email</label>
                             <input class="multisteps-form__input form-control" name="email" type="email"
-                                placeholder="Email" value="{{old('email')}}" onfocus="focused(this)"
-                                onfocusout="defocused(this)">
+                                placeholder="Email" value="{{old('email')}}">
                         </div>
                     </div>
                     <!--==============-->
@@ -98,13 +96,13 @@
                         <div class="col-12 col-sm-6">
                             <label>Senha</label>
                             <input class="multisteps-form__input form-control" name="password" type="password"
-                                placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)">
+                                placeholder="******">
                         </div>
 
                         <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                             <label>Repetir Senha</label>
                             <input class="multisteps-form__input form-control" name="password" type="password"
-                                placeholder="******" onfocus="focused(this)" onfocusout="defocused(this)">
+                                placeholder="******">
                         </div>
                     </div>
 

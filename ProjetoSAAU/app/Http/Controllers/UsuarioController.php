@@ -52,7 +52,7 @@ class UsuarioController extends Controller
 
 
             $user->save();
-            $perfil->image = $request->foto_noticia->store('perfil_usuarios');
+            $perfil->foto_perfil = $request->foto_perfil->store('perfil_usuarios');
             $perfil->endereco = $request->endereco;
             $perfil->profissao = $request->profissao;
             $perfil->telefone = $request->telefone;
@@ -62,6 +62,6 @@ class UsuarioController extends Controller
         }
 
 
-        return view('usuarios.editarPerfil', compact('user', 'perfil'));
+        return redirect()->route('perfil', compact('user', 'perfil'));
     }
 }
