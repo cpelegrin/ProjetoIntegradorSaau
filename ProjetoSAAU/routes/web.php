@@ -57,8 +57,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
-Route::get('/admin/mostrarfuncionario/deletar/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('funcionario.deletar')->middleware('auth');
-Route::get('/admin/mostrarfuncionario/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'edit'])->name('mostrarfuncionario.edit')->middleware('auth');
+
 Route::put('/admin/noticias/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'update'])->name('noticias.update')->middleware('auth');
 Route::get('/admin/noticias/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'edit'])->name('noticias.edit')->middleware('auth');
 Route::get('/admin/noticias/remover/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('remover.noticias')->middleware('auth');
@@ -79,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
             Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
             Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
-            Route::get('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
+            Route::post('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
             Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
             Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
         }

@@ -12,7 +12,6 @@ class CadastroUsuarioController extends Controller
     {
 
         return view('usuarios.cadastrarFuncionario');
-
     }
 
     public function store(Request $request)
@@ -24,7 +23,7 @@ class CadastroUsuarioController extends Controller
             'permissao' => $request->permissao,
         ]);
         $funcionarios = User::all();
-        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
+        return view('usuarios.mostrarFuncionario', compact('funcionarios')); //FIXME alterar para redirect route
     }
 
     public function show()
@@ -39,7 +38,6 @@ class CadastroUsuarioController extends Controller
         $funcionarios->delete();
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
-
     }
 
     public function edit($id)
@@ -60,5 +58,4 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios'));
     }
-
 }
