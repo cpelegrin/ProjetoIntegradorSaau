@@ -58,7 +58,10 @@
             <h3 class="card-title">Cadastro de Notícias</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="{{Route('salvar_noticia')}}" enctype="multipart/form-data">
+            <form method="post" action="@if(isset($noticia)) {{route('noticias.update', $noticia->id)}} @else {{ Route('salvar_noticia')}} @endif" enctype="multipart/form-data">
+                @if(isset($noticia))
+                @method('PUT')
+                @endif
                 @csrf
                 <!-- Titulo  -->
                 <div class="input-group mb-3">
@@ -67,7 +70,7 @@
                             <iconify-icon icon="bx:text"></iconify-icon>
                         </span>
                     </div>
-                    <input type="text" name="titulo" class="form-control" value="{{ old('titulo')}}" placeholder="Título">
+                    <input type="text" name="titulo" class="form-control" value="{{ $noticia->titulo ?? old('titulo')}}" placeholder="Título">
                 </div>
 
                 <!-- Resumo  -->
@@ -77,7 +80,7 @@
                             <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" value="{{ old('resumo')}}" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"></textarea>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ old('resumo')}} </textarea>
                 </div>
 
                 <!-- Img -->
