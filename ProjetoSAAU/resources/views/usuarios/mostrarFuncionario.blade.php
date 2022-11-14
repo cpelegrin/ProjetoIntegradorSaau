@@ -114,14 +114,14 @@
 
 @section('js')
 
+
 <script>
     $('#table1').DataTable({
         "language": {
-            "lengthMenu": "Display _MENU_ records per page",
-            "zeroRecords": "Nothing found - sorry",
-            "info": "Sho page _PAGE_ of _PAGES_",
-            "infoEmpty": "No records available",
-            "infoFiltered": "(filtered from _MAX_ total records)"
+            "paging": "false",
+            "searching": "false",
+            "retrieve": "true",
+            "url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json",
         }
     });
 </script>
