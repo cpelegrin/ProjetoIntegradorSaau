@@ -2,64 +2,66 @@
 
 @section('title', 'Funcionários')
 
+
 @section('content_header')
+
+<h1 class="m-0 text-dark">
+    Lista de Funcionários
+</h1>
+
 @stop
 
 @section('css')
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td,
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
 @section('content')
-<input id="myInput" type="text" placeholder="Search..">
-<br><br>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Cadastro de Notícias</h3>
+    </div>
+    <div class="card-body">
 
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody id="myTable">
-        <!--Corpo da tabela-->
-        @foreach ($funcionarios as $funcionario)
+        {{-- Setup data for datatables --}}
+        @php
+        $heads = [
+        'Nome',
+        'Email',
+        'Permissões',
+        ['label' => 'Ações', 'no-export' => true, 'width' => 15]
+        ];
 
-        <tr>
-            <td>{{$funcionario->name}}</td>
-            <td>{{$funcionario->email}}</td>
-            <td class="td-actions text-right">
-                <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" data-bs-toggle="modal" data-bs-target="#exampleModal" class=" mx-2" data-bs-original-title="Preview product">
-                    <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="{{$funcionario->id}}" data-funcionarionome="{{$funcionario->name}}">
-                    <i class=" fas fa-trash text-danger" aria-hidden="true"></i>
-                </a>
+        $data = [];
+        foreach($funcionarios as $funcionario){
 
-            </td>
-        </tr>
-        @endforeach
+        $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+        array_push($data, array($funcionario->name, $funcionario->email,$funcionario->permissao,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+        )
+        );
+        }
+        $config = ['data' => $data,
+        'order' => [[1, 'asc']],
+        'columns' => [null, ['orderable' => true], null],
+        ];
+        @endphp
 
-    </tbody>
-</table>
 
+
+
+        {{-- Minimal example / fill data using the component slot --}}
+        <x-adminlte-datatable id="table1" :heads="$heads">
+            @foreach($config['data'] as $row)
+            <tr>
+                @foreach($row as $cell)
+                <td>{!! $cell !!}</td>
+                @endforeach
+            </tr>
+            @endforeach
+        </x-adminlte-datatable>
+    </div>
+</div>
 <!-- Modal -->
 <form id="deleteForm" method="post" action="{{route('deletar_funcionario', 1)}}">
     @csrf
@@ -92,6 +94,31 @@
 @stop
 
 @section('js')
+
+
+<script>
+    $('#table1').ready(function() {
+        if ($.fn.dataTable.isDataTable('#table1')) {
+            table = $('#table1').DataTable();
+            //TODO trocar a linguage 
+        } else {
+            $('#table1').DataTable({
+                'language': {
+                    'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+                },
+
+            });
+        }
+        table.destroy();
+
+        table = $('#table1').DataTable({
+            'language': {
+                'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+            },
+
+        });
+    });
+</script>
 <script>
     $('.deletebutton').on('click', function() {
         console.log(this);
@@ -105,5 +132,33 @@
         $('#deleteForm').attr('action', final);
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
 
 @endsection
