@@ -28,6 +28,7 @@
         $heads = [
         'Nome',
         'Email',
+        'Permissões',
         ['label' => 'Ações', 'no-export' => true, 'width' => 15]
         ];
 
@@ -36,7 +37,7 @@
 
         $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
         $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
-        array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+        array_push($data, array($funcionario->name, $funcionario->email,$funcionario->permissao,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
         )
         );
         }
