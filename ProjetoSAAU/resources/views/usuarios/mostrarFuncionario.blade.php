@@ -2,7 +2,13 @@
 
 @section('title', 'Funcionários')
 
+
 @section('content_header')
+
+<h1 class="m-0 text-dark">
+    Lista de Funcionários
+</h1>
+
 @stop
 
 @section('css')
@@ -24,42 +30,57 @@
         background-color: #dddddd;
     }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
 @section('content')
-<input id="myInput" type="text" placeholder="Search..">
-<br><br>
+<div class="row">
+    <div class="card card-info col-6">
+        <div class="card-header">
+            <h3 class="card-title">Cadastro de Notícias</h3>
+        </div>
+        <div class="card-body">
 
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
+            {{-- Setup data for datatables --}}
+            @php
+            $heads = [
+            'Nome',
+            'Email',
+            ['label' => 'Ações', 'no-export' => true, 'width' => 15]
+            ];
 
-            <th>Email</th>
-        </tr>
-    </thead>
-    <tbody id="myTable">
-        <!--Corpo da tabela-->
-        @foreach ($funcionarios as $funcionario)
+            $data = [];
+            foreach($funcionarios as $funcionario){
 
-        <tr>
-            <td>{{$funcionario->name}}</td>
-            <td>{{$funcionario->email}}</td>
-            <td class="td-actions text-right">
-                <a href="{{route('editar_funcionario',['id'=>$funcionario->id])}}" data-bs-toggle="modal" data-bs-target="#exampleModal" class=" mx-2" data-bs-original-title="Preview product">
-                    <i class="fas fa-user-edit text-info" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="{{$funcionario->id}}" data-funcionarionome="{{$funcionario->name}}">
-                    <i class=" fas fa-trash text-danger" aria-hidden="true"></i>
-                </a>
+            $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+            $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+            array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+            )
+            );
+            }
+            $config = ['data' => $data,
+            'order' => [[1, 'asc']],
+            'columns' => [null, ['orderable' => true], null],
+            ];
+            @endphp
 
-            </td>
-        </tr>
-        @endforeach
 
-    </tbody>
-</table>
 
+
+            {{-- Minimal example / fill data using the component slot --}}
+            <x-adminlte-datatable id="table1" :heads="$heads">
+                @foreach($config['data'] as $row)
+                <tr>
+                    @foreach($row as $cell)
+                    <td>{!! $cell !!}</td>
+                    @endforeach
+                </tr>
+                @endforeach
+            </x-adminlte-datatable>
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <form id="deleteForm" method="post" action="{{route('deletar_funcionario', 1)}}">
     @csrf
@@ -92,6 +113,18 @@
 @stop
 
 @section('js')
+
+<script>
+    $('#table1').DataTable({
+        "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Sho page _PAGE_ of _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        }
+    });
+</script>
 <script>
     $('.deletebutton').on('click', function() {
         console.log(this);
@@ -105,5 +138,33 @@
         $('#deleteForm').attr('action', final);
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
 
 @endsection
