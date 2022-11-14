@@ -1,7 +1,55 @@
 @extends('adminlte::page')
-@section('title', 'Lista de notícias')
+
+@section('title', 'AdminLTE')
+
 @section('content_header')
+
+<h1 class="m-0 text-dark">
+    Notícias - Cadastro
+</h1>
+
 @stop
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
+</div>
+
+
+@endsection
+
+@section('plugins.Summernote', true)
 
 @section('content')
 
@@ -46,7 +94,7 @@
                                                 <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
 
 
-                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}" data-noticiatitle="{{$noticia->titulo}}">
+                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}">
                                                     <i class="fas fa-trash-alt text-danger"></i>
                                                 </a>
                                             </td>
@@ -68,7 +116,7 @@
 
 
 <!-- Modal -->
-<form id="deleteForm" method="post" action="{{route('remover.noticias', 1)}}">
+<form id="deleteForm" method="post" action="{{route('remover.noticias', $noticia)}}">
     @csrf
     @method('put')
     <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -83,7 +131,6 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Confirma a exclusão do registro?</p>
-                    <p class="text-center" id=titulo_noticia></p>
 
                 </div>
 
@@ -103,12 +150,12 @@
 <script>
     $('#delete-button').on('click', function() {
         var noticiaid = this.dataset['noticiaid'];
-        var noticia_titulo = this.dataset['noticiatitle'];
-        console.log(noticia_titulo);
-        $('#titulo_noticia').html("<b>" + noticia_titulo + "</b>");
+        console.log(noticiaid);
         var gambi = $('#deleteForm').attr('action');
-        var s = gambi.substr(gambi.indexOf('remover/') + 8);
+        var s = gambi.substr(45);
+        console.log(s)
         var final = gambi.replace(s, noticiaid)
+        console.log(final);
         $('#deleteForm').attr('action', final);
     });
 </script>

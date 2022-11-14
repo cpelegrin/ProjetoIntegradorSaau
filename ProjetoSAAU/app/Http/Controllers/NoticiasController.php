@@ -84,10 +84,11 @@ class NoticiasController extends Controller
      */
     public function edit($id)
     {
+
         if (!$noticia = Noticias::find($id))
             return redirect()->route('/admin/noticias/lista');
 
-        return view('noticias.edit', compact('noticia'));
+        return view('noticias.noticias', compact('noticia'));
     }
     /**
      * Update the specified resource in storage.
@@ -105,7 +106,7 @@ class NoticiasController extends Controller
 
         $data = $request->all();
         $noticia->update($data);
-        return redirect()->route('noticias.edit', ['id' => $id])->with(['success' => 'Notícia editada com sucesso']);
+        return redirect()->route('listanoticias', ['id' => $id])->with(['success' => 'Notícia editada com sucesso']);
     }
 
     /**

@@ -14,41 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
-@section('js')
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    toastr.options.preventDuplicates = true;
-</script>
-
-
-@if(Session::has('success'))
-<script>
-    toastr.success("{{ Session::get('success') }}")
-</script>
-@endif
-
-
-
-@if(Session::has('error'))
-<script>
-    toastr.error("{{ Session::get('error') }}")
-</script>
-@endif
-
-
-@if($errors->any())
-@foreach ($errors->all() as $error)
-<script>
-    toastr.error('{{$error}}')
-</script>
-@endforeach
-@endif
-</div>
-
-
-@endsection
-
 @section('plugins.Summernote', true)
 
 @section('content')
@@ -80,14 +45,17 @@
                             <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ old('resumo')}} </textarea>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ $noticia->resumo ?? old('resumo')}} </textarea>
                 </div>
 
                 <!-- Img -->
-                <div class="input-group">
+                <div class="input-group row">
                     <div class="form-group">
                         <label for="img">Selecione a imagem</label>
-                        <input type="file" class="form-control-file btn bg-gradient-dark btn-sm float-end mt-6 mb-0" id="img" name="foto_noticia">
+                        <input type="file" class="form-control-file btn bg-gradient-dark btn-sm float-end mt-6 mb-0" id="foto_noticia" name="foto_noticia" accept=".png, .jpg, .jpeg">
+                    </div>
+                    <div>
+                        <img id="preview-image" class="ml-5" width="150px" src="">
                     </div>
                 </div>
 
@@ -114,7 +82,10 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" value="{{ old('corpo')}}" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config" />
+                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config">
+                            {{ $noticia->corpo ?? old('corpo') }}
+                        </x-adminlte-text-editor>
+
 
                     </div>
                 </div>
@@ -123,10 +94,57 @@
                     <input type="submit" value="Enviar" class="btn btn-info" />
                 </div>
 
+
+
             </form>
 
         </div>
 
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
+
+
+<script>
+    $('#foto_noticia').on('change', function() {
+        if (this.files && this.files[0]) {
+            var file = new FileReader();
+            file.onload = function(e) {
+                document.getElementById("preview-image").src = e.target.result;
+            };
+            file.readAsDataURL(this.files[0]);
+        }
+    });
+</script>
 @endsection
