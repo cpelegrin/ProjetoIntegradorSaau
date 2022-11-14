@@ -1,7 +1,55 @@
 @extends('adminlte::page')
-@section('title', 'Lista de notícias')
+
+@section('title', 'AdminLTE')
+
 @section('content_header')
+
+<h1 class="m-0 text-dark">
+    Notícias - Cadastro
+</h1>
+
 @stop
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
+</div>
+
+
+@endsection
+
+@section('plugins.Summernote', true)
 
 @section('content')
 
