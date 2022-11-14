@@ -288,7 +288,7 @@ return [
      | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
      |
      */
-    //https://fontawesome.com/v5/icons/newspaper?s=regular&f=classic 
+    //https://fontawesome.com/v5/icons/newspaper?s=regular&f=classic
     // Site legado para uso no admin LTE
     'menu' => [
         // Navbar items:
@@ -319,13 +319,8 @@ return [
                 ],
                 [
                     'text' => 'Lista de funcionários',
-<<<<<<< HEAD
-                    'url' => 'admin/ver/funcionarios',
+                    'url' => 'admin/funcionarios/mostrar',
                     'icon' => 'fas fa-fw fa-bars',
-=======
-                    'url' => '/admin/funcionarios/mostrar',
-                    'icon' => 'fas fa-fw fa-user',
->>>>>>> e53385abd3443f1986fcfbad6226288fc0ff9b39
                 ],
             ],
         ],
@@ -336,13 +331,13 @@ return [
                 [
                     'text' => 'Cadastrar Notícia',
                     'icon' => 'fas  fa-pen',
-                    'route' => 'noticias',
+                    'url' => '/admin/noticias',
 
                 ],
                 [
                     'text' => 'Lista de Notícias',
                     'icon'  => 'fas  fa-bars',
-                    'route'  => 'listanoticias',
+                    'url'  => '/admin/noticias/lista',
                 ],
             ],
         ],
@@ -353,13 +348,13 @@ return [
                 [
                     'text' => 'Cadastrar Animal',
                     'icon' => 'fas  fa-plus',
-                    'route' => 'animal',
+                    'url' => 'admin/animal',
 
                 ],
                 [
                     'text' => 'Lista de Animais',
                     'icon'  => 'fas  fa-bars',
-                    'route'  => 'listaanimal',
+                    'url'  => 'admin/animal/mostrar',
                 ],
             ],
         ],
@@ -417,6 +412,51 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'DatatablesPlugins' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
                 ],
             ],
         ],

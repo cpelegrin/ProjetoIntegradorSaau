@@ -16,6 +16,8 @@
                 <div class="content ">
                     <div class="container-fluid ">
                         <div class="row ">
+                            <form action="salvar_perfil" method="post" >
+                                @csrf
                             <!--Foto do perfil-->
                             <div class="col-md-3">
                                 <div class="card card-primary card-outline">
@@ -32,6 +34,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </form>
                             <!--==================-->
                             <div class="col-lg-8 col-md-7">
                                 <div class="card">

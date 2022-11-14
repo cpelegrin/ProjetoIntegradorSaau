@@ -1,4 +1,4 @@
-<a href="#" class="btn btn danger" data-toggle="modal" data target="deleteModal" data-id="{{ $email->}}">
+<a href="#" class="btn btn danger" data-toggle="modal" data target="deleteModal" data-id="{{ $email->id}}">
     <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
 </a>
 

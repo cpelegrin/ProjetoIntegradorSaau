@@ -22,23 +22,19 @@
                                 <!--Nome-->
                                 <div class="col-12 col-sm-6">
                                     <label>Nome</label>
-                                    <input class="multisteps-form__input form-control" required name="name" type="text"
+                                    <input class="multisteps-form__input form-control" required name="nome" type="text"
                                         placeholder="Nome" onfocus="focused(this)" onfocusout="defocused(this)">
                                 </div>
                                 <!--===============-->
 
                             </div>
 
-                            <!--Permissao-->
-                            <div class="form-group row">
-                                <div class="form-group">
-                                    <label class="ml-2 mt-2">Permissão</label>
-                                    <select name="permissao" class="form-control ml-2">
-                                        <option value="Funcionario">Funcionário</option>
-                                        <option value="Administrador">Administrador</option>
-                                    </select>
+                            <!--Sexo-->
+                            <div class="col-12 col-sm-6">
+                                    <label>Sexo</label>
+                                    <input class="multisteps-form__input form-control" required name="sexo" type="text"
+                                        placeholder="sexo" onfocus="focused(this)" onfocusout="defocused(this)">
                                 </div>
-                            </div>
                             <!--==============-->
                             <div class="button-row d-flex mt-4">
                                 <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submite"

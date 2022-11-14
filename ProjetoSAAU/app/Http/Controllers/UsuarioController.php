@@ -30,6 +30,7 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
+            
 
             $user->save();
 
@@ -46,6 +47,7 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
+           
 
             $user->save();
 
