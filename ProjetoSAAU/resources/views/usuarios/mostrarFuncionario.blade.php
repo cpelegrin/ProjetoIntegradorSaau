@@ -12,73 +12,53 @@
 @stop
 
 @section('css')
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td,
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="card card-info col-6">
-        <div class="card-header">
-            <h3 class="card-title">Cadastro de Notícias</h3>
-        </div>
-        <div class="card-body">
 
-            {{-- Setup data for datatables --}}
-            @php
-            $heads = [
-            'Nome',
-            'Email',
-            ['label' => 'Ações', 'no-export' => true, 'width' => 15]
-            ];
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Cadastro de Notícias</h3>
+    </div>
+    <div class="card-body">
 
-            $data = [];
-            foreach($funcionarios as $funcionario){
+        {{-- Setup data for datatables --}}
+        @php
+        $heads = [
+        'Nome',
+        'Email',
+        ['label' => 'Ações', 'no-export' => true, 'width' => 15]
+        ];
 
-            $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
-            $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
-            array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
-            )
-            );
-            }
-            $config = ['data' => $data,
-            'order' => [[1, 'asc']],
-            'columns' => [null, ['orderable' => true], null],
-            ];
-            @endphp
+        $data = [];
+        foreach($funcionarios as $funcionario){
 
-
+        $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+        array_push($data, array($funcionario->name, $funcionario->email,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+        )
+        );
+        }
+        $config = ['data' => $data,
+        'order' => [[1, 'asc']],
+        'columns' => [null, ['orderable' => true], null],
+        ];
+        @endphp
 
 
-            {{-- Minimal example / fill data using the component slot --}}
-            <x-adminlte-datatable id="table1" :heads="$heads">
-                @foreach($config['data'] as $row)
-                <tr>
-                    @foreach($row as $cell)
-                    <td>{!! $cell !!}</td>
-                    @endforeach
-                </tr>
+
+
+        {{-- Minimal example / fill data using the component slot --}}
+        <x-adminlte-datatable id="table1" :heads="$heads">
+            @foreach($config['data'] as $row)
+            <tr>
+                @foreach($row as $cell)
+                <td>{!! $cell !!}</td>
                 @endforeach
-            </x-adminlte-datatable>
-        </div>
+            </tr>
+            @endforeach
+        </x-adminlte-datatable>
     </div>
 </div>
 <!-- Modal -->
@@ -116,13 +96,26 @@
 
 
 <script>
-    $('#table1').DataTable({
-        "language": {
-            "paging": "false",
-            "searching": "false",
-            "retrieve": "true",
-            "url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json",
+    $('#table1').ready(function() {
+        if ($.fn.dataTable.isDataTable('#table1')) {
+            table = $('#table1').DataTable();
+            //TODO trocar a linguage 
+        } else {
+            $('#table1').DataTable({
+                'language': {
+                    'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+                },
+
+            });
         }
+        table.destroy();
+
+        table = $('#table1').DataTable({
+            'language': {
+                'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+            },
+
+        });
     });
 </script>
 <script>
