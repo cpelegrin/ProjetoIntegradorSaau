@@ -138,3 +138,5 @@ Route::middleware(['auth'])->group(
 
 Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'create'])->name('perfil')->middleware('auth');
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
+Route::post('/admin/senha/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'resetPassword'])->name('resetar_senha')->middleware('auth');
+
