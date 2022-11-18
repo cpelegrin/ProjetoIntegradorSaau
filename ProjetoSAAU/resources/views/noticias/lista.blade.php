@@ -14,101 +14,56 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
-@section('js')
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    toastr.options.preventDuplicates = true;
-</script>
-
-
-@if(Session::has('success'))
-<script>
-    toastr.success("{{ Session::get('success') }}")
-</script>
-@endif
-
-
-
-@if(Session::has('error'))
-<script>
-    toastr.error("{{ Session::get('error') }}")
-</script>
-@endif
-
-
-@if($errors->any())
-@foreach ($errors->all() as $error)
-<script>
-    toastr.error('{{$error}}')
-</script>
-@endforeach
-@endif
-</div>
-
-
-@endsection
-
 @section('plugins.Summernote', true)
 
 @section('content')
 
 
-<div class="row ">
-    <div class="col-10 ">
-        <div class=" ">
-            <div class="card-body">
-                <div class="col-md-10">
-                    <div class="card">
-                        <!--Titulo da tabela-->
-                        <div class="card-header card-header-icon" data-background-color="rose">
-                            <i class="material-icons">
-                                <h4>Lista das notícias cadastradas </h4>
-                            </i>
-                        </div>
-                        <!--===============-->
-                        <div class="card-content pl-2">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <!--Cabecalho da tabel-->
-                                    <thead>
-                                        <tr>
-                                            <th>Título</th>
-                                            <th>Resumo</th>
-                                            <th>Ùltima atualização</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--===============-->
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Cadastro de Notícias</h3>
+    </div>
+    <div class="card-body">
 
-                                        <!--Corpo da tabela-->
-                                        @foreach ($lista as $noticia)
-                                        <tr>
-                                            <td>{{$noticia->titulo}}</td>
-                                            <td>{{$noticia->resumo}}</td>
-                                            <td>{{$noticia->update_at}}</td>
-                                            <td class="td-actions text-right">
+        {{-- Setup data for datatables --}}
+        @php
+        $heads = [
+        'Título',
+        'Resumo',
+        'Últimas Atualizações',
+        ['label' => 'Ações', 'no-export' => true, 'width' => 15]
+        ];
+
+        $data = [];
+        foreach($lista as $noticia){
+        $newDate = Carbon::parse($noticia->updated_at)->locale('br')->isoFormat('dddd, MMMM Do YYYY, h:mm');
+
+        $btnEdit = '<a href="'. route('noticias.edit',['id'=>$noticia->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarnoticia" data-noticiaid="'.$noticia->id.'" data-noticiatitle="'.$noticia->titulo.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+        array_push($data, array($noticia->titulo, $noticia->resumo,$newDate,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+        )
+        );
+        }
+        $config = ['data' => $data,
+        'order' => [[1, 'asc']],
+        'columns' => [null, ['orderable' => true], null],
+        ];
+
+        @endphp
 
 
 
-                                                <a href="{{route('noticias.edit', $noticia->id) }} ">Editar</a>
 
-
-                                                <a href="#" class="mx-2" data-toggle="modal" data-target="#deletarnoticia" id="delete-button" data-noticiaid="{{$noticia->id}}" data-noticiatitle="{{$noticia->titulo}}">
-                                                    <i class="fas fa-trash-alt text-danger"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        <!--===============-->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{-- Minimal example / fill data using the component slot --}}
+        <x-adminlte-datatable id="table1" :heads="$heads">
+            @foreach($config['data'] as $row)
+            <tr>
+                @foreach($row as $cell)
+                <td>{!! $cell !!}</td>
+                @endforeach
+            </tr>
+            @endforeach
+        </x-adminlte-datatable>
     </div>
 </div>
 
@@ -149,7 +104,31 @@
 
 @section('js')
 <script>
-    $('#delete-button').on('click', function() {
+    $('#table1').ready(function() {
+        if ($.fn.dataTable.isDataTable('#table1')) {
+            table = $('#table1').DataTable();
+            //TODO trocar a linguagem 
+        } else {
+            $('#table1').DataTable({
+                'language': {
+                    'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+                },
+
+            });
+        }
+        table.destroy();
+
+        table = $('#table1').DataTable({
+            'language': {
+                'url': '//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json'
+            },
+
+        });
+    });
+</script>
+
+<script>
+    $('.deletebutton').on('click', function() {
         var noticiaid = this.dataset['noticiaid'];
         var noticia_titulo = this.dataset['noticiatitle'];
         console.log(noticia_titulo);
@@ -160,5 +139,35 @@
         $('#deleteForm').attr('action', final);
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
 
 @endsection
