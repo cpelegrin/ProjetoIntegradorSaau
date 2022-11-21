@@ -296,11 +296,6 @@ return [
 
         // Sidebar items:
         [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        [
             'text' => 'Perfil',
             'icon' => 'fas fa-fw fa-user',
             'url' => '/usuario/perfil',
@@ -310,6 +305,7 @@ return [
         [
             'text' => 'Funcionários',
             'icon' => 'fas  fa-users',
+            'can' => 'is_admin',
             'submenu' => [
                 [
                     'text' => 'Cadastrar funcionário',

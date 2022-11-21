@@ -5,7 +5,7 @@
 @section('content_header')
 
 <h1 class="m-0 text-dark">
-    Notícias - Cadastro
+    Notícias - Listagem
 </h1>
 
 @stop
@@ -21,7 +21,7 @@
 
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title">Cadastro de Notícias</h3>
+        <h3 class="card-title">Lista de Notícias</h3>
     </div>
     <div class="card-body">
 
