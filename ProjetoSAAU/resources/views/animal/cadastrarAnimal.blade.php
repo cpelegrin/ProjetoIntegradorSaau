@@ -28,24 +28,24 @@
                 @method('PUT')
                 @endif
                 @csrf
-                <!-- Titulo  -->
+                <!-- Nome  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Nome">
-                            <iconify-icon icon="bx:text"></iconify-icon>
+                            <iconify-icon icon="ph:dog-light"></iconify-icon>
                         </span>
                     </div>
                     <input type="text" name="nome" class="form-control" value="{{ $lista->name ?? old('nome')}}" placeholder="Nome">
                 </div>
-
-                <!-- Resumo  -->
+                
+                <!-- Sexo  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" title="Resumo">
-                            <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
+                        <span class="input-group-text" title="Sexo">
+                            <iconify-icon icon="healthicons:sexual-reproductive-health"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ $noticia->resumo ?? old('resumo')}} </textarea>
+                    <input type="text" name="sexo" class="form-control" value="{{ $lista->sexo ?? old('sexo')}}" placeholder="Sexo">
                 </div>
 
                 <!-- Img -->
@@ -82,7 +82,7 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="características do animal" label="Características do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
+                        <x-adminlte-text-editor name="características do animal" label="Características do Animal" igroup-size="lg" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
                             {{ $lista->caracteristicas ?? old('caracteristicas') }}
                         </x-adminlte-text-editor>
 
