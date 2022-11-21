@@ -42,7 +42,8 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::findOrFail($id);
         $funcionarios->delete();
         $funcionarios = User::all();
-        return redirect()->route('mostrar_funcionario', compact('funcionarios'));
+        ;
+        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
 
     }
     public function destroyUsuario($id)
@@ -58,6 +59,7 @@ class CadastroUsuarioController extends Controller
     {
         $funcionarios = User::findOrFail($id);
         return redirect()->route('editar_funcionario', compact('funcionarios'));
+
     }
 
     public function update(UserStoreRequest $request, $id)
@@ -72,7 +74,8 @@ class CadastroUsuarioController extends Controller
             ]
         );
         $funcionarios = User::all();
-        return redirect()->route('mostrar_funcionario', compact('funcionarios'));
+
+        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);
 
     }
 

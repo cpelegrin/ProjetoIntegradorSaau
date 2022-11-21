@@ -7,17 +7,22 @@
 
 @stop
 
-@section('content')
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 <style>
     label.labelInput input[type="file"] {
         position: fixed;
         top: -1000px;
     }
 </style>
+@endsection
 
-<script src="https://cdn.jsdelivr.net/npm/cep-promise/dist/cep-promise.min.js"></script>
+@section('content')
+
 
 <div class="row">
+
     <div class="col-11">
         <!--Campo para foto de perfil-->
         <div style="  margin:auto ;" class="col-md-12 ">
@@ -26,9 +31,11 @@
 
                     <!---Imagem de perfil---->
                     <div class="text-center">
-                        <img id="preview-image" class="rounded-circle mt-5" width="150px"
+                        <img id="preview-image" class="rounded-circle mt-5" width="200px"
                             src="{{ $perfil->imagem->url ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg' }}">
                     </div>
+
+                    <img src="{{ url('storage/users'. $perfil->imagem) }}" alt="{{$perfil->name}}" width="250px">
                     <!------------>
 
                     <!----Nome----->
@@ -123,7 +130,7 @@
                     <div class="row justify-content-between mt-3">
                         <div class="col-8">
                             <x-adminlte-input id="cepInserted" onkeyup="delay(isValid(this, 9, event), 500)" name="cep"
-                                placeholder="Cep" value="{{ $cliente->endereco->cep ?? old('cep') }}">
+                                placeholder="Cep" value="{{ isset($perfil) ? $perfil->cep : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="CEP" style="width: 48px">
                                         <i class="far fa-address-card"></i>
@@ -140,37 +147,35 @@
 
 
 
-                    <x-adminlte-textarea id="end_logradouro" name="end_logradouro" placeholder="Endereço" rows=2>
+                    <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço" rows=2>
                         <x-slot name="prependSlot">
                             <div class="input-group-text" title="Endereço" style="width: 48px">
                                 <i class="fas fa-lg fa-building"></i>
                             </div>
                         </x-slot>
-                        {{ $cliente->endereco->end_logradouro ?? old('end_logradouro')}}
+                        {{ $perfil->logradouro ?? old('logradouro')}}
                     </x-adminlte-textarea>
 
-
-
-                    <x-adminlte-input type="text" name="end_num" placeholder="Número"
-                        value="{{ $cliente->endereco->end_num ?? old('end_num')}}">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text" title="Número" style="width: 48px">
-                                <i class="fas fa-house-user"></i>
-                            </div>
-                        </x-slot>
-                    </x-adminlte-input>
-
                     <div class="row justify-content-between">
-                        <div class="col-10">
-                            <x-adminlte-input id="end_cidade" name="end_cidade" placeholder="Cidade"
-                                value="{{ $cliente->endereco->end_cidade ?? old('end_cidade')}}">
+                        <div class="col-6 m-0">
+                            <x-adminlte-input id="end_cidade" name="cidade" placeholder="Cidade"
+                                value="{{ isset($perfil) ? $perfil->cidade : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="Cidade" style="width: 48px">
                                         <i class="fas fa-city"></i>
                                     </div>
                                 </x-slot>
                             </x-adminlte-input>
-
+                        </div>
+                        <div class="col-6 m-0">
+                            <x-adminlte-input type="text" name="num" placeholder="Número"
+                                value="{{ isset($perfil) ? $perfil->num : '' }}">
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text" title="Número" style="width: 48px">
+                                        <i class="fas fa-house-user"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input>
                         </div>
 
                     </div>
@@ -178,14 +183,40 @@
                 <!--===============-->
 
                 <!--Sobre mim-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Sobre mim</label>
-                            <textarea rows="5" name="sobremim" class="form-control border-input"
-                                placeholder="Descrição">
-                                {{ isset($perfil) ? $perfil->sobremim : ''}}
-                                </textarea>
+                <div class="row ">
+                    <div class="col-12 ">
+                        <div class="form-group" style="margin-left:98px ;">
+                            <div class="input-group-prepend">
+                                <!-- teste do summernote -->
+                                @php
+                                $config = [
+                                'height' => '300',
+                                'width' => '1200',
+                                'toolbar' => [
+                                // [groupName, [list of button]]
+                                ['style', ['bold', 'italic', 'underline', 'clear']],
+                                ['font', ['strikethrough']],
+                                ['fontsize', ['fontsize']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['height', ['height']],
+                                ['insert', ['link', 'picture']],
+                                ['view', ['fullscreen']],
+                                ],
+                                ];
+                                @endphp
+
+
+
+
+                                <x-adminlte-text-editor name="sobremim" label="Sobre mim" igroup-size="sm"
+                                    placeholder="Sobre mim..." :config="$config">
+
+                                    {{ isset($perfil) ? $perfil->sobremim : '' }}
+
+                                </x-adminlte-text-editor>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,6 +235,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!--=====Campo para mudar a senha ======-->
@@ -229,7 +261,7 @@
             <!--============-->
 
             <!--======Botao de envio do formulario =====-->
-            <button type="submit" data-toggle="modal" data-target="#mudarSenh"
+            <button type="submit" data-toggle="modal" data-target="#mudarSenha"
                 class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Editar senha</button>
 
             <!--============-->
@@ -304,6 +336,7 @@
 @stop
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/cep-promise/dist/cep-promise.min.js"></script>
 <script>
     $('#imagem').on('change', function () {
         if (this.files && this.files[0]) {
@@ -372,4 +405,37 @@
     }
     initForm();
 </script>
-@stop
+
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
+
+@endsection
+
+@section('plugins.Summernote', true)

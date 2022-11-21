@@ -13,18 +13,15 @@ class SenhaPerfilStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Você precisa inserir um nome para continuar',
-            'name.min' => 'O nome tem que ter pelo menos 3 caracteres',
             'password.required' => 'Você precisa inserir uma senha para continuar',
             'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres',
-            'email.unique' => 'Esse endereço de email já existe',
-            'email.required' => 'Você precisa inserir um email para continuar',
+
 
         ];
     }
