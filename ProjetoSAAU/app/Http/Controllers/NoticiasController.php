@@ -24,7 +24,6 @@ class NoticiasController extends Controller
     public function lista()
     {
         $lista = Noticias::get();
-        // dd($lista);
         return view('noticias.lista', compact('lista'));
     }
 
@@ -88,6 +87,7 @@ class NoticiasController extends Controller
         if (!$noticia = Noticias::find($id))
             return redirect()->route('/admin/noticias/lista');
 
+        // dd($noticia);
         return view('noticias.noticias', compact('noticia'));
     }
     /**
@@ -105,6 +105,8 @@ class NoticiasController extends Controller
             return redirect()->route('/admin/noticias/lista');
 
         $data = $request->all();
+        if (isset($request->foto_noticia))
+            $noticia->image = $request->foto_noticia->store('noticias');
         $noticia->update($data);
         return redirect()->route('listanoticias', ['id' => $id])->with(['success' => 'Notícia editada com sucesso']);
     }

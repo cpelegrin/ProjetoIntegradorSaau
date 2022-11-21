@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="row">
-    <div class="card card-info col-6">
+    <div class="card card-info col-12">
         <div class="card-header">
             <h3 class="card-title">Cadastro de Notícias</h3>
         </div>
@@ -54,8 +54,9 @@
                         <label for="img">Selecione a imagem</label>
                         <input type="file" class="form-control-file btn bg-gradient-dark btn-sm float-end mt-6 mb-0" id="foto_noticia" name="foto_noticia" accept=".png, .jpg, .jpeg">
                     </div>
-                    <div>
-                        <img id="preview-image" class="ml-5" width="150px" src="">
+                    <div class="mx-4">
+                        <label id="label-preview" style="text-align: center; display: block" hidden>Foto selecionada</label>
+                        <img id="preview-image" width="150px" src="">
                     </div>
                 </div>
 
@@ -81,20 +82,24 @@
                         ];
                         @endphp
 
+                        <div class="row">
+                            <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config">
+                                {{ $noticia->corpo ?? old('corpo') }}
+                            </x-adminlte-text-editor>
 
-                        <x-adminlte-text-editor name="corpo" label="Corpo da Notícia" igroup-size="sm" placeholder="Digite e edite o corpo da notícia..." :config="$config">
-                            {{ $noticia->corpo ?? old('corpo') }}
-                        </x-adminlte-text-editor>
-
-
+                            <div class="m-5">
+                                @isset($noticia->image)
+                                <label style="text-align: center; display: block">Foto Atual</label>
+                                <img src="{{ url('storage/'. $noticia->image) }}" alt="{{$noticia->titulo}}" width="250px">
+                                @endisset
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mt-2">
                     <input type="submit" value="Enviar" class="btn btn-info" />
                 </div>
-
-
 
             </form>
 
@@ -144,6 +149,8 @@
                 document.getElementById("preview-image").src = e.target.result;
             };
             file.readAsDataURL(this.files[0]);
+            document.getElementById("label-preview").hidden = false;
+
         }
     });
 </script>
