@@ -36,7 +36,9 @@
 
         $data = [];
         foreach($lista as $noticia){
-        $newDate = Carbon::parse($noticia->updated_at)->locale('br')->isoFormat('dddd, MMMM Do YYYY, h:mm');
+        $newDate = Carbon::parse($noticia->updated_at)->locale('br')->format('d/M/Y - H:i')."hrs";
+
+
 
         $btnEdit = '<a href="'. route('noticias.edit',['id'=>$noticia->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
         $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarnoticia" data-noticiaid="'.$noticia->id.'" data-noticiatitle="'.$noticia->titulo.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
