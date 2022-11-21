@@ -23,19 +23,19 @@
             <h3 class="card-title">Cadastro de Animais</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="@if(isset($noticia)) {{route('noticias.update', $noticia->id)}} @else {{ Route('salvar_noticia')}} @endif" enctype="multipart/form-data">
-                @if(isset($noticia))
+            <form method="post" action="@if(isset($lista)) {{route('animal.update', $lista->name)}} @else {{ Route('salvar_animal')}} @endif" enctype="multipart/form-data">
+                @if(isset($lista))
                 @method('PUT')
                 @endif
                 @csrf
                 <!-- Titulo  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" title="Titulo">
+                        <span class="input-group-text" title="Nome">
                             <iconify-icon icon="bx:text"></iconify-icon>
                         </span>
                     </div>
-                    <input type="text" name="titulo" class="form-control" value="{{ $noticia->titulo ?? old('titulo')}}" placeholder="Título">
+                    <input type="text" name="nome" class="form-control" value="{{ $lista->name ?? old('nome')}}" placeholder="Nome">
                 </div>
 
                 <!-- Resumo  -->
@@ -82,8 +82,8 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo" label="Características do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
-                            {{ $noticia->corpo ?? old('corpo') }}
+                        <x-adminlte-text-editor name="características do animal" label="Características do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
+                            {{ $lista->caracteristicas ?? old('caracteristicas') }}
                         </x-adminlte-text-editor>
 
 
