@@ -6,6 +6,8 @@
 
 @stop
 
+
+
 @section('content')
 <div class="row">
     <div class="col-8 m-3 ">
@@ -16,69 +18,119 @@
                     <h3 class="font-weight-bolder mb-0">Cadastrar Funcionário</h3>
                     <div class="multisteps-form__content">
                         <!--Formulario de cadastro-->
+
                         <form action="{{route('salvar_funcionario')}}" method="post">
-                            @csrf
-                            <div class="row mt-3">
-                                <!--Nome-->
-                                <div class="col-12 col-sm-6">
-                                    <label>Nome</label>
-                                    <input class="multisteps-form__input form-control" required name="name" type="text"
-                                        placeholder="Nome" onfocus="focused(this)" onfocusout="defocused(this)">
-                                </div>
-                                <!--===============-->
+                            @section('css')
+                            <link rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+                            @endsection
 
-                                <!--Email-->
-                                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                    <label>Email</label>
-                                    <input class="multisteps-form__input form-control" required name="email"
-                                        type="email" placeholder="Email" onfocus="focused(this)"
-                                        onfocusout="defocused(this)">
-                                </div>
-                            </div>
-                            <!--==============-->
-
-                            <!--Senha-->
-                            <div class="row mt-3">
-                                <div class="col-12 col-sm-6">
-                                    <label>Senha</label>
-                                    <input class="multisteps-form__input form-control" required name="password"
-                                        type="password" placeholder="******" onfocus="focused(this)"
-                                        onfocusout="defocused(this)">
-                                </div>
-
-                                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                    <label>Repetir Senha</label>
-                                    <input class="multisteps-form__input form-control" required name="password"
-                                        type="password" placeholder="******" onfocus="focused(this)"
-                                        onfocusout="defocused(this)">
-                                </div>
-                            </div>
-
-                            <!--=============-->
-
-                            <!--Permissao-->
-                            <div class="form-group row">
-                                <div class="form-group">
-                                    <label class="ml-2 mt-2">Permissão</label>
-                                    <select name="permissao" class="form-control ml-2">
-                                        <option value="Funcionario">Funcionário</option>
-                                        <option value="Administrador">Administrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--==============-->
-                            <div class="button-row d-flex mt-4">
-                                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submite"
-                                    title="Cadastrar">Cadastrar</button>
-                            </div>
-                        </form>
-                        <!--==============-->
+                            @section('js')
+                            <script
+                                src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+                            <script
+                                src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+                            <script>
+                                toastr.options.preventDuplicates = true;
+                            </script>
 
 
+                            @if(Session::has('success'))
+                            <script>
+                                toastr.success("{{ Session::get('success') }}")
+                            </script>
+                            @endif
+
+
+
+                            @if(Session::has('error'))
+                            <script>
+                                toastr.error("{{ Session::get('error') }}")
+                            </script>
+                            @endif
+
+                            {{--
+                            <script>
+                                toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
+
+                                // Display a success toast, with a title
+                                toastr.success('Have fun storming the castle!', 'Chama no test')
+
+                                // Display an error toast, with a title
+                                toastr.error('I do not think that word means what you think it means.', 'Inconceivable!')
+                            </script> --}}
+
+
+                            @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                            <script>
+                                toastr.error('{{$error}}')
+                            </script>
+                            @endforeach
+                            @endif
                     </div>
+
+
+                    @endsection
+                    @csrf
+                    <div class="row mt-3">
+                        <!--Nome-->
+                        <div class="col-12 col-sm-6">
+                            <label>Nome</label>
+                            <input class="multisteps-form__input form-control" name="name" type="text"
+                                placeholder="Nome: " value="{{old('name')}}">
+                        </div>
+                        <!--===============-->
+
+                        <!--Email-->
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                            <label>Email</label>
+                            <input class="multisteps-form__input form-control" name="email" type="email"
+                                placeholder="Email" value="{{old('email')}}">
+                        </div>
+                    </div>
+                    <!--==============-->
+
+                    <!--Senha-->
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-6">
+                            <label>Senha</label>
+                            <input class="multisteps-form__input form-control" name="password" type="password"
+                                placeholder="******">
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                            <label>Repetir Senha</label>
+                            <input class="multisteps-form__input form-control" name="password" type="password"
+                                placeholder="******">
+                        </div>
+                    </div>
+
+                    <!--=============-->
+
+                    <!--Permissao-->
+                    <div class="form-group row">
+                        <div class="form-group">
+                            <label class="ml-2 mt-2">Permissão</label>
+                            <select name="permissao" class="form-control ml-2">
+                                <option value="Funcionario">Funcionário</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--==============-->
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submite"
+                            title="Cadastrar">Cadastrar</button>
+                    </div>
+                    </form>
+                    <!--==============-->
+
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @stop

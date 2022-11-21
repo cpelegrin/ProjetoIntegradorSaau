@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests;
+
 
 class CadastroUsuarioController extends Controller
 {
@@ -15,14 +16,16 @@ class CadastroUsuarioController extends Controller
         return view('usuarios.cadastrarFuncionario');
     }
 
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'permissao' => $request->permissao,
-        ]);
+        User::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'permissao' => $request->permissao,
+            ]
+        );
         $funcionarios = User::all();
         return view('usuarios.mostrarFuncionario', compact('funcionarios')); //FIXME alterar para redirect route
     }
@@ -38,25 +41,41 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::findOrFail($id);
         $funcionarios->delete();
         $funcionarios = User::all();
-        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
+        ;
+        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
+
+    }
+    public function destroyUsuario($id)
+    {
+        $funcionarios = User::findOrFail($id);
+        $funcionarios->delete();
+
+        return redirect()->route('inicio');
+
     }
 
     public function edit($id)
     {
         $funcionarios = User::findOrFail($id);
-        return view('usuarios.editarFuncionario', compact('funcionarios'));
+        return redirect()->route('editar_funcionario', compact('funcionarios'));
+
     }
 
-    public function update(Request $request, $id)
+    public function update(UserStoreRequest $request, $id)
     {
         $funcionarios = User::findOrFail($id);
-        $funcionarios->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'permissao' => $request->permissao,
-        ]);
+        $funcionarios->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'permissao' => $request->permissao,
+            ]
+        );
         $funcionarios = User::all();
-        return view('usuarios.mostrarFuncionario', compact('funcionarios'));
+
+        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);
+
     }
+
 }
