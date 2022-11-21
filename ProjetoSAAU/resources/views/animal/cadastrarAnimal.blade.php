@@ -1,53 +1,150 @@
 @extends('adminlte::page')
 
-@section('title', 'Cadastrar Animal')
+@section('title', 'AdminLTE')
 
 @section('content_header')
 
+<h1 class="m-0 text-dark">
+    Animais - Cadastro
+</h1>
+
 @stop
+
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
+
+@section('plugins.Summernote', true)
 
 @section('content')
 <div class="row">
-    <div class="col-8 m-3 ">
-        <div class="card">
-            <div class="card-body">
-                <div class="card multisteps-form__panel p-3 m-3 border-radius-xl bg-white js-active"
-                    data-animation="FadeIn">
-                    <h3 class="font-weight-bolder mb-0">Cadastrar Animal</h3>
-                    <div class="multisteps-form__content">
-                        <!--Formulario de cadastro-->
-                        <form action="{{route('salvar_animal')}}" method="post">
-                            @csrf
-                            <div class="row mt-3">
-                                <!--Nome-->
-                                <div class="col-12 col-sm-6">
-                                    <label>Nome</label>
-                                    <input class="multisteps-form__input form-control" required name="nome" type="text"
-                                        placeholder="Nome" onfocus="focused(this)" onfocusout="defocused(this)">
-                                </div>
-                                <!--===============-->
+    <div class="card card-info col-6">
+        <div class="card-header">
+            <h3 class="card-title">Cadastro de Animais</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" action="@if(isset($noticia)) {{route('noticias.update', $noticia->id)}} @else {{ Route('salvar_noticia')}} @endif" enctype="multipart/form-data">
+                @if(isset($noticia))
+                @method('PUT')
+                @endif
+                @csrf
+                <!-- Titulo  -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="Titulo">
+                            <iconify-icon icon="bx:text"></iconify-icon>
+                        </span>
+                    </div>
+                    <input type="text" name="titulo" class="form-control" value="{{ $noticia->titulo ?? old('titulo')}}" placeholder="Título">
+                </div>
 
-                            </div>
+                <!-- Resumo  -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" title="Resumo">
+                            <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
+                        </span>
+                    </div>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ $noticia->resumo ?? old('resumo')}} </textarea>
+                </div>
 
-                            <!--Sexo-->
-                            <div class="col-12 col-sm-6">
-                                    <label>Sexo</label>
-                                    <input class="multisteps-form__input form-control" required name="sexo" type="text"
-                                        placeholder="sexo" onfocus="focused(this)" onfocusout="defocused(this)">
-                                </div>
-                            <!--==============-->
-                            <div class="button-row d-flex mt-4">
-                                <button class="btn bg-gradient-dark ms-auto mb-0 js-btn-next" type="submite"
-                                    title="Cadastrar">Cadastrar</button>
-                            </div>
-                        </form>
-                        <!--==============-->
+                <!-- Img -->
+                <div class="input-group row">
+                    <div class="form-group">
+                        <label for="img">Selecione a imagem</label>
+                        <input type="file" class="form-control-file btn bg-gradient-dark btn-sm float-end mt-6 mb-0" id="foto_animal" name="foto_noticia" accept=".png, .jpg, .jpeg">
+                    </div>
+                    <div>
+                        <img id="preview-image" class="ml-5" width="150px" src="">
+                    </div>
+                </div>
+
+                <!-- Detalhes  -->
+                <div class="input-group mt-4">
+                    <div class="input-group-prepend">
+                        <!-- teste do summernote -->
+                        @php
+                        $config = [
+                        'height' => '250',
+                        'width' => '772',
+                        'toolbar' => [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['insert', ['link', 'picture']],
+                        ['view', ['fullscreen']],
+                        ],
+                        ];
+                        @endphp
+
+
+                        <x-adminlte-text-editor name="corpo" label="Características do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
+                            {{ $noticia->corpo ?? old('corpo') }}
+                        </x-adminlte-text-editor>
 
 
                     </div>
                 </div>
-            </div>
+
+                <div class="mt-2">
+                    <input type="submit" value="Enviar" class="btn btn-info" />
+                </div>
+
+
+
+            </form>
+
         </div>
+
     </div>
 </div>
-@stop
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    toastr.options.preventDuplicates = true;
+</script>
+
+
+@if(Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}")
+</script>
+@endif
+
+
+
+@if(Session::has('error'))
+<script>
+    toastr.error("{{ Session::get('error') }}")
+</script>
+@endif
+
+
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{$error}}')
+</script>
+@endforeach
+@endif
+
+
+<script>
+    $('#foto_noticia').on('change', function() {
+        if (this.files && this.files[0]) {
+            var file = new FileReader();
+            file.onload = function(e) {
+                document.getElementById("preview-image").src = e.target.result;
+            };
+            file.readAsDataURL(this.files[0]);
+        }
+    });
+</script>
+@endsection
