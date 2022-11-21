@@ -19,7 +19,7 @@ class UsuarioController extends Controller
         $user = auth()->user();
         $perfil = perfilUsuario::where('user_id', $user->id)->first();
         if ($perfil == null) {
-            return view('usuarios.editarPerfil', compact('user', ));
+            return view('usuarios.editarPerfil', compact('user',));
         } else {
             return view('usuarios.editarPerfil', compact('user', 'perfil'));
         }
@@ -42,8 +42,6 @@ class UsuarioController extends Controller
             $data['imagem'] = $nameFile;
 
             $upload = $request->imagem->storeAs('users', $nameFile);
-
-
         }
 
         $update = $user->update($data);
@@ -72,7 +70,6 @@ class UsuarioController extends Controller
                     'sobremim' => $request->sobremim,
                 ]
             );
-
         } else {
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
@@ -82,7 +79,8 @@ class UsuarioController extends Controller
 
 
             $user->save();
-            $perfil->imagem = $request->imagem->storeAs('users', $nameFile);
+            if (isset($request->imagem))
+                $perfil->imagem = $request->imagem->storeAs('users', $nameFile);
             $perfil->cep = $request->cep;
             $perfil->logradouro = $request->logradouro;
             $perfil->num = $request->num;
@@ -97,7 +95,6 @@ class UsuarioController extends Controller
 
 
         return redirect()->route('perfil', compact('user', 'perfil'))->with(['success' => 'Perfil cadastrado com sucesso']);
-
     }
     public function resetPassword(SenhaPerfilStoreRequest $request, $user_id)
     {
@@ -109,8 +106,5 @@ class UsuarioController extends Controller
 
 
         return redirect()->route('perfil')->with(['success' => 'Senha salva com sucesso']);
-
-
     }
-
 }
