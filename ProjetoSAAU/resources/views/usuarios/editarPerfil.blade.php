@@ -35,7 +35,9 @@
                             src="{{ $perfil->imagem->url ?? 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg' }}">
                     </div>
 
+                    @isset($perfil->imagem)
                     <img src="{{ url('storage/users'. $perfil->imagem) }}" alt="{{$perfil->name}}" width="250px">
+                    @endisset
                     <!------------>
 
                     <!----Nome----->
