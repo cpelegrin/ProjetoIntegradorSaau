@@ -28,8 +28,8 @@
         $data = [];
         foreach($animal as $animal){
 
-        $btnEdit = '<a href="'. route('editar_animal',['id'=>$animal->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
-        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletaranimal" data-animalid="'.$animal->id.'" data-animalnome="'.$animal->nome.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+        $btnEdit = '<a href="{{route('editar_animal',['id'=>$animal->id])}}"'. route('editar_animal',['id'=>$animal->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+        $btnDelete='<a href="{{route('deletar_animal',['id'=>$animal->id])}}" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletaranimal" data-animalid="'.$animal->id.'" data-animalnome="'.$animal->nome.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
         array_push($data, array($animal->nome, $animal->sexo,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
         )
         );
