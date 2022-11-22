@@ -52,13 +52,17 @@
 
                 <!-- Img -->
                 <div class="input-group row">
-                    <div class="container-fluid form-group">
-                        <label for="img">Selecione a imagem</label>
+                    <label for="img">Selecione a imagem</label>
                         <input type="file" class="form-control-file btn bg-info btn-sm float-end mt-6 mb-0" id="foto_animal" name="foto_noticia" accept=".png, .jpg, .jpeg">
-                    </div>
-                    <div>
-                        <img id="preview-image" class="ml-5" width="150px" src="#">
-                    </div>
+                    
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+            
+                                <!---Imagem de perfil---->
+                                <div class="text-center">
+                                    <img id="preview-image" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Bear.svg @endif">
+                                </div>
+                        </div>
                 </div>
 
                 <!-- Detalhes  -->
