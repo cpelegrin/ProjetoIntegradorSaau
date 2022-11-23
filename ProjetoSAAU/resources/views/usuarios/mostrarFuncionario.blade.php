@@ -89,6 +89,7 @@
         </div>
     </div>
 </form>
+<a href="{{route('mostrar_perfil')}}">fdsadfa</a>
 
 
 @stop

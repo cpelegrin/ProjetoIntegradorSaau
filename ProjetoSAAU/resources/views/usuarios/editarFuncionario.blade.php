@@ -95,7 +95,7 @@
                             <div class="col-12 col-sm-6">
                                 <label>Senha</label>
                                 <input class="multisteps-form__input form-control" required
-                                value="{{$funcionarios->password}}" name="password" type="password"
+                                 name="password" type="password"
                                 placeholder="******" >
                             </div>
                             
