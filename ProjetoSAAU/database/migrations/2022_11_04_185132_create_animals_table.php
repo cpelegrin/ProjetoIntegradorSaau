@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('sexo');
-            $table->string('caracteristicas');
+            $table->text('prontuario');
             $table->timestamps();
+            $table->string('image')->nullable();
         });
     }
 

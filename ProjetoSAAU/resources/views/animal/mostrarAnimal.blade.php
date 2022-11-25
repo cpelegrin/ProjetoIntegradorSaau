@@ -20,39 +20,44 @@
         $heads = [
         'Nome',
         'Sexo',
+        'Resumo de Prontuário',
+
 
 
         ['label' => 'Ações', 'no-export' => true, 'width' => 15]
         ];
 
         $data = [];
-        foreach($animal as $animal){
+        foreach($animais as $animal){
+        $s = substr($animal->prontuario, strlen($animal->prontuario) - 150);
+        $s = substr($s, strpos($s," "));
+        $s = str_replace('<p>', " ", $s);
 
-        $btnEdit = '<a href="{{route('editar_animal',['id'=>$animal->id])}}"'. route('editar_animal',['id'=>$animal->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
-        $btnDelete='<a href="{{route('deletar_animal',['id'=>$animal->id])}}" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletaranimal" data-animalid="'.$animal->id.'" data-animalnome="'.$animal->nome.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
-        array_push($data, array($animal->nome, $animal->sexo,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
-        )
-        );
-        }
-        $config = ['data' => $data,
-        'order' => [[1, 'asc']],
-        'columns' => [null, ['orderable' => true], null],
-        ];
-        @endphp
+            $btnEdit = '<a href="'. route('editar_animal',['id'=>$animal->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+            $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletaranimal" data-animalid="'.$animal->id.'" data-animalnome="'.$animal->nome.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+            array_push($data, array($animal->nome, $animal->sexo,'<nobr>'."...".$s.'</nobr>','<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+            )
+            );
+            }
+            $config = ['data' => $data,
+            'order' => [[1, 'asc']],
+            'columns' => [null, ['orderable' => true], null],
+            ];
+            @endphp
 
 
 
 
-        {{-- Minimal example / fill data using the component slot --}}
-        <x-adminlte-datatable id="table1" :heads="$heads">
-            @foreach($config['data'] as $row)
-            <tr>
-                @foreach($row as $cell)
-                <td>{!! $cell !!}</td>
+            {{-- Minimal example / fill data using the component slot --}}
+            <x-adminlte-datatable id="table1" :heads="$heads">
+                @foreach($config['data'] as $row)
+                <tr>
+                    @foreach($row as $cell)
+                    <td>{!! $cell !!}</td>
+                    @endforeach
+                </tr>
                 @endforeach
-            </tr>
-            @endforeach
-        </x-adminlte-datatable>
+            </x-adminlte-datatable>
     </div>
 </div>
 <!-- Modal -->
