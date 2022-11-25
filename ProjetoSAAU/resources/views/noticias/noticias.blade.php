@@ -45,7 +45,7 @@
                             <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;"> {{ $noticia->resumo ?? old('resumo')}} </textarea>
+                    <textarea class="form-control" name="resumo" placeholder="Resumo" rows="2" maxlength="200" style="resize: none;">{{$noticia->resumo ?? old('resumo')}}</textarea>
                 </div>
 
                 <!-- Img -->

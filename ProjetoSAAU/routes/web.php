@@ -16,18 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site/index');
-})->name('inicio');
-
-Route::get(
-    '/blog',
-    function () {
-        return view('site/blog');
-    }
-)->name(
-        'blog'
-    );
+Route::get('/', [App\Http\Controllers\FrontnoticiasController::class, 'index'])->name('inicio');
 
 Route::get('/contato', function () {
     return view('site/contato');
@@ -53,7 +42,7 @@ Route::get('/seja-voluntario', function () {
     return view('site/seja-voluntario');
 })->name('seja-voluntario');
 
-Route::get('/blog', [App\Http\Controllers\FrontnoticiasController::class, 'index'])->name('front.noticias');
+Route::get('/blog', [App\Http\Controllers\FrontnoticiasController::class, 'index_noticias'])->name('front.noticias');
 
 
 Auth::routes();
@@ -80,14 +69,14 @@ Route::middleware(['auth'])->group(
     function () {
         Route::prefix('/admin/funcionarios')->group(
             function () {
-                    Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
-                    Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
-                    Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
-                    Route::get('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
-                    Route::get('/deletar/usuario/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroyUsuario'])->name('deletar_usuario');
-                    Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
-                    Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
-                }
+                Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
+                Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
+                Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
+                Route::get('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
+                Route::get('/deletar/usuario/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroyUsuario'])->name('deletar_usuario');
+                Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
+                Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
+            }
         );
     }
 );
@@ -96,13 +85,13 @@ Route::middleware(['auth'])->group(
     function () {
         Route::prefix('/admin/animal')->group(
             function () {
-                    Route::get('', [App\Http\Controllers\CadastroAnimalController::class, 'create'])->name('admin/animal');
-                    Route::post('/cadastrar', [App\Http\Controllers\CadastroAnimalController::class, 'store'])->name('salvar_animal');
-                    Route::get('/mostrar', [App\Http\Controllers\CadastroAnimalController::class, 'show'])->name('mostrar_animal');
-                    Route::get('/deletar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'destroy'])->name('deletar_animal');
-                    Route::get('/edit/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'edit'])->name('editar_animal');
-                    Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
-                }
+                Route::get('', [App\Http\Controllers\CadastroAnimalController::class, 'create'])->name('admin/animal');
+                Route::post('/cadastrar', [App\Http\Controllers\CadastroAnimalController::class, 'store'])->name('salvar_animal');
+                Route::get('/mostrar', [App\Http\Controllers\CadastroAnimalController::class, 'show'])->name('mostrar_animal');
+                Route::get('/deletar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'destroy'])->name('deletar_animal');
+                Route::get('/edit/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'edit'])->name('editar_animal');
+                Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
+            }
         );
     }
 );
