@@ -37,15 +37,15 @@
                     </div>
                     <input type="text" name="nome" class="form-control" value="{{ $lista->name ?? old('nome')}}" placeholder="Nome">
                 </div>
-                
+
                 <!-- Sexo  -->
-                <div class="input-group mb-3">                        
+                <div class="input-group mb-3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ $lista->sexo ?? old('sexo')}}">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Macho">
                         <label class="form-check-label" for="inlineRadio1">Macho</label>
-                    </div>                    
+                    </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="{{ $lista->sexo ?? old('sexo')}}">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femea">
                         <label class="form-check-label" for="inlineRadio2">Femea</label>
                     </div>
                 </div>
@@ -53,17 +53,17 @@
                 <!-- Img -->
                 <div class="input-group row">
                     <label for="img">Selecione a imagem</label>
-                        <input type="file" class="form-control-file btn bg-info btn-sm float-end mt-6 mb-0" id="foto_animal" name="foto_noticia" accept=".png, .jpg, .jpeg">
-                    
-                        <div class="card card-primary card-outline">
-                            <div class="card-body box-profile">
-            
-                                <!---Imagem de perfil---->
-                                <div class="text-center">
-                                    <img id="preview-image" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Bear.svg @endif">
-                                </div>
+                    <input type="file" class="form-control-file btn bg-info btn-sm float-end mt-6 mb-0" id="foto_animal" name="foto_animal" accept=".png, .jpg, .jpeg">
+
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+
+                            <!---Imagem de perfil---->
+                            <div class="text-center">
+                                <img id="preview-image" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Bear.svg @endif">
                             </div>
                         </div>
+                    </div>
                 </div>
 
                 <!-- Detalhes  -->
@@ -89,7 +89,7 @@
                         @endphp
 
 
-                        <x-adminlte-text-editor name="corpo" label="Características do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
+                        <x-adminlte-text-editor name="prontuario" label="Prontuário do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
                             {{ $lista->caracteristicas ?? old('caracteristicas') }}
                         </x-adminlte-text-editor>
 
