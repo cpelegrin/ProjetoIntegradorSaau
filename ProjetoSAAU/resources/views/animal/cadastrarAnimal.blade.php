@@ -62,6 +62,7 @@
                                 <div class="text-center">
                                     <img id="preview-image" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Bear.svg @endif">
                                 </div>
+                            </div>
                         </div>
                 </div>
 
@@ -143,7 +144,7 @@
 
 
 <script>
-    $('#foto_noticia').on('change', function() {
+    $('#foto_animal').on('change', function() {
         if (this.files && this.files[0]) {
             var file = new FileReader();
             file.onload = function(e) {
