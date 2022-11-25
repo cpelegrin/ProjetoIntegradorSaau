@@ -99,8 +99,8 @@ Route::middleware(['auth'])->group(function () {
         }
     );
 });
-Route::get('admin/calendario', [App\Http\Controllers\CalendarioController::class, 'index'])->name('mostrar_calendario');
+Route::get('admin/usuario', [App\Http\Controllers\UsuarioController::class, 'index'])->name('mostrar_usuario');
 Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'create'])->name('perfil')->middleware('auth');
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
-Route::get('/edit/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('editar_calendario')->middleware('auth');
-Route::get('/deletar/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('deletar_calendario')->middleware('auth');
+Route::get('/edit/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('editar_usuario')->middleware('auth');
+Route::get('/deletar/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('deletar_usuario')->middleware('auth');
