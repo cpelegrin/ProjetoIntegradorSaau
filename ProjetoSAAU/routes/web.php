@@ -16,13 +16,7 @@ use Illuminate\Support\Facades\Route;
  |
  */
 
-Route::get('/', function () {
-    return view('site/index');
-})->name('inicio');
-
-//Route::get('/blog', function () {
-// return view('site/blog');
-//})->name('blog');
+Route::get('/', [App\Http\Controllers\FrontnoticiasController::class, 'index'])->name('inicio');
 
 Route::get('/contato', function () {
     return view('site/contato');
@@ -48,7 +42,7 @@ Route::get('/seja-voluntario', function () {
     return view('site/seja-voluntario');
 })->name('seja-voluntario');
 
-Route::get('/blog', [App\Http\Controllers\FrontnoticiasController::class, 'index'])->name('front.noticias');
+Route::get('/blog', [App\Http\Controllers\FrontnoticiasController::class, 'index_noticias'])->name('front.noticias');
 
 
 Auth::routes();

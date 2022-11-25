@@ -46,8 +46,11 @@
                         Umuarama - PR<br>
                         85606-380 <br><br>
                     </p>
-
+                    <h4 class="mt-2 mb-0">Funcionário?</h4>
+                    <a href="{{route('home')}}">Acesse aqui</a>
                 </div>
+
+
 
             </div>
         </div>
