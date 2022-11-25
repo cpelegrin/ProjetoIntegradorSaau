@@ -71,9 +71,6 @@ Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 
 
 
 
-Route::get('/admin/animal/lista', [App\Http\Controllers\AnimalController::class, 'lista'])->name('listaanimal')->middleware('auth');
-Route::get('/admin/animal', [App\Http\Controllers\AnimalController::class, 'index'])->name('animal')->middleware('auth');
-Route::post('/admin/animal', [App\Http\Controllers\AnimalController::class, 'store'])->name('salvar')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/admin/funcionarios')->group(
@@ -98,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/mostrar', [App\Http\Controllers\CadastroAnimalController::class, 'show'])->name('mostrar_animal');
             Route::get('/deletar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'destroy'])->name('deletar_animal');
             Route::get('/edit/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'edit'])->name('editar_animal');
-            Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
+            Route::put('/atualizar/{id}', [App\Http\Controllers\CadastroAnimalController::class, 'update'])->name('atualizar_animal');
         }
     );
 });

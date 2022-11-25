@@ -10,9 +10,7 @@ class CadastroAnimalController extends Controller
 {
     public function create()
     {
-        $user = auth()->user();
-        $animal = animals::all();
-        return view('animal.cadastrarAnimal', compact('user'), compact('animal'));
+        return view('animal.cadastrarAnimal');
     }
 
     public function store(StoreUpdateAnimalFormRequest $request)
@@ -42,17 +40,20 @@ class CadastroAnimalController extends Controller
 
     public function edit($id)
     {
-        $animal = animals::findOrFail($id);
-        return view('animal.editarAnimal', compact('animal'));
+        if (!$animal = animals::find($id)->first())
+            return redirect()->route('/admin/animal/mostrar');
+        return view('animal.cadastrarAnimal', compact('animal'));
     }
 
     public function update(Request $request, $id)
     {
-        $animal = animals::findOrFail($id);
-        $animal->update([
-            'name' => $request->name,
-        ]);
-        $animal = animals::all();
-        return view('animal.mostrarAnimal', compact('animal'));
+        if (!$animal = animals::find($id))
+            return redirect()->route('/admin/animal/mostrar');
+
+        $data = $request->all();
+        if (isset($request->foto_animal))
+            $animal->image = $request->foto_noticia->store('noticias');
+        $animal->update($data);
+        return redirect()->route('mostrar_animal', ['id' => $id])->with(['success' => 'Animal atualizado com sucesso']);
     }
 }

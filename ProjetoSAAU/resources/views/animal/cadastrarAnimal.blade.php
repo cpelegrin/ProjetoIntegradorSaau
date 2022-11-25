@@ -23,10 +23,10 @@
             <h3 class="card-title">Cadastro de Animais</h3>
         </div>
         <div class="card-body">
-            <form method="post" action="@if(isset($lista)) {{route('animal.update', $lista->name)}} @else {{ Route('salvar_animal')}} @endif" enctype="multipart/form-data">
-                @if(isset($lista))
+            <form method="post" action="@if(isset($animal)) {{route('atualizar_animal', $animal->id)}} @else {{ Route('salvar_animal')}} @endif" enctype="multipart/form-data">
+                @isset($animal)
                 @method('PUT')
-                @endif
+                @endisset
                 @csrf
                 <!-- Nome  -->
                 <div class="input-group mb-3">
@@ -35,17 +35,17 @@
                             <iconify-icon icon="ph:dog-light"></iconify-icon>
                         </span>
                     </div>
-                    <input type="text" name="nome" class="form-control" value="{{ $lista->name ?? old('nome')}}" placeholder="Nome">
+                    <input type="text" name="nome" class="form-control" value="{{ $animal->nome ?? old('nome')}}" placeholder="Nome">
                 </div>
 
                 <!-- Sexo  -->
                 <div class="input-group mb-3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Macho">
-                        <label class="form-check-label" for="inlineRadio1">Macho</label>
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Macho" checked="@if(isset($animal)){{$animal->sexo == 'Macho' ? 'true' : 'false'}} @endif">
+                        <label class=" form-check-label" for="inlineRadio1">Macho</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femea">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femea" checked="@if(isset($animal)) {{$animal->sexo == 'Femea' ? 'true' : 'false'}}@endif">
                         <label class="form-check-label" for="inlineRadio2">Femea</label>
                     </div>
                 </div>
@@ -54,15 +54,9 @@
                 <div class="input-group row">
                     <label for="img">Selecione a imagem</label>
                     <input type="file" class="form-control-file btn bg-info btn-sm float-end mt-6 mb-0" id="foto_animal" name="foto_animal" accept=".png, .jpg, .jpeg">
-
-                    <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-
-                            <!---Imagem de perfil---->
-                            <div class="text-center">
-                                <img id="preview-image" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/Bear.svg @endif">
-                            </div>
-                        </div>
+                    <div class="mx-4">
+                        <label id="label-preview" style="text-align: center; display: block" hidden>Foto selecionada</label>
+                        <img id="preview-image" width="150px" src="">
                     </div>
                 </div>
 
@@ -90,9 +84,14 @@
 
 
                         <x-adminlte-text-editor name="prontuario" label="Prontuário do Animal" igroup-size="sm" placeholder="Insira algumas caraterísticas do animal..." :config="$config">
-                            {{ $lista->caracteristicas ?? old('caracteristicas') }}
+                            {{ $animal->prontuario ?? old('prontuario') }}
                         </x-adminlte-text-editor>
-
+                        <div class="m-5">
+                            @isset($animal->image)
+                            <label style="text-align: center; display: block">Foto Atual</label>
+                            <img src="{{ url('storage/'. $animal->image) }}" alt="{{$animal->nome}}" width="250px">
+                            @endisset
+                        </div>
 
                     </div>
                 </div>
