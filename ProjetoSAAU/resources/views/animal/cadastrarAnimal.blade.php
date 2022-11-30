@@ -41,11 +41,11 @@
                 <!-- Sexo  -->
                 <div class="input-group mb-3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Macho" checked="@if(isset($animal)){{$animal->sexo == 'Macho' ? 'true' : 'false'}} @endif">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Macho" @if(isset($animal)) {{$animal->sexo == 'Macho' ? 'checked' : ''}}@endif>
                         <label class=" form-check-label" for="inlineRadio1">Macho</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femea" checked="@if(isset($animal)) {{$animal->sexo == 'Femea' ? 'true' : 'false'}}@endif">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femea" @if(isset($animal)) {{$animal->sexo == 'Femea' ? 'checked' : ''}}@endif>
                         <label class="form-check-label" for="inlineRadio2">Femea</label>
                     </div>
                 </div>
