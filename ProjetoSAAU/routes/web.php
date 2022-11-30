@@ -54,12 +54,21 @@ Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
+// rotas de noticias
 Route::put('/admin/noticias/{id}', [App\Http\Controllers\NoticiasController::class, 'update'])->name('noticias.update')->middleware('auth');
 Route::get('/admin/noticias/editar/{id}', [App\Http\Controllers\NoticiasController::class, 'edit'])->name('noticias.edit')->middleware('auth');
 Route::put('/admin/noticias/remover/{id}', [App\Http\Controllers\NoticiasController::class, 'destroy'])->name('remover.noticias')->middleware('auth');
 Route::get('/admin/noticias/lista', [App\Http\Controllers\NoticiasController::class, 'lista'])->name('listanoticias')->middleware('auth');
 Route::get('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'index'])->name('noticias')->middleware('auth');
 Route::post('/admin/noticias', [App\Http\Controllers\NoticiasController::class, 'store'])->name('salvar_noticia')->middleware('auth');
+
+// rotas de eventos
+Route::get('/admin/eventos', [App\Http\Controllers\EventosController::class, 'index'])->name('eventos')->middleware('auth');
+Route::put('/admin/eventos/{id}', [App\Http\Controllers\EventosController::class, 'update'])->name('eventos.update')->middleware('auth');
+Route::get('/admin/eventos/editar/{id}', [App\Http\Controllers\EventosController::class, 'edit'])->name('eventos.edit')->middleware('auth');
+Route::put('/admin/eventos/remover/{id}', [App\Http\Controllers\EventosController::class, 'destroy'])->name('remover.eventos')->middleware('auth');
+Route::get('/admin/eventos/lista', [App\Http\Controllers\EventosController::class, 'lista'])->name('listaeventos')->middleware('auth');
+Route::post('/admin/eventos', [App\Http\Controllers\EventosController::class, 'store'])->name('salvar_evento')->middleware('auth');
 
 
 

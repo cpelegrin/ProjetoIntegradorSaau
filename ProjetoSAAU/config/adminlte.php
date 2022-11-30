@@ -354,6 +354,23 @@ return [
                 ],
             ],
         ],
+        [
+            'text' => 'Eventos',
+            'icon' => 'fas fa-cat',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar eventos',
+                    'icon' => 'fas  fa-pencil-alt',
+                    'url' => '/admin/eventos',
+
+                ],
+                [
+                    'text' => 'Lista de eventos',
+                    'icon'  => 'fas fa-bars',
+                    'url'  => '/admin/eventos/lista',
+                ],
+            ],
+        ],
     ],
 
     /*
