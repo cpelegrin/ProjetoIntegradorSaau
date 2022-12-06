@@ -12,25 +12,30 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row ">
-                    <div class="col-lg-4  col-md-5">
+                    <div class="col-lg-4  col-md-12 col-md-5">
                         <div class="col-md-12">
                             <div class="card card-profile">
                                 <div class="card-avatar">
                                     <div class="text-center">
-                                        <img   id="preview-image" class="rounded-circle mt-4"  width="190px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
+                                        <img   id="preview-image" class="rounded-circle mt-4"  width="170px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
                                     </div>
+                                    <h5 style="text-align: center;margin: 5px;">Sobre mim</h5>
                                     <hr>
                                 </div>
                                 <div class="card-content pl-3  pr-2">
-                                    
+                                    @if(isset($perfil->sobremim))
+                                    <x-adminlte-text-editor disabled="" name="sobremim"  rows="8"    >
                                         {{ isset($perfil) ? $perfil->sobremim : '' }}
-                                  
+                                    </x-adminlte-text-editor>
+                                    @else
+                                    
+                                    
+                                    @endif 
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
-                    <div class="col-lg-8 col-md-7">
+                    <div class="col-lg-8 col-12">
                         <div class="card p-4">
                             <div class="card-header">
                                 <h4>Perfil</h4>
@@ -87,7 +92,7 @@
                                             <input type="text" disabled="" class="form-control border-input"  value="{{ isset($perfil) ? $perfil->cidade : '' }}">
                                         </div>
                                     </div>
-                                 
+                                    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Profissão</label>
@@ -99,7 +104,11 @@
                                 
                             </div>
                         </div>
+                        <div style="width:100px;margin-top: 10px; right: 10px; position: absolute;">
+                            <a class="btn btn-block bg-gradient-primary" href="{{route('mostrar_funcionario')}}">Voltar</a>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

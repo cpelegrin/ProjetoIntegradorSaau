@@ -229,7 +229,7 @@
             <!--=====Nova senha======-->
             <label class="form-label">Nova senha</label>
             <div class="form-group">
-                <input class="form-control" required name="password" type="password" placeholder="**********">
+                <input class="form-control"  required name="password" type="password" placeholder="**********">
             </div>
             <!--============-->
             
@@ -410,6 +410,23 @@
 </script>
 @endforeach
 @endif
+
+<script>
+    var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Senhas diferentes!");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
+</script>
 
 @endsection
 
