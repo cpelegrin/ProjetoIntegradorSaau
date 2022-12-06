@@ -110,4 +110,4 @@ Route::middleware(['auth'])->group(
 Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'create'])->name('perfil')->middleware('auth');
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
 Route::post('/admin/resetPassword/{user_id}', [App\Http\Controllers\UsuarioController::class, 'resetPassword'])->name('resetar_senha')->middleware('auth');
-Route::get('admin/mostrar/perfil', [App\Http\Controllers\UsuarioController::class, 'show'])->name('mostrar_perfil')->middleware('auth');
+Route::get('admin/mostrar/perfil/{id}', [App\Http\Controllers\UsuarioController::class, 'mostrarPerfil'])->name('mostrar_perfil')->middleware('auth');

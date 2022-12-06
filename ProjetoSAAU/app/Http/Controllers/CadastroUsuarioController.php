@@ -79,5 +79,9 @@ class CadastroUsuarioController extends Controller
                 return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);
                 
             }
+
+            
             
         }
+
+        

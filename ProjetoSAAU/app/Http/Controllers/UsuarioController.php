@@ -120,9 +120,11 @@ class UsuarioController extends Controller
                 return redirect()->route('perfil')->with(['success' => 'Senha salva com sucesso']);
             }
             
-            public function show(){
-                $user = User::all();
-                $perfil =perfilUsuario::all();
+            public function mostrarPerfil($id){
+                $user = User::find($id);
+                $perfil= perfilUsuario::find($id);
+    
                 return view('usuarios.mostrarPerfil', compact('user','perfil'));
+                
             }
         }

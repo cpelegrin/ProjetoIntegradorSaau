@@ -133,9 +133,7 @@
                                 </button>
                             </div>
                         </div>
-                        
-                        
-                        
+        
                         <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço" rows=2>
                             <x-slot name="prependSlot">
                                 <div class="input-group-text" title="Endereço" style="width: 48px">
@@ -193,9 +191,6 @@
                                     ];
                                     @endphp
                                     
-                                    
-                                    
-                                    
                                     <x-adminlte-text-editor name="sobremim" label="Sobre mim" igroup-size="sm" placeholder="Sobre mim..." :config="$config">
                                         
                                         {{ isset($perfil) ? $perfil->sobremim : '' }}
@@ -213,7 +208,6 @@
                     </div>
                     <!--===============-->
                 </form>
-                
                 
                 <!--============-->
             </div>
