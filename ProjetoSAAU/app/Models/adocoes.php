@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class animals extends Model
+class adocoes extends Model
 {
     use HasFactory;
-    protected $table = 'animals';
+    protected $table = 'adocoes';
     protected $fillable = [
         'nome',
-        'sexo',
-        'prontuario',
-        'image',
+        'contato',
+        'data',
+        'interesse',
         'updated_at',
-        'status',
     ];
 }

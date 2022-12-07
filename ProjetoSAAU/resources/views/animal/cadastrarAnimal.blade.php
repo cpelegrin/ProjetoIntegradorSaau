@@ -12,6 +12,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('plugins.Summernote', true)
@@ -36,6 +37,20 @@
                         </span>
                     </div>
                     <input type="text" name="nome" class="form-control" value="{{ $animal->nome ?? old('nome')}}" placeholder="Nome">
+                </div>
+
+                <!-- Status  -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select class="form-select" aria-label="Selecione o status" name="status">
+                            <option @if(isset($animal)) {{$animal->status == '' ? 'selected' : ''}}@endif>Status do animal</option>
+                            <option value="recemchegado" @if(isset($animal)) {{$animal->status == 'recemchegado' ? 'selected' : ''}}@endif>Recém-chegado</option>
+                            <option value="disponivel" @if(isset($animal)) {{$animal->status == 'disponivel' ? 'selected' : ''}}@endif>Disponível para adoção</option>
+                            <option value="adotado" @if(isset($animal)) {{$animal->status == 'adotado' ? 'selected' : ''}}@endif>Adotado</option>
+                            <option value="tratamento" @if(isset($animal)) {{$animal->status == 'tratamento' ? 'selected' : ''}}@endif>Em tratamento</option>
+                            <option value="falecido" @if(isset($animal)) {{$animal->status == 'falecido' ? 'selected' : ''}}@endif>Falecido</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Sexo  -->
@@ -113,6 +128,7 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     toastr.options.preventDuplicates = true;
 </script>

@@ -70,6 +70,15 @@ Route::put('/admin/eventos/remover/{id}', [App\Http\Controllers\EventosControlle
 Route::get('/admin/eventos/lista', [App\Http\Controllers\EventosController::class, 'lista'])->name('listaeventos')->middleware('auth');
 Route::post('/admin/eventos', [App\Http\Controllers\EventosController::class, 'store'])->name('salvar_evento')->middleware('auth');
 
+// rotas de adoções 
+Route::get('/admin/adocoes', [App\Http\Controllers\AdocoesController::class, 'index'])->name('adocoes')->middleware('auth');
+Route::put('/admin/adocoes/{id}', [App\Http\Controllers\AdocoesController::class, 'update'])->name('adocoes.update')->middleware('auth');
+Route::get('/admin/adocoes/editar/{id}', [App\Http\Controllers\AdocoesController::class, 'edit'])->name('adocoes.edit')->middleware('auth');
+Route::put('/admin/adocoes/remover/{id}', [App\Http\Controllers\AdocoesController::class, 'destroy'])->name('remover.adocoes')->middleware('auth');
+Route::get('/admin/adocoes/lista', [App\Http\Controllers\AdocoesController::class, 'lista'])->name('listaadocoes')->middleware('auth');
+Route::post('/admin/adocoes', [App\Http\Controllers\AdocoesController::class, 'store'])->name('salvar_adocao')->middleware('auth');
+
+
 
 
 

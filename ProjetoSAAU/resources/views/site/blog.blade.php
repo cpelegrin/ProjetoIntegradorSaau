@@ -71,58 +71,6 @@
 
                     <div class="col-lg-4">
 
-                        <div class="sidebar">
-
-                            <h3 class="sidebar-title">Procurar:</h3>
-                            <div class="sidebar-item search-form">
-                                <form action="">
-                                    <input type="text">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div><!-- Final formulário de pesquisa-->
-
-                            <h3 class="sidebar-title">Categorias:</h3>
-                            <div class="sidebar-item categories">
-                                <ul>
-                                    <li><a href="#">Gatos <span>(1)</span></a></li>
-                                    <li><a href="#">Cachorros <span>(4)</span></a></li>
-                                    <li><a href="#">Estilo de Vida <span>(2)</span></a></li>
-                                    <li><a href="#">Educação <span>(6)</span></a></li>
-                                    <li><a href="#">Cuidados <span>(3)</span></a></li>
-                                </ul>
-                            </div><!-- Final sidebar categorias-->
-
-                            <h3 class="sidebar-title">Postagens Recentes:</h3>
-                            <div class="sidebar-item recent-posts">
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                            </div>
-
-                        </div>
-
                     </div>
 
                 </div>
