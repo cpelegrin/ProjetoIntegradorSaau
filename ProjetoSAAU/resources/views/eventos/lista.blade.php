@@ -30,19 +30,20 @@
         $heads = [
         'Título',
         'Resumo',
+        'Data do Evento',
         'Últimas Atualizações',
         ['label' => 'Ações', 'no-export' => true, 'width' => 15]
         ];
 
         $data = [];
         foreach($lista as $evento){
-        $newDate = Carbon::parse($evento->updated_at)->locale('br')->format('d/M/Y - H:i')."hrs";
+        $newDate = Carbon::parse($evento->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs";
 
 
 
         $btnEdit = '<a href="'. route('eventos.edit',['id'=>$evento->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
         $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarevento" data-eventoid="'.$evento->id.'" data-eventotitle="'.$evento->titulo.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
-        array_push($data, array($evento->titulo, $evento->descricao,$newDate,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
+        array_push($data, array($evento->titulo, $evento->descricao,$evento->data.'hrs',$newDate,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
         )
         );
         }
