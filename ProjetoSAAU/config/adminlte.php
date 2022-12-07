@@ -374,7 +374,8 @@ return [
         [
             'text' => 'Ir ao site',
             'icon' => 'fas fa-globe',
-            'url'  => '',
+            'url'  => '/',
+            'target' => '_blank',
         ],
     ],
 
