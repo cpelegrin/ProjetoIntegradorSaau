@@ -33,7 +33,6 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::all();
 
         return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário cadastrado com sucesso']);
-
     }
 
     public function show()
@@ -48,13 +47,10 @@ class CadastroUsuarioController extends Controller
         if ($funcionarios->id == 1) {
             return redirect()->route('mostrar_funcionario')->withErrors(['error' => 'Não é possível deletar a conta de um Administrador ']);
         } else {
-            dd("teste");
             $funcionarios->delete();
             $funcionarios = User::all();
             return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
-
         }
-
     }
     public function destroyUsuario($id)
     {
@@ -66,8 +62,6 @@ class CadastroUsuarioController extends Controller
             $funcionarios->delete();
             return redirect()->route('inicio');
         }
-
-
     }
 
 
@@ -76,7 +70,6 @@ class CadastroUsuarioController extends Controller
     {
         $funcionarios = User::findOrFail($id);
         return view('usuarios.cadastrarFuncionario', compact('funcionarios'));
-
     }
 
     public function update(UserStoreRequest $request, $id)
@@ -93,9 +86,5 @@ class CadastroUsuarioController extends Controller
         $funcionarios = User::all();
 
         return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);
-
     }
-
-
-
 }
