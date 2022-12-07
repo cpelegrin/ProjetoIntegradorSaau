@@ -263,35 +263,25 @@
         <!-- ======= Seção Eventos ======= -->
         <section id="eventos">
             <div class="section-title">
-                <h2>Nossos Eventos:</h2>
+                <h2 id="eventos">Nossos Eventos:</h2>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">
+                        @foreach($eventos as $evento)
+                        @php
+                        $texto = Carbon::parse($evento->data)->locale('br')->format('Hi');
+                        $hora = substr($texto, 0, 2);
+                        $horaCerta = intval($hora) + 3;
+                        if(strlen($horaCerta) < 2){ $horaminuto="0" .strval($horaCerta) . substr($texto, -2); } else{ $horaminuto=strval($horaCerta) . substr($texto, -2); }; @endphp <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates={{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z%2F{{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z&text={{$evento->titulo}}&location={{$evento->local}}&details={{$evento->descricao}}" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Feira de adoção</h5>
-                                <small>Data: 27/12/2022</small>
+                                <h5 class="mb-1">{{$evento->titulo}}</h5>
+                                <small>Data: {{Carbon::parse($evento->data)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                             </div>
-                            <p class="mb-1">Venha e participe da campanha de doação de cães e gatos. Os animais são castrados e vacinados</p>
-                            <small>Local: Supermercados Planalto da Anchieta. Horário: das 14:00 às 17hr.</small>
-                        </a><br>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Bingo SAAU</h5>
-                                <small>Data: 26/12/2022</small>
-                            </div>
-                            <p class="mb-1">Venha se divertir e traga sua família. Concorra a brindes e ajude os nossos animais.</p>
-                            <small>Local: Harmonia Clube de Campo. Horário: das 14:00 às 17hr.</small>
-                        </a><br>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Feira de adoção</h5>
-                                <small>Data: 25/12/2022</small>
-                            </div>
-                            <p class="mb-1">Venha e participe da campanha de doação de cães e gatos. Os animais são castrados e vacinados.</p>
-                            <small>Local: Supermercados Planalto da Anchieta. Horário: das 14:00 às 17hr.</small>
-                        </a>
+                            <p class="mb-1">{{$evento->descricao}}</p>
+                            <small>Local: {{$evento->local}}</small>
+                            </a><br>
+                            @endforeach
                     </div>
                     <!-- ======= Fim Seção Eventos ======= -->
                 </div>
@@ -307,7 +297,7 @@
                         <img class="card-img-top" class=”float-start w-25″ src="{{ url('storage/'. $noticia->image) }}" alt="Imagem de capa do card">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$noticia->titulo}}</strong></h5>
-                            <p class="card-text">{{$noticia->resumo}}</p> <small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/M/Y - H:i')."hrs"}}</small>
+                            <p class="card-text">{{$noticia->resumo}}</p> <small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                         </div>
                         <div class="card-footer">
                             <button type="button" class="btn btn-primary">Continue Lendo...</button>

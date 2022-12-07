@@ -9,7 +9,7 @@
             <ul>
                 @yield('inicio')
 
-                <li><a class="@yield('')" href="#">EVENTOS</a></li>
+                <li><a class="@yield('')" href="#eventos">EVENTOS</a></li>
                 <li><a class="@yield('ativo-adocao')" href="{{Route('adocao')}}">ADOÇÃO</a></li>
                 <li><a class="@yield('ativo-doacao')" href="{{Route('doacao')}}">DOAÇÃO</a></li>
                 <li><a class="@yield('ativo-blog')" href="{{Route('front.noticias')}}">BLOG</a></li>
