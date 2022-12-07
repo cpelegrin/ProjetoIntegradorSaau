@@ -13,7 +13,6 @@
                 <li><a class="@yield('ativo-adocao')" href="{{Route('adocao')}}">ADOÇÃO</a></li>
                 <li><a class="@yield('ativo-doacao')" href="{{Route('doacao')}}">DOAÇÃO</a></li>
                 <li><a class="@yield('ativo-blog')" href="{{Route('front.noticias')}}">BLOG</a></li>
-                <li><a class="@yield('')" href="#">LOJA</a></li>
                 <li><a class="@yield('ativo-contato')" href="{{Route('contato')}}">CONTATO/DENÚNCIA</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
