@@ -48,7 +48,7 @@
                     <li><a href="index.html">Início</a></li>
                     <li><a href="blog.html">Adoção</a></li>
                 </ol>
-                <h2>Adote um cachorro ou gato.</h2>
+                <h2>Adote seu Pet</h2>
 
             </div>
         </section>
@@ -65,11 +65,11 @@
                         <article class="entry entry-single">
 
                             <div class="entry-img">
-                                <img src="assets/img/blog/mordida.jpg" alt="" class="img-fluid">
+                                <img src="https://www.fundacaorenova.org/wp-content/uploads/2016/09/imagem_grande.jpg" alt="" class="img-fluid">
                             </div>
 
                             <h2 class="entry-title">
-                                <a href="artigo-blog.html">Quero adotar um cachorro ou gato.</a>
+                                <a href="artigo-blog.html">Adote um cachorro ou gato</a>
                             </h2><br>
 
                             <div class="entry-content">
@@ -116,7 +116,7 @@
                             <div class="entry-footer">
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
-                                    <li><a href="#">Cuidados</a></li>
+                                    <li><a href="#">Adote</a></li>
                                 </ul>
 
                             </div>
@@ -126,66 +126,28 @@
 
                     </div>
 
-                    <div class="col-lg-4">
+                    <html>
 
-                        <div class="sidebar">
+                    <head>
+                        <title>Pagina 1</title>
+                        <meta charset="utf-8">
+                    </head>
 
-                            <h3 class="sidebar-title">Procurar:</h3>
-                            <div class="sidebar-item search-form">
-                                <form action="">
-                                    <input type="text">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div><!-- Final Sidebar Formulario Buscar-->
+                    <body>
 
-                            <h3 class="sidebar-title">Categorias:</h3>
-                            <div class="sidebar-item categories">
-                                <ul>
-                                    <li><a href="#">Gatos <span>(1)</span></a></li>
-                                    <li><a href="#">Cachorros <span>(4)</span></a></li>
-                                    <li><a href="#">Estilo de Vida <span>(2)</span></a></li>
-                                    <li><a href="#">Educação <span>(6)</span></a></li>
-                                    <li><a href="#">Cuidados <span>(3)</span></a></li>
-                                </ul>
-                            </div>
-                            <!-- Final Sidebar Categorias-->
 
-                            <h3 class="sidebar-title">Postagens Recentes:</h3>
-                            <div class="sidebar-item recent-posts">
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
 
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
+                    </body>
 
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
+                    </html>
 
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
 
-                                <div class="post-item clearfix">
-                                    <img src="assets/img/blog/mordida.jpg" alt="">
-                                    <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- Final Sidebar -->
-
-                    </div>
-                    <!-- Final Blog Sidebar -->
+                    <!-- Final Sidebar -->
 
                 </div>
+                <!-- Final Blog Sidebar -->
+
+            </div>
 
             </div>
         </section>

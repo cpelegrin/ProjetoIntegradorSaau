@@ -48,7 +48,7 @@
                     <li><a href="index.html">Início</a></li>
                     <li><a href="blog.html">Doação</a></li>
                 </ol>
-                <h2>Ajude a manter a SAAU - Umuarama funcionando.</h2>
+                <h2>Ajude a manter a SAAU - Umuarama.</h2>
 
             </div>
         </section>
@@ -82,7 +82,7 @@
                                 <p>- Roupas e sapatos masculinos, femininos e infantis, brinquedos, louças e panelas, aparelhos de ginástica, bicicletas, aparelhos de celular, quadros, livros, gibis, toalhas e lençóis, utensílios de cozinha, bijuterias, enfeites, tapetes, cortinas, etc;</p>
                                 <p>- Doações de materiais utilizados na chácara: ração para cães e gatos, medicamentos de uso humano e veterinário, materiais de limpeza (sabão em pó ou em pedra, água sanitária, desinfetante, detergente, vassouras e rodos, creolina, sapólio, etc.), jornais, carpetes usados, materiais de construção, latinhas de alumínio de refrigerante, cerveja e tampas de plástico. (vendemos para adquirir ração);</p>
                                 <p>Além da loja Bazar, as doações podem ser deixadas em outros pontos de coleta na cidade:</p>
-                                <p class="text-center">Pet-shop Número I (44-0000-0000);</p>
+                                <p class="text-center">Ração Begacão Telefone (44) (9 8413-2425), (44) (2030 - 3460).</p>
                                 <p class="text-center">Pet-shop Número II (44-0000-0000);</p>
                                 <p class="text-center">Pet-shop Número III (44-0000-0000);</p>
                                 <p class="text-center">Pet-shop Número IV (44-0000-0000);</p>
