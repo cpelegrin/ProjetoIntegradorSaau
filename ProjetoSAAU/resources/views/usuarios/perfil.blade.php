@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Perfil')
 @section('modalTitle','')
 
 @section('content_header')
@@ -31,7 +31,8 @@
 
                     <!---Imagem de perfil---->
                     <div class="text-center">
-                        <img id="preview-image" class="rounded-circle mt-5" width="200px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
+                        <img id="preview-image" class="rounded-circle mt-5" width="250px"
+                            src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
                     </div>
 
                     <!----Nome----->
@@ -68,7 +69,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome completo</label>
-                                <input type="text" class="form-control border-input" name="nome" placeholder="Nome" value="{{ isset($user) ? $user->name : ''}}">
+                                <input type="text" class="form-control border-input" name="nome" placeholder="Nome"
+                                    value="{{ isset($user) ? $user->name : ''}}">
                             </div>
                         </div>
                         <!--============-->
@@ -77,7 +79,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control border-input" name="email" value="{{ isset($user) ? $user->email : ''}}" placeholder="Email">
+                                <input type="email" class="form-control border-input" name="email"
+                                    value="{{ isset($user) ? $user->email : ''}}" placeholder="Email">
                             </div>
                         </div>
                         <!--===============-->
@@ -88,7 +91,8 @@
                             <!--Profissao-->
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label">Profissão</label>
-                                <input type="text" value="{{ isset($perfil) ? $perfil->profissao : ''}}" name="profissao" class="form-control">
+                                <input type="text" value="{{ isset($perfil) ? $perfil->profissao : ''}}"
+                                    name="profissao" class="form-control">
                                 <span class="material-input"></span>
                             </div>
                         </div>
@@ -98,7 +102,9 @@
                             <!--Telefone-->
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label">Telefone</label>
-                                <input type="text tel" placeholder="(xx)xxxxx-xxxx" value="{{ isset($perfil) ? $perfil->telefone : ''}}" name="telefone" class="form-control tel">
+                                <input type="text tel" placeholder="(xx)xxxxx-xxxx"
+                                    value="{{ isset($perfil) ? $perfil->telefone : ''}}" name="telefone"
+                                    class="form-control tel">
                                 <span class="material-input"></span>
                             </div>
                         </div>
@@ -108,7 +114,8 @@
                         <div class="col-md-4">
                             <div class="form-group label-floating is-empty">
                                 <label class="control-label">Permissão</label>
-                                <input type="text" value="{{ isset($user) ? $user->permissao : ''}}" name="profissao" disabled="" class="form-control">
+                                <input type="text" value="{{ isset($user) ? $user->permissao : ''}}" name="profissao"
+                                    disabled="" class="form-control">
                                 <span class="material-input"></span>
                             </div>
                         </div>
@@ -118,8 +125,9 @@
                     <!--Endereco-->
                     <p style="font-weight: bolder;">Endereço</p>
                     <div class="row justify-content-between mt-3">
-                        <div class="col-8">
-                            <x-adminlte-input id="cepInserted" onkeyup="delay(isValid(this, 9, event), 500)" name="cep" placeholder="Cep" value="{{ isset($perfil) ? $perfil->cep : '' }}">
+                        <div class="col-8 ">
+                            <x-adminlte-input id="cepInserted" onkeyup="delay(isValid(this, 9, event), 500)" name="cep"
+                                placeholder="Cep" value="{{ isset($perfil) ? $perfil->cep : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="CEP" style="width: 48px">
                                         <i class="far fa-address-card"></i>
@@ -134,8 +142,6 @@
                         </div>
                     </div>
 
-
-
                     <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço" rows=2>
                         <x-slot name="prependSlot">
                             <div class="input-group-text" title="Endereço" style="width: 48px">
@@ -147,7 +153,8 @@
 
                     <div class="row justify-content-between">
                         <div class="col-6 m-0">
-                            <x-adminlte-input id="end_cidade" name="cidade" placeholder="Cidade" value="{{ isset($perfil) ? $perfil->cidade : '' }}">
+                            <x-adminlte-input id="end_cidade" name="cidade" placeholder="Cidade"
+                                value="{{ isset($perfil) ? $perfil->cidade : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="Cidade" style="width: 48px">
                                         <i class="fas fa-city"></i>
@@ -156,7 +163,8 @@
                             </x-adminlte-input>
                         </div>
                         <div class="col-6 m-0">
-                            <x-adminlte-input type="text" name="num" placeholder="Número" value="{{ isset($perfil) ? $perfil->num : '' }}">
+                            <x-adminlte-input type="text" name="num" placeholder="Número"
+                                value="{{ isset($perfil) ? $perfil->num : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="Número" style="width: 48px">
                                         <i class="fas fa-house-user"></i>
@@ -178,7 +186,7 @@
                                 @php
                                 $config = [
                                 'height' => '300',
-                                'width' => '1200',
+                                'width' => '1000',
                                 'toolbar' => [
                                 // [groupName, [list of button]]
                                 ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -193,10 +201,8 @@
                                 ];
                                 @endphp
 
-
-
-
-                                <x-adminlte-text-editor name="sobremim" label="Sobre mim" igroup-size="sm" placeholder="Sobre mim..." :config="$config">
+                                <x-adminlte-text-editor name="sobremim" label="Sobre mim" igroup-size="sm"
+                                    placeholder="Sobre mim..." :config="$config">
 
                                     {{ isset($perfil) ? $perfil->sobremim : '' }}
 
@@ -214,7 +220,6 @@
                 <!--===============-->
                 </form>
 
-
                 <!--============-->
             </div>
             <!--===========-->
@@ -225,29 +230,31 @@
 
 
 <!--=====Campo para mudar a senha ======-->
-<div class="card col-11 mt-2" id="password">
+<div class="card col-11 mt-2">
     <div class="card-header">
         <h5>Mudar senha</h5>
     </div>
     <div class="card-body pt-0">
-        <form method="post" action="{{route('resetar_senha', $user->id)}}">
+        <form method="post" id="senha" action="{{route('resetar_senha', $user->id)}}">
             @csrf
             <!--=====Nova senha======-->
             <label class="form-label">Nova senha</label>
             <div class="form-group">
-                <input class="form-control" required name="password" type="password" placeholder="**********">
+                <input class="form-control" id="password" name="password" type="password" placeholder="**********">
             </div>
             <!--============-->
 
             <!--=====Confirme a senha=====-->
             <label class="form-label">Confirme a senha</label>
             <div class="form-group">
-                <input class="form-control" required name="password" type="password" placeholder="**********">
+                <input class="form-control" id="confirm_password" name="password" type="password"
+                    placeholder="**********">
             </div>
             <!--============-->
 
             <!--======Botao de envio do formulario =====-->
-            <button type="submit" data-toggle="modal" data-target="#mudarSenha" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Editar senha</button>
+            <button type="button" data-toggle="modal" data-target="#mudarSenha"
+                class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Editar senha</button>
 
             <!--============-->
         </form>
@@ -272,7 +279,8 @@
 <!--============-->
 
 <!-- Modal de excluir conta -->
-<div class="modal fade" id="excluirConta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="excluirConta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -294,7 +302,8 @@
 
 
 <!-- Modal para trocar senha  -->
-<div class="modal fade" id="mudarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="mudarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -307,7 +316,7 @@
                 Tem certeza de que deseja mudar a sua senha?
             </div>
             <div class="modal-footer">
-                <button type="submit" data-dismiss="modal" class="btn btn-secondary">Sim</button>
+                <button type="submit" form="senha" class="btn btn-secondary">Sim</button>
                 <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
             </div>
         </div>
@@ -321,10 +330,10 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/cep-promise/dist/cep-promise.min.js"></script>
 <script>
-    $('#imagem').on('change', function() {
+    $('#imagem').on('change', function () {
         if (this.files && this.files[0]) {
             var file = new FileReader();
-            file.onload = function(e) {
+            file.onload = function (e) {
                 document.getElementById("preview-image").src = e.target.result;
             };
             file.readAsDataURL(this.files[0]);
@@ -376,7 +385,9 @@
         }
     }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"
+    integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     const initForm = () => {
         Inputmask('999.999.999-99').mask('#cpf');
@@ -416,6 +427,23 @@
 </script>
 @endforeach
 @endif
+
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Senhas diferentes!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+
+</script>
 
 @endsection
 
