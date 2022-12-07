@@ -54,7 +54,7 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Local">
-                            <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
+                            <iconify-icon icon="material-symbols:add-location"></iconify-icon>
                         </span>
                     </div>
                     <textarea class="form-control" name="local" placeholder="Local" rows="2" maxlength="200" style="resize: none;">{{$evento->local ?? old('local')}}</textarea>
@@ -65,7 +65,7 @@
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" title="Data">
-                            <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
+                            <iconify-icon icon="material-symbols:date-range-outline"></iconify-icon>
                         </span>
                     </div>
                     <input type="text" name="data" value="{{ $evento->data ?? old('data')}}" placeholder="data">

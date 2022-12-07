@@ -52,7 +52,7 @@ class CadastroAnimalController extends Controller
 
         $data = $request->all();
         if (isset($request->foto_animal))
-            $animal->image = $request->foto_noticia->store('noticias');
+            $animal->image = $request->foto_animal->store('animal');
         $animal->update($data);
         return redirect()->route('mostrar_animal', ['id' => $id])->with(['success' => 'Animal atualizado com sucesso']);
     }
