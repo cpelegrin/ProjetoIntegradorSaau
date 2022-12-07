@@ -35,11 +35,16 @@
         $data = [];
         foreach($funcionarios as $funcionario){
 
-        $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
-        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc" data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
-        array_push($data, array($funcionario->name, $funcionario->email,$funcionario->permissao,'<nobr>'.$btnEdit.$btnDelete.'</nobr>'
-        )
-        );
+        $btnEdit = '<a href="'. route('editar_funcionario',['id'=>$funcionario->id]).'" class=" mx-2"><i
+                class="fas fa-user-edit text-info" aria-hidden="true"></i></a>';
+        $btnMostrar = '<a href="'. route('mostrar_perfil',['id'=>$funcionario->id]).'" class=" mx-2"><i
+                class="fas fa-eye text-secondary" aria-hidden="true"></i></a>';
+        $btnDelete='<a href="#" class="mx-2 deletebutton" data-toggle="modal" data-target="#deletarfunc"
+            data-funcionarioid="'.$funcionario->id.'" data-funcionarionome="'.$funcionario->name.'"><i
+                class="fas fa-trash text-danger" aria-hidden="true"></i></a>';
+        array_push($data, array($funcionario->name, $funcionario->email,$funcionario->permissao,'<nobr>
+            '.$btnEdit.$btnDelete.$btnMostrar.'</nobr>'));
+
         }
         $config = ['data' => $data,
         'order' => [[1, 'asc']],
@@ -55,18 +60,22 @@
             @foreach($config['data'] as $row)
             <tr>
                 @foreach($row as $cell)
+
                 <td>{!! $cell !!}</td>
                 @endforeach
             </tr>
             @endforeach
+
         </x-adminlte-datatable>
     </div>
+
 </div>
 <!-- Modal -->
 <form id="deleteForm" method="post" action="{{route('deletar_funcionario', 1)}}">
     @csrf
     <input type="hidden" name="_token" value="{{csrf_token()}}">
-    <div class="modal fade" id="deletarfunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deletarfunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -91,13 +100,16 @@
 </form>
 
 
+
+
+
 @stop
 
 @section('js')
 
 
 <script>
-    $('#table1').ready(function() {
+    $('#table1').ready(function () {
         if ($.fn.dataTable.isDataTable('#table1')) {
             table = $('#table1').DataTable();
             //TODO trocar a linguage 
@@ -120,7 +132,7 @@
     });
 </script>
 <script>
-    $('.deletebutton').on('click', function() {
+    $('.deletebutton').on('click', function () {
         console.log(this);
         var funcionarioid = this.dataset['funcionarioid'];
         var funcionarionome = this.dataset['funcionarionome'];

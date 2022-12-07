@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 
 /*
- |--------------------------------------------------------------------------
- | Web Routes
- |--------------------------------------------------------------------------
- |
- | Here is where you can register web routes for your application. These
- | routes are loaded by the RouteServiceProvider within a group which
- | contains the "web" middleware group. Now create something great!
- |
- */
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', [App\Http\Controllers\FrontnoticiasController::class, 'index'])->name('inicio');
 
@@ -75,20 +75,21 @@ Route::post('/admin/eventos', [App\Http\Controllers\EventosController::class, 's
 
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::prefix('/admin/funcionarios')->group(
-        function () {
-
-
-            Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
-            Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
-            Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
-            Route::post('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
-            Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
-            Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
-        }
-    );
-});
+Route::middleware(['auth'])->group(
+    function () {
+        Route::prefix('/admin/funcionarios')->group(
+            function () {
+                    Route::get('', [App\Http\Controllers\CadastroUsuarioController::class, 'create'])->name('admin/funcionarios');
+                    Route::post('/cadastrar', [App\Http\Controllers\CadastroUsuarioController::class, 'store'])->name('salvar_funcionario');
+                    Route::get('/mostrar', [App\Http\Controllers\CadastroUsuarioController::class, 'show'])->name('mostrar_funcionario');
+                    Route::post('/deletar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroy'])->name('deletar_funcionario');
+                    Route::get('/deletar/usuario/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'destroyUsuario'])->name('deletar_usuario');
+                    Route::get('/edit/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'edit'])->name('editar_funcionario');
+                    Route::post('/atualizar/{id}', [App\Http\Controllers\CadastroUsuarioController::class, 'update'])->name('atualizar_funcionario');
+                }
+        );
+    }
+);
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/admin/animal')->group(
@@ -105,5 +106,5 @@ Route::middleware(['auth'])->group(function () {
 Route::get('admin/usuario', [App\Http\Controllers\UsuarioController::class, 'index'])->name('mostrar_usuario');
 Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'create'])->name('perfil')->middleware('auth');
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
-Route::get('/edit/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('editar_usuario')->middleware('auth');
-Route::get('/deletar/{id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('deletar_usuario')->middleware('auth');
+Route::post('/admin/resetPassword/{user_id}', [App\Http\Controllers\UsuarioController::class, 'resetPassword'])->name('resetar_senha')->middleware('auth');
+Route::get('admin/mostrar/perfil/{id}', [App\Http\Controllers\UsuarioController::class, 'mostrarPerfil'])->name('mostrar_perfil')->middleware('auth');

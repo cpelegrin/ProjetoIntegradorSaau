@@ -18,6 +18,10 @@ class CadastroUsuarioController extends Controller
 
     public function store(UserStoreRequest $request)
     {
+        if (User::where("email", $request->email)->count() > 0) {
+
+            return redirect()->back()->withErrors(['error' => 'Email já cadastrado']);
+        }
         User::create(
             [
                 'name' => $request->name,
@@ -27,7 +31,9 @@ class CadastroUsuarioController extends Controller
             ]
         );
         $funcionarios = User::all();
-        return view('usuarios.mostrarFuncionario', compact('funcionarios')); //FIXME alterar para redirect route
+
+        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário cadastrado com sucesso']);
+
     }
 
     public function show()
@@ -39,25 +45,37 @@ class CadastroUsuarioController extends Controller
     public function destroy($id)
     {
         $funcionarios = User::findOrFail($id);
-        $funcionarios->delete();
-        $funcionarios = User::all();
-        ;
-        return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
+        if ($funcionarios->id == 1) {
+            return redirect()->route('mostrar_funcionario')->withErrors(['error' => 'Não é possível deletar a conta de um Administrador ']);
+        } else {
+            dd("teste");
+            $funcionarios->delete();
+            $funcionarios = User::all();
+            return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
+
+        }
 
     }
     public function destroyUsuario($id)
     {
-        $funcionarios = User::findOrFail($id);
-        $funcionarios->delete();
 
-        return redirect()->route('inicio');
+        if (auth()->user()->id == 1) {
+            return redirect()->route('perfil')->withErrors(['error' => 'Não é possível deletar a conta de um Administrador ']);
+        } else {
+            $funcionarios = User::findOrFail($id);
+            $funcionarios->delete();
+            return redirect()->route('inicio');
+        }
+
 
     }
+
+
 
     public function edit($id)
     {
         $funcionarios = User::findOrFail($id);
-        return redirect()->route('editar_funcionario', compact('funcionarios'));
+        return view('usuarios.cadastrarFuncionario', compact('funcionarios'));
 
     }
 
@@ -77,5 +95,7 @@ class CadastroUsuarioController extends Controller
         return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);
 
     }
+
+
 
 }
