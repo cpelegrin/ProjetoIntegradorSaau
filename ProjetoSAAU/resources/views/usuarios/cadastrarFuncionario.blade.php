@@ -6,7 +6,9 @@
 
 @stop
 
-
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+@endsection
 
 @section('content')
 <div class="row">
@@ -19,11 +21,11 @@
                     <div class="multisteps-form__content">
                         <!--Formulario de cadastro-->
 
-                        <form action="{{route('salvar_funcionario')}}" method="post">
-                            @section('css')
-                            <link rel="stylesheet"
-                                href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-                            @endsection
+                        <form
+                            action="@if(isset($funcionarios)) {{route('atualizar_funcionario',['id'=>$funcionarios->id])}} @else {{ Route('salvar_funcionario')}} @endif"
+                            method="post">
+
+
 
                             @section('js')
                             <script
@@ -61,6 +63,7 @@
                             </script> --}}
 
 
+
                             @if($errors->any())
                             @foreach ($errors->all() as $error)
                             <script>
@@ -78,7 +81,7 @@
                         <div class="col-12 col-sm-6">
                             <label>Nome</label>
                             <input class="multisteps-form__input form-control" name="name" type="text"
-                                placeholder="Nome: " value="{{old('name')}}">
+                                placeholder="Nome: " value="{{ $funcionarios->name ?? old('name') }}">
                         </div>
                         <!--===============-->
 
@@ -86,7 +89,7 @@
                         <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                             <label>Email</label>
                             <input class="multisteps-form__input form-control" name="email" type="email"
-                                placeholder="Email" value="{{old('email')}}">
+                                placeholder="Email" value="{{ $funcionarios->email ?? old('email') }}">
                         </div>
                     </div>
                     <!--==============-->
@@ -95,14 +98,14 @@
                     <div class="row mt-3">
                         <div class="col-12 col-sm-6">
                             <label>Senha</label>
-                            <input class="multisteps-form__input form-control" name="password" type="password"
-                                placeholder="******">
+                            <input class="multisteps-form__input form-control" id="password" name="password"
+                                type="password" placeholder="******">
                         </div>
 
                         <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                             <label>Repetir Senha</label>
-                            <input class="multisteps-form__input form-control" name="password" type="password"
-                                placeholder="******">
+                            <input class="multisteps-form__input form-control" id="confirm_password" name="password"
+                                type="password" placeholder="******">
                         </div>
                     </div>
 
@@ -130,5 +133,6 @@
         </div>
     </div>
 </div>
-</div>
+
+
 @stop
