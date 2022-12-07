@@ -12,6 +12,8 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/5/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 @endsection
 
 @section('plugins.Summernote', true)
@@ -58,7 +60,7 @@
                     <textarea class="form-control" name="local" placeholder="Local" rows="2" maxlength="200" style="resize: none;">{{$evento->local ?? old('local')}}</textarea>
                 </div>
 
-                
+
                 <!-- data  -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -66,7 +68,7 @@
                             <iconify-icon icon="carbon:text-align-justify"></iconify-icon>
                         </span>
                     </div>
-                    <textarea class="form-control" name="data" placeholder="Data" rows="2" maxlength="200" style="resize: none;">{{$evento->data ?? old('data')}}</textarea>
+                    <input type="text" name="data" value="{{ $evento->data ?? old('data')}}" placeholder="data">
                 </div>
 
 
@@ -85,8 +87,54 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.1/dist/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script>
     toastr.options.preventDuplicates = true;
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        $('input[name="data"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            timePicker: true,
+            timePicker24Hour: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'DD/MM/YYYY HH:mm ',
+                lang: 'pt-BR',
+                separator: " - ",
+                applyLabel: "Aplicar",
+                cancelLabel: "Cancelar",
+                monthNames: [
+                    "Janeiro",
+                    "Fevereiro",
+                    "Março",
+                    "Abril",
+                    "Maio",
+                    "Junho",
+                    "Julho",
+                    "Agosto",
+                    "Setembro",
+                    "Outubro",
+                    "Novembro",
+                    "Dezembro"
+                ],
+                daysOfWeek: [
+                    "Dom",
+                    "Seg",
+                    "Ter",
+                    "Qua",
+                    "Qui",
+                    "Sex",
+                    "Sáb"
+                ],
+                firstDay: 0
+            }
+        });
+    });
 </script>
 
 

@@ -39,7 +39,7 @@ class EventosController extends Controller
         $evento = new Eventos;
         $evento->titulo = $request->titulo;
         $evento->descricao = $request->descricao;
-        $evento->data = $request->descricao;
+        $evento->data = $request->data;
         $evento->local = $request->local;
         ($evento->save());
         return redirect()->route('listaeventos')->with(['success' => 'Evento cadastrado com sucesso']);
@@ -53,7 +53,7 @@ class EventosController extends Controller
 
         return view('eventos.eventos', compact('evento'));
     }
- 
+
     public function update(Request $request, $id)
     {
         if (!$evento = Eventos::find($id))
@@ -73,5 +73,3 @@ class EventosController extends Controller
         return redirect()->route('listaeventos')->with(['success' => 'Evento removido com sucesso']);
     }
 }
-
-
