@@ -18,6 +18,7 @@ class CadastroAnimalController extends Controller
         $animal = new animals();
         $animal->nome = $request->nome;
         $animal->sexo = $request->sexo;
+        $animal->status = $request->status;
         $animal->prontuario = $request->prontuario;
         $animal->image = $request->foto_animal->store('animal');
         ($animal->save());
@@ -40,7 +41,7 @@ class CadastroAnimalController extends Controller
 
     public function edit($id)
     {
-        if (!$animal = animals::find($id)->first())
+        if (!$animal = animals::find($id))
             return redirect()->route('/admin/animal/mostrar');
         return view('animal.cadastrarAnimal', compact('animal'));
     }

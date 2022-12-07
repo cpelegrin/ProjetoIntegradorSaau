@@ -372,6 +372,24 @@ return [
             ],
         ],
         [
+            'text' => 'Adoções',
+            'icon' => 'fas fa-dog',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar Adoções ',
+                    'icon' => 'fas  fa-pencil-alt',
+                    'url' => '/admin/adocoes',
+
+                ],
+                [
+                    'text' => 'Lista de adoções',
+                    'icon'  => 'fas fa-bars',
+                    'url'  => '/admin/adocoes/lista',
+                ],
+            ],
+        ],
+
+        [
             'text' => 'Ir ao site',
             'icon' => 'fas fa-globe',
             'url'  => '',
