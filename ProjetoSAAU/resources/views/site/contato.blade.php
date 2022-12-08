@@ -73,8 +73,8 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <form action="{{ url('/')}}" method="post" role="form" class="php-email-form">
-                                    {{ csrf_field() }}
+                                <form method="post" action="/contact" role="form" class="php-email-form">
+                                    @csrf
 
                                     <div class="row">
                                         <div class="col-md-6 form-group">

@@ -117,8 +117,10 @@ Route::get('admin/mostrar/perfil/{id}', [App\Http\Controllers\UsuarioController:
 
 
 
-Route::get('/contact', 'ContactController@contact')->name('contact');
-Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
+Route::post('/contact', [ContactController::class, 'ContactController@create']);
+
+//Route::get('/contact', 'ContactController@contact')->name('contact');
+//Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
 
 
 //Route::get('contact', 'SendEmailController@getContact');

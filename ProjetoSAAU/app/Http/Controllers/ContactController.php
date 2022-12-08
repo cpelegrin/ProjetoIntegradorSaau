@@ -38,15 +38,15 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'nome' => 'required',
             'email' => 'required|email',
-            'message' => 'required'
+            'mensagem' => 'required'
         ]);
 
         $data = array(
-            'name' => $request->nome,
+            'nome' => $request->name,
             'email' => $request->email,
-            'message' => $request->mensagem
+            'mensagem' => $request->mensagem
         );
 
         Mail::to( config('mail.from.address') );
