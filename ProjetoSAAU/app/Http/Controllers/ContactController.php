@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail as FacadesMail;
 
 class ContactController extends Controller
 {
@@ -34,7 +37,20 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
+
+        $data = array(
+            'name' => $request->nome,
+            'email' => $request->email,
+            'message' => $request->mensagem
+        );
+
+        Mail::to( config('mail.from.address') );
+            ->send( new SendMail($data) );
     }
 
     /**

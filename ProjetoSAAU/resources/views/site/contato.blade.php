@@ -73,7 +73,9 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                                <form action="{{ url('/')}}" method="post" role="form" class="php-email-form">
+                                    {{ csrf_field() }}
+
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <input type="text" name="name" class="form-control" id="name" placeholder="Nome Completo" required>
@@ -89,7 +91,7 @@
                                         <textarea class="form-control" name="message" rows="5" placeholder="Deixe aqui sua mensagem ou denúncia..." required></textarea>
                                     </div>
                                     <div class="my-3">
-                                        <div class="loading">carregando...</div>
+                                        <div class="loading">Carregando...</div>
                                         <div class="error-message"></div>
                                         <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
                                     </div>

@@ -117,3 +117,18 @@ Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'c
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');
 Route::post('/admin/resetPassword/{user_id}', [App\Http\Controllers\UsuarioController::class, 'resetPassword'])->name('resetar_senha')->middleware('auth');
 Route::get('admin/mostrar/perfil/{id}', [App\Http\Controllers\UsuarioController::class, 'mostrarPerfil'])->name('mostrar_perfil')->middleware('auth');
+
+
+
+Route::get('/contact', 'ContactController@contact')->name('contact');
+Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
+
+
+//Route::get('contact', 'SendEmailController@getContact');
+//Route::post('contact', 'SendEmailController@postContact');
+
+//Route::post('/sendemail/send','SendEmailController@send');
+
+//Route::post('/registerCreate', [App\Http\Controllers\Auth\SendEmailController::class, 'create'])->name('register.create');
+
+//Route::post('/registerStore', [App\Http\Controllers\Auth\SendEmailController::class, 'store'])->name('register.store.usu');
