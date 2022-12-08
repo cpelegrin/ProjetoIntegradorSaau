@@ -24,10 +24,12 @@
                                     @if(isset($perfil->sobremim))
                                     <h5 style="text-align: center;margin: 5px;font-weight: bold;">Sobre Mim</h5>
                                     <hr>
-                                    <x-adminlte-text-editor disabled=""  name="sobremim"  rows="5"    >
+                                    <x-adminlte-text-editor disabled=""   name="sobremim"  rows="5"    >
                                     
                                         {{ isset($perfil) ? $perfil->sobremim : '' }}
+                                        
                                     </x-adminlte-text-editor>
+                                    
                                     @else
                                     
                                     
@@ -109,7 +111,6 @@
                             <a class="btn btn-block bg-gradient-primary" href="{{route('mostrar_funcionario')}}">Voltar</a>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>

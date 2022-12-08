@@ -22,7 +22,6 @@
 
 
 <div class="row">
-
     <div class="col-11">
         <!--Campo para foto de perfil-->
         <div style="  margin:auto ;" class="col-md-12 ">

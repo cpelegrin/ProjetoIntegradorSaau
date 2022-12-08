@@ -9,6 +9,7 @@ use App\Models\{
 };
 use Illuminate\Http\Request;
 use App\Http\Requests\SenhaPerfilStoreRequest;
+use App\Http\Requests\PerfilStoreRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
@@ -25,8 +26,9 @@ class UsuarioController extends Controller
         }
     }
 
-    public function store(SenhaPerfilStoreRequest $request, $user_id)
+    public function store(PerfilStoreRequest $request, $user_id)
     {
+        
 
         $user = User::find(auth()->user()->id);
         $data['imagem'] = $user->imagem;
@@ -53,8 +55,6 @@ class UsuarioController extends Controller
             $user->name = $request->nome;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-
-
 
             $user->save();
 
@@ -88,7 +88,10 @@ class UsuarioController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
 
+           
             $user->save();
+            
+            
             if (isset($request->imagem))
                 $perfil->imagem = $request->imagem->storeAs('users', $nameFile);
             $perfil->cep = $request->cep;

@@ -52,9 +52,6 @@
         ];
         @endphp
 
-
-
-
         {{-- Minimal example / fill data using the component slot --}}
         <x-adminlte-datatable id="table1" :heads="$heads">
             @foreach($config['data'] as $row)
@@ -100,11 +97,7 @@
 </form>
 
 
-
-
-
 @stop
-
 @section('js')
 
 
