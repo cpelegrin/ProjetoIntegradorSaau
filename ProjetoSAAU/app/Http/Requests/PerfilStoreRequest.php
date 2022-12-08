@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SenhaPerfilStoreRequest extends FormRequest
+class PerfilStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,13 +15,12 @@ class SenhaPerfilStoreRequest extends FormRequest
     {
         return true;
     }
-
     public function messages()
     {
         return [
-            'password.required' => 'Você precisa inserir uma nova senha para continuar',
-            'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres',
-            
+            'nome.required' => 'Você precisa ter um nome no perfil',
+            'nome.min'=>'O nome precisa ter mais de três caracteres',
+            'email'=>'Você precisa de um email no perfil'
         ];
     }
 
@@ -33,10 +32,12 @@ class SenhaPerfilStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => [
+            'nome'=>[
                 'required',
-                'min:8',
-                'max:50'
+                'min:3'
+            ],
+            'email'=>[
+                'required'
             ],
         ];
     }

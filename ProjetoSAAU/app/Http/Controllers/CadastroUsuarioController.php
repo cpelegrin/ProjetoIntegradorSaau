@@ -47,8 +47,9 @@ class CadastroUsuarioController extends Controller
         if ($funcionarios->id == 1) {
             return redirect()->route('mostrar_funcionario')->withErrors(['error' => 'Não é possível deletar a conta de um Administrador ']);
         } else {
-            $funcionarios->delete();
-            $funcionarios = User::all();
+            $funcionarios = User::findOrFail($id);
+            $funcionarios->delete($id);
+            
             return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
         }
     }
