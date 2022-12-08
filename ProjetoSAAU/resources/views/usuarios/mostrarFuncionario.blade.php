@@ -71,7 +71,7 @@
 
 </div>
 <!-- Modal -->
-<form id="deleteForm" method="post" action="{{route('deletar_funcionario', 1)}}">
+<form id="deleteForm" method="post" action="{{route('deletar_funcionario',['id'=>$funcionario->id])}}">
     @csrf
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     <div class="modal fade" id="deletarfunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

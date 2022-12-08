@@ -50,7 +50,7 @@ class CadastroUsuarioController extends Controller
             $funcionarios = User::findOrFail($id);
             $funcionarios->delete($id);
             
-            return view('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
+            return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
         }
     }
     public function destroyUsuario($id)
