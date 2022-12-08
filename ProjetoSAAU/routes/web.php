@@ -78,12 +78,7 @@ Route::put('/admin/adocoes/remover/{id}', [App\Http\Controllers\AdocoesControlle
 Route::get('/admin/adocoes/lista', [App\Http\Controllers\AdocoesController::class, 'lista'])->name('listaadocoes')->middleware('auth');
 Route::post('/admin/adocoes', [App\Http\Controllers\AdocoesController::class, 'store'])->name('salvar_adocao')->middleware('auth');
 
-
-
-
-
-
-
+// rotas de Cadastro de Funcionario
 Route::middleware(['auth'])->group(
     function () {
         Route::prefix('/admin/funcionarios')->group(
@@ -112,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
         }
     );
 });
+
+// rotas de perfil
 Route::get('admin/usuario', [App\Http\Controllers\UsuarioController::class, 'index'])->name('mostrar_usuario');
 Route::get('/usuario/perfil', [App\Http\Controllers\UsuarioController::class, 'create'])->name('perfil')->middleware('auth');
 Route::post('/admin/cadastrar/usuario/{user_id}', [App\Http\Controllers\UsuarioController::class, 'store'])->name('salvar_perfil')->middleware('auth');

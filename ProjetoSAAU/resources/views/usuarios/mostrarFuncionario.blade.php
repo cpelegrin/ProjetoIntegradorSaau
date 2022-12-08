@@ -52,9 +52,6 @@
         ];
         @endphp
 
-
-
-
         {{-- Minimal example / fill data using the component slot --}}
         <x-adminlte-datatable id="table1" :heads="$heads">
             @foreach($config['data'] as $row)
@@ -71,7 +68,7 @@
 
 </div>
 <!-- Modal -->
-<form id="deleteForm" method="post" action="{{route('deletar_funcionario', 1)}}">
+<form id="deleteForm" method="post" action="{{route('deletar_funcionario',['id'=>$funcionario->id])}}">
     @csrf
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     <div class="modal fade" id="deletarfunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -100,11 +97,7 @@
 </form>
 
 
-
-
-
 @stop
-
 @section('js')
 
 
