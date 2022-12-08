@@ -25,7 +25,7 @@ class UsuarioController extends Controller
         }
     }
 
-    public function store(Request $request, $user_id)
+    public function store(SenhaPerfilStoreRequest $request, $user_id)
     {
 
         $user = User::find(auth()->user()->id);

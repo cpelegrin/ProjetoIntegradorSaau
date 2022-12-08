@@ -19,8 +19,11 @@ class SenhaPerfilStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required' => 'Você precisa inserir uma senha para continuar',
+            'password.required' => 'Você precisa inserir uma nova senha para continuar',
             'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres',
+            'name.required' => 'Você precisa ter um nome no perfil',
+            'name.min'=>'O nome precisa ter mais de três caracteres',
+            'email'=>'Você precisa de um email no perfil'
 
 
         ];
@@ -38,6 +41,13 @@ class SenhaPerfilStoreRequest extends FormRequest
                 'required',
                 'min:8',
                 'max:50'
+            ],
+            'name'=>[
+                'required',
+                'min:3'
+            ],
+            'email'=>[
+                'required'
             ],
 
         ];

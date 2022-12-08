@@ -16,15 +16,16 @@
                         <div class="col-md-12">
                             <div class="card card-profile">
                                 <div class="card-avatar">
-                                    <div class="text-center">
+                                    <div class="text-center pb-3">
                                         <img   id="preview-image" class="rounded-circle mt-4"  width="170px" src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
-                                    </div>
-                                    <h5 style="text-align: center;margin: 5px;">Sobre mim</h5>
-                                    <hr>
+                                    </div>  
                                 </div>
                                 <div class="card-content pl-3  pr-2">
                                     @if(isset($perfil->sobremim))
-                                    <x-adminlte-text-editor disabled="" name="sobremim"  rows="8"    >
+                                    <h5 style="text-align: center;margin: 5px;font-weight: bold;">Sobre Mim</h5>
+                                    <hr>
+                                    <x-adminlte-text-editor disabled=""  name="sobremim"  rows="5"    >
+                                    
                                         {{ isset($perfil) ? $perfil->sobremim : '' }}
                                     </x-adminlte-text-editor>
                                     @else

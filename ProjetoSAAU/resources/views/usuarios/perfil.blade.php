@@ -31,7 +31,7 @@
 
                     <!---Imagem de perfil---->
                     <div class="text-center">
-                        <img id="preview-image" class="rounded-circle mt-5" width="250px"
+                        <img id="preview-image" class="rounded-circle mt-5" width="220px"
                             src="@if(isset($perfil->imagem)) {{url('storage/'. $perfil->imagem)}} @else https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg @endif">
                     </div>
 
@@ -49,7 +49,7 @@
                         <!----Botao para arquivar a foto---->
                         <button type="button" style="width:250px; margin: auto;" class="btn btn-primary btn-block p-0">
                             <label class="labelInput py-2" style="width:250px">
-                                <spam>Update</spam>
+                                <spam>Carregar</spam>
                                 <input id="imagem" type="file" name="imagem" accept=".png, .jpg, .jpeg" hidden>
 
                             </label>
@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nome completo</label>
+                                <label>Nome Completo</label>
                                 <input type="text" class="form-control border-input" name="nome" placeholder="Nome"
                                     value="{{ isset($user) ? $user->name : ''}}">
                             </div>
@@ -78,7 +78,7 @@
                         <!--email-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Email</label>
+                                <label>E-mail</label>
                                 <input type="email" class="form-control border-input" name="email"
                                     value="{{ isset($user) ? $user->email : ''}}" placeholder="Email">
                             </div>
@@ -123,11 +123,11 @@
                     <!--===============-->
 
                     <!--Endereco-->
-                    <p style="font-weight: bolder;">Endereço</p>
-                    <div class="row justify-content-between mt-3">
+                    <label class="control-label">Cep</label>
+                    <div class="row justify-content-between mt-0">
                         <div class="col-8 ">
                             <x-adminlte-input id="cepInserted" onkeyup="delay(isValid(this, 9, event), 500)" name="cep"
-                                placeholder="Cep" value="{{ isset($perfil) ? $perfil->cep : '' }}">
+                                placeholder="Cep"  rows=0 value="{{ isset($perfil) ? $perfil->cep : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="CEP" style="width: 48px">
                                         <i class="far fa-address-card"></i>
@@ -141,8 +141,8 @@
                             </button>
                         </div>
                     </div>
-
-                    <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço" rows=2>
+                    <label class="control-label">Endereço</label>
+                    <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço" rows=0>
                         <x-slot name="prependSlot">
                             <div class="input-group-text" title="Endereço" style="width: 48px">
                                 <i class="fas fa-lg fa-building"></i>
@@ -150,10 +150,10 @@
                         </x-slot>
                         {{ $perfil->logradouro ?? old('logradouro')}}
                     </x-adminlte-textarea>
-
+                    <label style="font-weight: bolder;">Cidade</label>
                     <div class="row justify-content-between">
-                        <div class="col-6 m-0">
-                            <x-adminlte-input id="end_cidade" name="cidade" placeholder="Cidade"
+                        <div class="col-6 mt-0">
+                            <x-adminlte-input id="end_cidade" name="cidade"  rows=0 placeholder="Cidade"
                                 value="{{ isset($perfil) ? $perfil->cidade : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="Cidade" style="width: 48px">
@@ -163,7 +163,7 @@
                             </x-adminlte-input>
                         </div>
                         <div class="col-6 m-0">
-                            <x-adminlte-input type="text" name="num" placeholder="Número"
+                            <x-adminlte-input type="text" name="num"  rows=0 placeholder="Número"
                                 value="{{ isset($perfil) ? $perfil->num : '' }}">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text" title="Número" style="width: 48px">
@@ -186,7 +186,7 @@
                                 @php
                                 $config = [
                                 'height' => '300',
-                                'width' => '1000',
+                                'width' => '800',
                                 'toolbar' => [
                                 // [groupName, [list of button]]
                                 ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -201,7 +201,7 @@
                                 ];
                                 @endphp
 
-                                <x-adminlte-text-editor name="sobremim" label="Sobre mim" igroup-size="sm"
+                                <x-adminlte-text-editor name="sobremim" label="Sobre Mim" igroup-size="sm"
                                     placeholder="Sobre mim..." :config="$config">
 
                                     {{ isset($perfil) ? $perfil->sobremim : '' }}
