@@ -66,9 +66,17 @@
                         <div class="form-group">
                             <label class="ml-2 mt-2">Permissão</label>
                             <select name="permissao" class="form-control ml-2">
+                                @if(isset($funcionarios) && $funcionarios->id == 1)
+                                <option value="Administrador">Administrador</option>
+                                @elseif(isset($funcionarios) && $funcionarios->permissao=="Administrador")
+                                <option value="Administrador">Administrador</option>
+                                <option value="Funcionário">Funcionário</option>
+                                <option value="Voluntário">Voluntário</option>
+                                @else
                                 <option value="Funcionário">Funcionário</option>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Voluntário">Voluntário</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -80,6 +88,7 @@
                 </form>
                 <!--==============-->
             </div>
+            
         </div>
     </div>
 </div>
