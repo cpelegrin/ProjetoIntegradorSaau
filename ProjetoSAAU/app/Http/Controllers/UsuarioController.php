@@ -31,7 +31,7 @@ class UsuarioController extends Controller
 
     public function store(PerfilStoreRequest $request, $user_id)
     {
-        
+
         $user = User::find(auth()->user()->id);
         $data['imagem'] = $user->imagem;
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
@@ -56,14 +56,14 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
-            
-           
+
+
 
             $user->save();
-            
+
             $perfil = perfilUsuario::create(
                 [
-                    'user_id' => $user_id, 
+                    'user_id' => $user_id,
                     'cep' => $request->cep,
                     'logradouro' => $request->logradouro,
                     'num' => $request->num,
@@ -78,11 +78,20 @@ class UsuarioController extends Controller
 
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
-            $user->email = $request->email;
-            
+
+            if ($user->email != $request->email) {
+                if (User::where("email", $request->email)->count() > 0) {
+
+                    return redirect()->back()->withErrors(['error' => 'Email já cadastrado']);
+                } else {
+                    $user->email = $request->email;
+                }
+            }
+
+
             $user->save();
-            
-            
+
+
             if (isset($request->imagem))
                 $perfil->imagem = $request->imagem->storeAs('users', $nameFile);
             $perfil->cep = $request->cep;
