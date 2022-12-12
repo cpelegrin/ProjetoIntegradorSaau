@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail as FacadesMail;
+use App\Models\contato;
 
 class ContactController extends Controller
 {
@@ -37,20 +38,18 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email',
-            'mensagem' => 'required'
-        ]);
-
-        $data = array(
-            'nome' => $request->name,
-            'email' => $request->email,
-            'mensagem' => $request->mensagem
+        
+        contato::create(
+            [
+                'nome' => $request->nome,
+                'email' => $request->email,
+                'titulo'=>$request->titulo,
+                'mensagem'=>$request->mensagem,
+            ]
         );
 
-        Mail::to( config('mail.from.address') );
-            ->send( new SendMail($data) );
+        return redirect()->route('contato')->with(['success' => 'Mensagem enviada com sucesso']);
+       
     }
 
     /**
@@ -61,7 +60,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $contato = contato::all();
+        return view('contato.lista', compact('contato'));
     }
 
     /**

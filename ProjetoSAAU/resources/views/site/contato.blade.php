@@ -14,6 +14,12 @@
     @section('ativo-contato','active')
     <!-- ============== -->
 
+    
+
+
+
+
+
     @extends('layouts.basico')
     @section('conteudo')
         <main id="main">
@@ -73,28 +79,29 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <form method="post" action="/contact" role="form" class="php-email-form">
+                                <form method="post" action="{{route('criar_contato')}}" >
                                     @csrf
 
                                     <div class="row">
                                         <div class="col-md-6 form-group">
-                                            <input type="text" name="name" class="form-control" id="name" placeholder="Nome Completo" required>
+                                            <input type="text" name="nome" class="form-control" id="name" placeholder="Nome Completo" required>
                                         </div>
                                         <div class="col-md-6 form-group mt-3 mt-md-0">
                                             <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail" required>
                                         </div>
                                     </div>
                                     <div class="form-group mt-3">
-                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Título" required>
+                                        <input type="text" class="form-control" name="titulo" id="subject" placeholder="Título" required>
                                     </div>
                                     <div class="form-group mt-3">
-                                        <textarea class="form-control" name="message" rows="5" placeholder="Deixe aqui sua mensagem ou denúncia..." required></textarea>
+                                        <textarea class="form-control" name="mensagem" rows="5" placeholder="Deixe aqui sua mensagem ou denúncia..." required></textarea>
                                     </div>
-                                    <div class="my-3">
-                                        <div class="loading">Carregando...</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
+                                    @if(Session::has('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        A simple success alert—check it out!
                                     </div>
+                                    @endif
+                                    
                                     <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
                                 </form>
                             </div>
@@ -108,6 +115,8 @@
         
         <!-- Final #main -->
     @endsection('conteudo')
+
 </body>
+
 
 </html>

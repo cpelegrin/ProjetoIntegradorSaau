@@ -117,7 +117,8 @@ Route::get('admin/mostrar/perfil/{id}', [App\Http\Controllers\UsuarioController:
 
 
 
-Route::post('/contact', [ContactController::class, 'ContactController@create']);
+Route::post('denuncia/contato',[App\Http\Controllers\ContactController::class, 'store'])->name('criar_contato');
+Route::get('mostrar/denuncia/{id}',[App\Http\Controllers\ContactController::class, 'show'])->name('mostrar_contato');
 
 //Route::get('/contact', 'ContactController@contact')->name('contact');
 //Route::post('/contact', 'ContactController@contactPost')->name('contactPost');
