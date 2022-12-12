@@ -20,8 +20,9 @@ class SenhaPerfilStoreRequest extends FormRequest
     {
         return [
             'password.required' => 'Você precisa inserir uma nova senha para continuar',
-            'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres',
-            
+            'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres', 
+            'passwordSame.same'=>'Impossível trocar senha , senhas diferentes',
+            'passwordSame.required'=>'Você precisa confirmar a senha'
         ];
     }
 
@@ -38,6 +39,8 @@ class SenhaPerfilStoreRequest extends FormRequest
                 'min:8',
                 'max:50'
             ],
+            'passwordSame' => 'required|same:password',
+            
         ];
     }
 }
