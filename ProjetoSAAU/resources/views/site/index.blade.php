@@ -27,6 +27,13 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .fitting-image {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
@@ -296,10 +303,10 @@
                 <h2>Últimas Notícias:</h2>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row p-0 m-0">
                     @foreach($noticias as $noticia)
-                    <div class="card col-lg-4 col-md-4 p-0 m-2">
-                        <img class="card-img-top" class=”float-start w-25″ src="{{ url('storage/'. $noticia->image) }}" alt="Imagem de capa do card">
+                    <div class="card col-lg-4 col-md-4 p-0">
+                        <img class="card-img-top float-start fitting-image" src="{{ url('storage/'. $noticia->image) }}" alt="Imagem de capa do card">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$noticia->titulo}}</strong></h5>
                             <p class="card-text">{{$noticia->resumo}}</p> <small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
