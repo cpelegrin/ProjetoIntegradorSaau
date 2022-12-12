@@ -270,13 +270,15 @@
                     <div class="list-group">
                         @foreach($eventos as $evento)
                         @php
-                        $texto = Carbon::parse($evento->data)->locale('br')->format('Hi');
+                        [$day, $month, $year] = explode('/', $evento->data);
+                        $dataCerta = implode('/', [$month, $day, $year]);
+                        $texto = Carbon::parse($dataCerta)->locale('br')->format('Hi');
                         $hora = substr($texto, 0, 2);
                         $horaCerta = intval($hora) + 3;
-                        if(strlen($horaCerta) < 2){ $horaminuto="0" .strval($horaCerta) . substr($texto, -2); } else{ $horaminuto=strval($horaCerta) . substr($texto, -2); }; @endphp <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates={{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z%2F{{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z&text={{$evento->titulo}}&location={{$evento->local}}&details={{$evento->descricao}}" class="list-group-item list-group-item-action">
+                        if(strlen($horaCerta) < 2){ $horaminuto="0" .strval($horaCerta) . substr($texto, -2); } else{ $horaminuto=strval($horaCerta) . substr($texto, -2); }; @endphp <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates={{Carbon::parse($dataCerta)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z%2F{{Carbon::parse($dataCerta)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z&text={{$evento->titulo}}&location={{$evento->local}}&details={{$evento->descricao}}" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{$evento->titulo}}</h5>
-                                <small>Data: {{Carbon::parse($evento->data)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
+                                <small>Data: {{Carbon::parse($dataCerta)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                             </div>
                             <p class="mb-1">{{$evento->descricao}}</p>
                             <small>Local: {{$evento->local}}</small>
