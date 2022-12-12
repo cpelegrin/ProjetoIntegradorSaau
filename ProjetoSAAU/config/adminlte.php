@@ -397,7 +397,7 @@ return [
                 [
                     'text' => 'Lista de Contatos/Denúncias',
                     'icon'  => 'fas fa-bars',
-                    'url'  => '/admin/contato/lista',
+                    'url'  => 'mostrar/denuncia',
                 ],
             ],
         ],
