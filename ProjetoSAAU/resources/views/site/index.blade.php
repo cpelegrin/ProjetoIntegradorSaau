@@ -270,6 +270,9 @@
                     <div class="list-group">
                         @foreach($eventos as $evento)
                         @php
+                        /**TODO por causa de um erro ao salvar a data como string, é necessário modificar a model
+                        * para salvar a data corretamente e fazer ordenação e limite de eventos.
+                        **/
                         [$day, $month, $year] = explode('/', $evento->data);
                         $dataCerta = implode('/', [$month, $day, $year]);
                         $texto = Carbon::parse($dataCerta)->locale('br')->format('Hi');
