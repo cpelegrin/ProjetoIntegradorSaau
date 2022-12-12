@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule;
+
 class PerfilStoreRequest extends FormRequest
 {
     /**
@@ -20,7 +22,8 @@ class PerfilStoreRequest extends FormRequest
         return [
             'nome.required' => 'Você precisa ter um nome no perfil',
             'nome.min'=>'O nome precisa ter mais de três caracteres',
-            'email'=>'Você precisa de um email no perfil'
+            'email'=>'Você precisa de um email no perfil',
+           
         ];
     }
 
@@ -37,8 +40,9 @@ class PerfilStoreRequest extends FormRequest
                 'min:3'
             ],
             'email'=>[
-                'required'
+                'required',
             ],
+            
         ];
     }
 }

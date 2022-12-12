@@ -7,10 +7,13 @@ use App\Models\{
     User,
     perfilUsuario
 };
+
 use Illuminate\Http\Request;
 use App\Http\Requests\SenhaPerfilStoreRequest;
 use App\Http\Requests\PerfilStoreRequest;
 use Illuminate\Support\Facades\Hash;
+
+
 
 class UsuarioController extends Controller
 {
@@ -53,14 +56,14 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
+            
            
 
             $user->save();
             
             $perfil = perfilUsuario::create(
                 [
-                    'user_id' => $user_id,
-                    'imagem' => $request->imagem->storeAs('users', $nameFile),
+                    'user_id' => $user_id, 
                     'cep' => $request->cep,
                     'logradouro' => $request->logradouro,
                     'num' => $request->num,
@@ -76,9 +79,7 @@ class UsuarioController extends Controller
             $user = User::find(auth()->user()->id);
             $user->name = $request->nome;
             $user->email = $request->email;
-          
-
-           
+            
             $user->save();
             
             
@@ -102,7 +103,6 @@ class UsuarioController extends Controller
     public function resetPassword(SenhaPerfilStoreRequest $request, $user_id)
     {
         $user = auth()->user();
-
         $user = User::find(auth()->user()->id);
         $user->password = Hash::make($request->password);
         $user->save();
