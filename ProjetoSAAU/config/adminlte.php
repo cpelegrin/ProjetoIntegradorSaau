@@ -371,6 +371,7 @@ return [
                 ],
             ],
         ],
+
         [
             'text' => 'Adoções',
             'icon' => 'fas fa-dog',
@@ -385,6 +386,18 @@ return [
                     'text' => 'Lista de adoções',
                     'icon'  => 'fas fa-bars',
                     'url'  => '/admin/adocoes/lista',
+                ],
+            ],
+        ],
+
+        [
+            'text' => 'Contato/Denúncias',
+            'icon' => 'fas fa-bullhorn',
+            'submenu' => [
+                [
+                    'text' => 'Lista de Contatos/Denúncias',
+                    'icon'  => 'fas fa-bars',
+                    'url'  => '/admin/contato/lista',
                 ],
             ],
         ],
