@@ -27,6 +27,13 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .fitting-image {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
@@ -270,13 +277,18 @@
                     <div class="list-group">
                         @foreach($eventos as $evento)
                         @php
-                        $texto = Carbon::parse($evento->data)->locale('br')->format('Hi');
+                        /**TODO por causa de um erro ao salvar a data como string, é necessário modificar a model
+                        * para salvar a data corretamente e fazer ordenação e limite de eventos.
+                        **/
+                        [$day, $month, $year] = explode('/', $evento->data);
+                        $dataCerta = implode('/', [$month, $day, $year]);
+                        $texto = Carbon::parse($dataCerta)->locale('br')->format('Hi');
                         $hora = substr($texto, 0, 2);
                         $horaCerta = intval($hora) + 3;
-                        if(strlen($horaCerta) < 2){ $horaminuto="0" .strval($horaCerta) . substr($texto, -2); } else{ $horaminuto=strval($horaCerta) . substr($texto, -2); }; @endphp <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates={{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z%2F{{Carbon::parse($evento->data)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z&text={{$evento->titulo}}&location={{$evento->local}}&details={{$evento->descricao}}" class="list-group-item list-group-item-action">
+                        if(strlen($horaCerta) < 2){ $horaminuto="0" .strval($horaCerta) . substr($texto, -2); } else{ $horaminuto=strval($horaCerta) . substr($texto, -2); }; @endphp <a target="_blank" href="http://www.google.com/calendar/event?action=TEMPLATE&dates={{Carbon::parse($dataCerta)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z%2F{{Carbon::parse($dataCerta)->locale('br')->format('Ymd')}}T{{$horaminuto}}00Z&text={{$evento->titulo}}&location={{$evento->local}}&details={{$evento->descricao}}" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{$evento->titulo}}</h5>
-                                <small>Data: {{Carbon::parse($evento->data)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
+                                <small>Data: {{Carbon::parse($dataCerta)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                             </div>
                             <p class="mb-1">{{$evento->descricao}}</p>
                             <small>Local: {{$evento->local}}</small>
@@ -291,10 +303,10 @@
                 <h2>Últimas Notícias:</h2>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row p-0 m-0">
                     @foreach($noticias as $noticia)
-                    <div class="card col-lg-4 col-md-4 p-0 m-2">
-                        <img class="card-img-top" class=”float-start w-25″ src="{{ url('storage/'. $noticia->image) }}" alt="Imagem de capa do card">
+                    <div class="card col-lg-4 col-md-4 p-0">
+                        <img class="card-img-top float-start fitting-image" src="{{ url('storage/'. $noticia->image) }}" alt="Imagem de capa do card">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$noticia->titulo}}</strong></h5>
                             <p class="card-text">{{$noticia->resumo}}</p> <small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>

@@ -36,7 +36,7 @@
 
         $data = [];
         foreach($lista as $noticia){
-        $newDate = Carbon::parse($noticia->updated_at)->locale('br')->format('d/M/Y - H:i')."hrs";
+        $newDate = Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs";
 
 
 

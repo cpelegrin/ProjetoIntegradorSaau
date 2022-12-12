@@ -49,7 +49,7 @@ class CadastroUsuarioController extends Controller
         } else {
             $funcionarios = User::findOrFail($id);
             $funcionarios->delete($id);
-            
+
             return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário excluido com sucesso']);
         }
     }
@@ -76,15 +76,29 @@ class CadastroUsuarioController extends Controller
     public function update(UserStoreRequest $request, $id)
     {
         $funcionarios = User::findOrFail($id);
-        $funcionarios->update(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'permissao' => $request->permissao,
-            ]
-        );
-        
+
+        if ($request->password == null) {
+            $funcionarios->update(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'permissao' => $request->permissao,
+                ]
+            );
+        } else {
+            if (strlen($request->password) < 8) {
+                return redirect()->back()->withErrors(['error' => 'Você tem que inserir uma senha com mais de 8 caracteres',]);
+            }
+            $funcionarios->update(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'permissao' => $request->permissao,
+                    'password' => Hash::make($request->password),
+                ]
+            );
+        }
+
         $funcionarios = User::all();
 
         return redirect()->route('mostrar_funcionario', compact('funcionarios'))->with(['success' => 'Funcionário editado com sucesso']);

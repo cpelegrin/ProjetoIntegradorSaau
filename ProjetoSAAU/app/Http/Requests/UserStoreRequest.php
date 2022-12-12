@@ -22,8 +22,6 @@ class UserStoreRequest extends FormRequest
         return [
             'name.required' => 'Você precisa inserir um nome para continuar',
             'name.min' => 'O nome tem que ter pelo menos 3 caracteres',
-            'password.required' => 'Você precisa inserir uma senha para continuar',
-            'password.min' => 'Você tem que inserir uma senha com mais de 8 caracteres',
             'email.required' => 'Você precisa inserir um email para continuar',
 
         ];
@@ -46,12 +44,6 @@ class UserStoreRequest extends FormRequest
                 'required',
                 'email',
             ],
-            'password' => [
-                'required',
-                'min:8',
-                'max:50'
-            ],
-
         ];
 
 
