@@ -209,13 +209,12 @@
                             
                         </x-adminlte-text-editor>
                     </div>
-                    <!--=====Botao para salvar as informacoes do perfil======-->
-                <div class="text-center">
+                </div>
+                <!--=====Botao para salvar as informacoes do perfil======-->
+                <div class="text-center mb-3">
                     <button type="submit" class="btn btn-info btn-fill btn-wd">Salvar</button>
                 </div>
                 <!--===============-->
-                </div>
-                
             </div>
         </div>
     </div>
