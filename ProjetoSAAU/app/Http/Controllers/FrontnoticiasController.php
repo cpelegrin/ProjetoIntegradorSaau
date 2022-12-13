@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Noticias;
 use App\Models\eventos;
+use Illuminate\Support\Facades\Hash;
 
 class FrontnoticiasController extends Controller
 {
@@ -15,13 +16,15 @@ class FrontnoticiasController extends Controller
     }
     public function index_noticias()
     {
-        $front = Noticias::orderBy('updated_at', 'DESC')->get();
+        $front = Noticias::orderBy('updated_at', 'DESC')->cursorPaginate(13);
         return view('site.blog', compact('front'));
     }
 
     public function show($id)
     {
-        if (!$noticia = Noticias::find($id))
-            return redirect()->route('', compact('noticia'));
+        $noticia = Noticias::find($id);
+            return view('site.artigo-blog', compact('noticia'));
     }
+
+    
 }

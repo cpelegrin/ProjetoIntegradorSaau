@@ -8,6 +8,8 @@
     @section('inicio')
         <li><a href="{{Route('inicio')}}">INICIO</a></li>
     @endsection
+
+    
     <!-- ============== -->
 
     @extends('layouts.basico')
@@ -22,7 +24,7 @@
                         <li><a href="index.html">Início</a></li>
                         <li><a href="blog.html">Notícias</a></li>
                     </ol>
-                    <h2>Um animal de rua me mordeu. O que devo fazer?</h2>
+                    <h2></h2>
 
                 </div>
             </section>
