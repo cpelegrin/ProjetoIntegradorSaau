@@ -41,8 +41,8 @@
 
                         <article class="entry">
 
-                            <div class="entry-img" style="height: 25%;">
-                                <img style="height: 100%; width: 96%;" src="@if(isset($noticia->image)){{url('storage/'. $noticia->image)}}@else assets/img/blog/mordida.jpg @endif"alt="" class="img-fluid  m-3">
+                            <div class="entry-img text-center" style="height: 40%;">
+                                <img style="height: 100%; width: 96%;" src="@if(isset($noticia->image)){{url('storage/'. $noticia->image)}}@else assets/img/blog/mordida.jpg @endif"alt="" class="img-fluid  text-center mt-2">
                             </div>
 
                             <h2 class="entry-title">
@@ -54,7 +54,7 @@
                                     {{$noticia->resumo}}
                                 </p>
                                 <div class="read-more">
-                                    <a href="{{route('mostrar_noticia',$noticia->id)}}">Continue Lendo...</a>
+                                    <a href="{{route('mostrar_noticia',['id'=>$noticia->id])}}">Continue Lendo...</a>
                                 </div>
                             </div>
                         </article><!-- Entrada Sessão Blog  -->
