@@ -47,7 +47,7 @@
                             </div>
 
                             <h2 class="entry-title">
-                                <a href="Mudar para route para controller show passando o noticia->id">{{$noticia->titulo}}</a>
+                                <a href="{{route('mostrar_noticia',['id'=>$noticia->id])}}">{{$noticia->titulo}}</a>
                             </h2>
 
                             <div class="entry-content">

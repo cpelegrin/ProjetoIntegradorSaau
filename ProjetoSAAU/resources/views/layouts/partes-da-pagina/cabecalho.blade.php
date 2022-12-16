@@ -2,7 +2,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <a href="index.html"><img src="assets/img/saau-logo.jpg" alt="Logo SAAU" class="img-fluid"></a>
+            <a href="index.html"><img src="{{asset('assets/img/saau-logo.jpg')}}" alt="Logo SAAU" class="img-fluid"></a>
         </div>
 
         <nav id="navbar" class="navbar">

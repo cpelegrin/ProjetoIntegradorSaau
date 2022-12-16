@@ -312,7 +312,7 @@
                             <p class="card-text">{{$noticia->resumo}}</p> <small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                         </div>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-primary">Continue Lendo...</button>
+                            <a class="btn btn-primary" href="{{route('mostrar_noticia',['id'=>$noticia->id])}}">Continue Lendo...</a>
                         </div>
                     </div>
                     @endforeach
