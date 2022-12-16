@@ -13,6 +13,7 @@
     @section('ativo-blog','active')
     <!-- ============== -->
 
+
     @extends('layouts.basico')
     @section('conteudo')
     <main id="main">
@@ -42,7 +43,7 @@
                         <article class="entry">
 
                             <div class="entry-img text-center" style="height: 40%;">
-                                <img style="height: 100%; width: 96%;" src="@if(isset($noticia->image)){{url('storage/'. $noticia->image)}}@else assets/img/blog/mordida.jpg @endif"alt="" class="img-fluid  text-center mt-2">
+                                <img style="height: 100%; width: 95%;" src="@if(isset($noticia->image)){{url('storage/'. $noticia->image)}}@else assets/img/blog/mordida.jpg @endif"alt="" class="img-fluid  text-center mt-3">
                             </div>
 
                             <h2 class="entry-title">
@@ -52,27 +53,19 @@
                             <div class="entry-content">
                                 <p>
                                     {{$noticia->resumo}}
-                                </p>
+                                </p><small><br>Atualizada em: {{Carbon::parse($noticia->updated_at)->locale('br')->format('d/m/Y - H:i')."hrs"}}</small>
                                 <div class="read-more">
                                     <a href="{{route('mostrar_noticia',['id'=>$noticia->id])}}">Continue Lendo...</a>
                                 </div>
                             </div>
                         </article><!-- Entrada Sessão Blog  -->
-                        @endforeach
-                        <div class="blog-pagination">
-                            <ul class="justify-content-center">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                            </ul>
-                        </div>
-
+                        @endforeach   
+                        <div style="margin-bottom: 150px;">    
+                   {{ $front->links() }}
+                </div>
                     </div><!-- Final lista entrada blog -->
 
-                    <div class="col-lg-4">
-
-                    </div>
-
+                   
                 </div>
 
             </div>
