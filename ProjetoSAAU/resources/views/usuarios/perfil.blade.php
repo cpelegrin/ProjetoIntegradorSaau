@@ -141,6 +141,7 @@
                             </button>
                         </div>
                     </div>
+                    
                     <label class="control-label">Endereço</label>
                     <x-adminlte-textarea id="end_logradouro" name="logradouro" placeholder="Endereço"   rows=0>
                         <x-slot name="prependSlot">
@@ -150,84 +151,77 @@
                         </x-slot>
                         {{ $perfil->logradouro ?? old('logradouro')}}
                     </x-adminlte-textarea>
+                    
                     <label style="font-weight: bolder;">Cidade</label>
                     <div class="row justify-content-between">
                         <div class="col-6 mt-0">
-                            <x-adminlte-input id="end_cidade" name="cidade"  rows=0 placeholder="Cidade"
-                            value="{{ isset($perfil) ? $perfil->cidade : '' }}">
-                            <x-slot name="prependSlot">
-                                <div class="input-group-text" title="Cidade" style="width: 48px">
-                                    <i class="fas fa-city"></i>
-                                </div>
-                            </x-slot>
-                        </x-adminlte-input>
-                    </div>
-                    <div class="col-6 m-0">
-                        <x-adminlte-input type="text" name="num"  rows=0 placeholder="Número"
-                        value="{{ isset($perfil) ? $perfil->num : '' }}">
-                        <x-slot name="prependSlot">
-                            <div class="input-group-text" title="Número" style="width: 48px">
-                                <i class="fas fa-house-user"></i>
-                            </div>
-                        </x-slot>
-                    </x-adminlte-input>
-                    <div></div>
-                </div> 
-            </div>
-        </div>
-        <!--===============-->
-        
-        <!--Sobre mim-->
-        <div class="row ">
-            <div class="col-12 ">
-                <div class="form-group" style="margin-left:98px ;">
-                    <div class="input-group-prepend">
-                        <!-- teste do summernote -->
-                        @php
-                        $config = [
-                        'height' => '300',
-                        'width' => '800',
-                        'toolbar' => [
-                        // [groupName, [list of button]]
-                        ['style', ['bold', 'italic', 'underline', 'clear']],
-                        ['font', ['strikethrough']],
-                        ['fontsize', ['fontsize']],
-                        ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['height', ['height']],
-                        ['insert', ['link', 'picture']],
-                        ['view', ['fullscreen']],
-                        ],
-                        ];
-                        @endphp
+                            <x-adminlte-input id="end_cidade" name="cidade"  rows=0 placeholder="Cidade" value="{{ isset($perfil) ? $perfil->cidade : '' }}">
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text" title="Cidade" style="width: 48px">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input>
+                        </div>
                         
-                        <x-adminlte-text-editor name="sobremim" label="Sobre Mim" igroup-size="sm"
-                        placeholder="Sobre mim..." :config="$config">
-                        
-                        {{ isset($perfil) ? $perfil->sobremim : '' }}
-                        
-                    </x-adminlte-text-editor>
+                        <div class="col-6 m-0">
+                            <x-adminlte-input type="text" name="num"  rows=0 placeholder="Número"  value="{{ isset($perfil) ? $perfil->num : '' }}">
+                                <x-slot name="prependSlot">
+                                    <div class="input-group-text" title="Número" style="width: 48px">
+                                        <i class="fas fa-house-user"></i>
+                                    </div>
+                                </x-slot>
+                            </x-adminlte-input>
+                        </div>
+                    </div> 
                 </div>
             </div>
+            <!--===============-->
+            
+            <!--Sobre mim-->
+            <div class="row ">
+                <div class="col-12 ">
+                    <div class="form-group" style="margin-left:98px ;">
+                        <div class="input-group-prepend">
+                            <!-- teste do summernote -->
+                            @php
+                            $config = [
+                            'height' => '300',
+                            'width' => '800',
+                            'toolbar' => [
+                            // [groupName, [list of button]]
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrough']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['height', ['height']],
+                            ['insert', ['link', 'picture']],
+                            ['view', ['fullscreen']],
+                            ],
+                            ];
+                            @endphp
+                            
+                            <x-adminlte-text-editor name="sobremim" label="Sobre Mim" igroup-size="sm"
+                            placeholder="Sobre mim..." :config="$config">
+                            
+                            {{ isset($perfil) ? $perfil->sobremim : '' }}
+                            
+                        </x-adminlte-text-editor>
+                    </div>
+                </div>
+                <!--=====Botao para salvar as informacoes do perfil======-->
+                <div class="text-center mb-3">
+                    <button type="submit" class="btn btn-info btn-fill btn-wd">Salvar</button>
+                </div>
+                <!--===============-->
+            </div>
         </div>
     </div>
-    
-    
-    <!--=====Botao para salvar as informacoes do perfil======-->
-    <div class="text-center">
-        <button type="submit" class="btn btn-info btn-fill btn-wd">Salvar</button>
-    </div>
-    <!--===============-->
+</div> 
 </form>
 
 <!--============-->
-</div>
-<!--===========-->
-</div>
-</div>
-</div>
-
-
 
 <!--=====Campo para mudar a senha ======-->
 <div class="card col-11 mt-2">
@@ -280,51 +274,46 @@
 <!--============-->
 
 <!-- Modal de excluir conta -->
-<div class="modal fade"  id="excluirConta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Deletar conta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            Tem certeza de que deseja excluir a sua conta?
-        </div>
-        <div class="modal-footer">
-            <a class="btn btn-secondary" href="{{route('deletar_usuario',['id'=>$user->id])}}">Sim</a>
-            <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+<div class="modal fade"  id="excluirConta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deletar conta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja excluir a sua conta?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary" href="{{route('deletar_usuario',['id'=>$user->id])}}">Sim</a>
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>
-</div>
-
 
 <!-- Modal para trocar senha  -->
-<div class="modal fade"  id="mudarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            Tem certeza de que deseja mudar a sua senha?
-        </div>
-        <div class="modal-footer">
-            <button type="submit"  form="senha" class="btn btn-secondary">Sim</button>
-            <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+<div class="modal fade"  id="mudarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Tem certeza de que deseja mudar a sua senha?
+            </div>
+            <div class="modal-footer">
+                <button type="submit"  form="senha" class="btn btn-secondary">Sim</button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancelar</button>
+            </div>
         </div>
     </div>
 </div>
-
-
-
 @stop
 
 @section('js')

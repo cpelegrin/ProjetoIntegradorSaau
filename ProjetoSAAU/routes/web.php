@@ -27,7 +27,7 @@ Route::get('/sobre-nos', function () {
 })->name('sobre-nos');
 
 Route::get('/artigo-blog', function () {
-    return view('site/artigo-blog');
+    return view('site.artigo-blog');
 })->name('artigo-blog');
 
 Route::get('/doacao', function () {
@@ -43,6 +43,7 @@ Route::get('/seja-voluntario', function () {
 })->name('seja-voluntario');
 
 Route::get('/blog', [App\Http\Controllers\FrontnoticiasController::class, 'index_noticias'])->name('front.noticias');
+Route::get('/blog/noticias/{id}', [App\Http\Controllers\FrontnoticiasController::class, 'show'])->name('mostrar_noticia');
 
 
 Auth::routes();
