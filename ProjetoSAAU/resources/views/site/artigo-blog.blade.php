@@ -24,7 +24,7 @@
                         <li><a href="index.html">Início</a></li>
                         <li><a href="blog.html">Notícias</a></li>
                     </ol>
-                    <h2>Notícia</h2>
+                    <h2>Notícias</h2>
 
                 </div>
             </section>
