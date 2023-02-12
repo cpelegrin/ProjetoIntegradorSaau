@@ -25,7 +25,8 @@ class FrontnoticiasController extends Controller
     public function show($id)
     {
         $noticia = Noticias::find($id);
-            return view('site.artigo-blog', compact('noticia'));
+        $front = Noticias::orderBy('updated_at', 'DESC')->cursorPaginate(5);
+            return view('site.artigo-blog', compact('noticia','front'));
     }
 
     

@@ -53,7 +53,7 @@
                                     <p>
                                     @php
 
-                                    echo "{$noticia->resumo}";
+                                    echo "{$noticia->corpo}";
 
                                     @endphp
                                     </p>
@@ -93,32 +93,16 @@
                                 </div>
                                 <!-- Final Sidebar Categorias-->
 
-                                <h3 class="sidebar-title">Postagens Recentes:</h3>
+                                <h3 class="sidebar-title mb-4">Postagens Recentes:</h3>
                                 <div class="sidebar-item recent-posts">
-                                    <div class="post-item clearfix">
-                                        <img src="{{asset('assets/img/blog/mordida.jpg')}}" alt="">
-                                        <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                    </div>
+                                    
+                                    @foreach ($front as $noticias)
 
                                     <div class="post-item clearfix">
-                                        <img src="{{asset('assets/img/blog/mordida.jpg')}}" alt="">
-                                        <h4><a href="blog-single.html">Título da Postagem</a></h4>
+                                        <a href="{{route('mostrar_noticia',['id'=>$noticias->id])}}"><img class="mb-3" src="@if(isset($noticia->image)){{url('storage/'. $noticias->image)}}@else assets/img/blog/mordida.jpg @endif"alt="" class="img-fluid  text-center mt-3" alt=""></a> <h4><a href="{{route('mostrar_noticia',['id'=>$noticias->id])}}"> {{$noticias -> titulo}}</a></h4>
+                                       
                                     </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{asset('assets/img/blog/mordida.jpg')}}" alt="">
-                                        <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{asset('assets/img/blog/mordida.jpg')}}" alt="">
-                                        <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                    </div>
-
-                                    <div class="post-item clearfix">
-                                        <img src="{{asset('assets/img/blog/mordida.jpg')}}" alt="">
-                                        <h4><a href="blog-single.html">Título da Postagem</a></h4>
-                                    </div>
+                                    @endforeach
 
                                 </div>
 
