@@ -37,11 +37,11 @@ Ficaremos felizes em ter você no time!
 No momento ainda estamos estudando como licenciar o software!
 
 # Colaboradores
-Inicialmente, o projeto foi criado pelos alunos do curso de Programador de Sistemas do Senac:
+Inicialmente, o projeto foi criado pelos alunos do curso de Programador de Sistemas do Senac:<br>
 <a href="https://github.com/GabrielGuelsi">@GabrielGuelsi</a><br>
 <a href="https://github.com/cpelegrin">@JonathanLarssen</a><br>
 <a href="https://github.com/julianohoffmann">@JulianoHoffmann</a><br>
-<a href="https://github.com/cpelegrin">@RafaelHideki</a><br>
+<a href="https://github.com/hidekihm">@RafaelHideki</a><br>
 <a href="https://github.com/VilleNunes">@VilleNunes</a><br>
 
 Sob supervisão do Professor: <br>
